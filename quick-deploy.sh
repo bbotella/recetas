@@ -14,8 +14,8 @@ echo "🏃 Starting application..."
 docker-compose up -d
 
 echo "✅ Deployment complete!"
-echo "🌐 Access the website at: http://localhost:5000"
-echo "📊 Health check: http://localhost:5000/health"
+echo "🌐 Access the website at: http://localhost:5014"
+echo "📊 Health check: http://localhost:5014/health"
 echo ""
 echo "📋 Management commands:"
 echo "  View logs: docker-compose logs -f"
@@ -24,7 +24,7 @@ echo "  Restart: docker-compose restart"
 
 # Wait a moment and check if it's running
 sleep 3
-if curl -sf http://localhost:5000/health > /dev/null; then
+if curl -sf http://localhost:5014/health > /dev/null; then
     echo "✅ Application is running and healthy!"
 else
     echo "⚠️  Application may still be starting up. Check logs with: docker-compose logs -f"

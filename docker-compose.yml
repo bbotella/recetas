@@ -5,7 +5,7 @@ services:
     image: docker.io/bbotella/recetas-tia-carmen:latest
     container_name: tia-carmen-recipes
     ports:
-      - "5000:5000"
+      - "5014:5000"
     volumes:
       - ./data:/app/data
     environment:

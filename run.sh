@@ -24,7 +24,7 @@ fi
 
 # Run the application
 echo "🚀 Starting Flask application..."
-echo "📱 Open your browser to: http://localhost:5000"
+echo "📱 Open your browser to: http://localhost:5014"
 echo "⏹️  Press Ctrl+C to stop the server"
 echo ""
 

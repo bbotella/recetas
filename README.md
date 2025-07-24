@@ -37,7 +37,7 @@ cd recetas
 ./quick-deploy.sh
 
 # Access the application
-open http://localhost:5000
+open http://localhost:5014
 ```
 
 ### Option 2: Local Development
@@ -193,7 +193,7 @@ The application is available as a public Docker image:
 
 - `FLASK_ENV`: Set to `production` for production deployment
 - `FLASK_HOST`: Host to bind to (default: `0.0.0.0`)
-- `FLASK_PORT`: Port to run on (default: `5000`)
+- `FLASK_PORT`: Port to run on (default: `5014`)
 
 ## 🛠️ API Endpoints
 
@@ -209,13 +209,13 @@ The application is available as a public Docker image:
 
 ```bash
 # Run basic health check
-curl http://localhost:5000/health
+curl http://localhost:5014/health
 
 # Test search functionality
-curl "http://localhost:5000/?q=pollo"
+curl "http://localhost:5014/?q=pollo"
 
 # Test category filtering
-curl "http://localhost:5000/?category=Postres"
+curl "http://localhost:5014/?category=Postres"
 ```
 
 ## 📝 Contributing
