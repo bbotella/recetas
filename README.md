@@ -33,8 +33,8 @@ A beautiful web application to preserve and share traditional Spanish family rec
 git clone https://github.com/bbotella/recetas.git
 cd recetas
 
-# Deploy with Docker Compose
-docker-compose up -d
+# Deploy using public Docker Hub image
+./quick-deploy.sh
 
 # Access the application
 open http://localhost:5000
@@ -155,9 +155,14 @@ CREATE TABLE recipes (
 
 ## 🐳 Docker Deployment
 
-### Simple Deployment
+### Using Public Docker Hub Image (Recommended)
 
 ```bash
+# Quick deployment
+./quick-deploy.sh
+
+# Or manual deployment
+docker-compose pull
 docker-compose up -d
 ```
 
@@ -166,6 +171,23 @@ docker-compose up -d
 ```bash
 docker-compose --profile production up -d
 ```
+
+### Development (builds from source)
+
+```bash
+# Development deployment
+./dev-deploy.sh
+
+# Or manual development
+docker-compose -f docker-compose.dev.yml up -d --build
+```
+
+### Docker Hub Repository
+
+The application is available as a public Docker image:
+- **Registry**: Docker Hub (public)
+- **Repository**: `docker.io/bbotella/recetas-tia-carmen`
+- **URL**: https://hub.docker.com/r/bbotella/recetas-tia-carmen
 
 ### Environment Variables
 
