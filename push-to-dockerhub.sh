@@ -2,6 +2,7 @@
 
 # Build and push Docker image to Docker Hub (public registry)
 # This script ensures we push to the public registry, not company internal
+# Builds multi-architecture image for compatibility with different platforms
 
 set -e
 
@@ -11,8 +12,8 @@ IMAGE_NAME="recetas-tia-carmen"
 VERSION="latest"
 FULL_IMAGE_NAME="docker.io/${DOCKER_USERNAME}/${IMAGE_NAME}:${VERSION}"
 
-echo "🐳 Building and pushing Docker image to Docker Hub (public registry)"
-echo "=================================================================="
+echo "🐳 Building and pushing multi-architecture Docker image to Docker Hub"
+echo "====================================================================="
 echo ""
 
 # Check if Docker is logged in
@@ -30,35 +31,44 @@ fi
 echo "✅ Authenticated with Docker Hub"
 echo ""
 
-# Build the image
-echo "🏗️  Building Docker image..."
+# Create buildx builder if it doesn't exist
+echo "🔧 Setting up multi-architecture builder..."
+if ! docker buildx inspect multiarch-builder >/dev/null 2>&1; then
+    echo "Creating new buildx builder..."
+    docker buildx create --name multiarch-builder --use
+else
+    echo "Using existing buildx builder..."
+    docker buildx use multiarch-builder
+fi
+
+# Bootstrap the builder
+docker buildx inspect --bootstrap
+
+echo ""
+echo "✅ Multi-architecture builder ready"
+echo ""
+
+# Build and push multi-architecture image
+echo "🏗️  Building multi-architecture Docker image..."
 echo "Image name: ${FULL_IMAGE_NAME}"
+echo "Platforms: linux/amd64, linux/arm64"
 echo ""
 
-docker build -t ${FULL_IMAGE_NAME} .
+docker buildx build \
+    --platform linux/amd64,linux/arm64 \
+    --push \
+    --tag ${FULL_IMAGE_NAME} \
+    .
 
 echo ""
-echo "✅ Image built successfully!"
-echo ""
-
-# Push to Docker Hub
-echo "📤 Pushing to Docker Hub (public registry)..."
-echo "Registry: docker.io"
-echo "Repository: ${DOCKER_USERNAME}/${IMAGE_NAME}"
-echo "Tag: ${VERSION}"
-echo ""
-
-docker push ${FULL_IMAGE_NAME}
-
-echo ""
-echo "✅ Image pushed successfully!"
+echo "✅ Multi-architecture image built and pushed successfully!"
 echo ""
 
 # Show image info
 echo "📋 Image Information:"
 echo "  Registry: Docker Hub (public)"
 echo "  Full name: ${FULL_IMAGE_NAME}"
-echo "  Size: $(docker images ${FULL_IMAGE_NAME} --format "table {{.Size}}" | tail -1)"
+echo "  Platforms: linux/amd64, linux/arm64"
 echo ""
 
 # Verify it's available
@@ -66,13 +76,17 @@ echo "🔍 Verifying image is available..."
 docker pull ${FULL_IMAGE_NAME}
 
 echo ""
-echo "🎉 Success! Your image is now available on Docker Hub:"
+echo "🎉 Success! Your multi-architecture image is now available on Docker Hub:"
 echo "   https://hub.docker.com/r/${DOCKER_USERNAME}/${IMAGE_NAME}"
 echo ""
-echo "📋 To use this image:"
-echo "   docker run -d -p 5000:5000 ${FULL_IMAGE_NAME}"
+echo "📋 To use this image on any platform:"
+echo "   docker run -d -p 5014:5014 ${FULL_IMAGE_NAME}"
+echo ""
+echo "🖥️  Supported platforms:"
+echo "   - Intel/AMD x86_64 (most servers, NAS devices)"
+echo "   - ARM64 (Apple Silicon, ARM servers)"
 echo ""
 echo "🔄 Next steps:"
-echo "   1. Update docker-compose.yml to use this image"
-echo "   2. Test the deployment"
-echo "   3. Update documentation"
+echo "   1. Test the deployment on your NAS"
+echo "   2. Update docker-compose.yml (already done)"
+echo "   3. Deploy with confidence!"

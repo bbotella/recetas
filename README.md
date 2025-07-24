@@ -189,6 +189,23 @@ The application is available as a public Docker image:
 - **Repository**: `docker.io/bbotella/recetas-tia-carmen`
 - **URL**: https://hub.docker.com/r/bbotella/recetas-tia-carmen
 - **Port**: 5014 (both host and container)
+- **Architectures**: linux/amd64, linux/arm64 (multi-architecture support)
+
+### Architecture Compatibility
+
+The Docker image supports multiple architectures:
+- **AMD64/x86_64**: Intel/AMD processors (most servers, NAS devices)
+- **ARM64**: Apple Silicon, ARM-based servers
+
+If you encounter `exec format error` when deploying to NAS devices, rebuild the image for the specific architecture:
+
+```bash
+# For AMD64/x86_64 (most NAS devices)
+./push-to-dockerhub-amd64.sh
+
+# For multi-architecture (recommended)
+./push-to-dockerhub.sh
+```
 
 ### Environment Variables
 
@@ -205,6 +222,88 @@ The application is available as a public Docker image:
 | `/categories` | GET | List all categories |
 | `/category/<name>` | GET | Recipes by category |
 | `/health` | GET | Health check endpoint |
+
+## 🔧 Troubleshooting
+
+### Common Issues
+
+#### "exec format error" on NAS deployment
+
+**Problem**: Container fails to start with `exec /usr/local/bin/python: exec format error`
+
+**Cause**: Architecture mismatch between your development machine and NAS device
+
+**Solution**:
+1. Rebuild the image for the correct architecture:
+   ```bash
+   ./push-to-dockerhub-amd64.sh
+   ```
+2. Or use multi-architecture build:
+   ```bash
+   ./push-to-dockerhub.sh
+   ```
+3. Pull the updated image on your NAS:
+   ```bash
+   docker pull docker.io/bbotella/recetas-tia-carmen:latest
+   ```
+
+#### Port conflicts
+
+**Problem**: Port 5014 is already in use
+
+**Solution**:
+1. Change the external port in docker-compose.yml:
+   ```yaml
+   ports:
+     - "5015:5014"  # Use port 5015 instead
+   ```
+2. Or stop the conflicting service:
+   ```bash
+   docker ps  # Find conflicting container
+   docker stop <container_id>
+   ```
+
+#### Database not found
+
+**Problem**: Application shows "no recipes found"
+
+**Solution**:
+1. Check if the database was created:
+   ```bash
+   docker-compose exec tia-carmen-recipes ls -la /app/
+   ```
+2. Reimport recipes:
+   ```bash
+   docker-compose exec tia-carmen-recipes python import_recipes.py
+   ```
+
+#### Container health checks failing
+
+**Problem**: Container appears unhealthy in Portainer
+
+**Solution**:
+1. Check application logs:
+   ```bash
+   docker-compose logs tia-carmen-recipes
+   ```
+2. Test health endpoint manually:
+   ```bash
+   curl http://localhost:5014/health
+   ```
+
+### Architecture Detection
+
+To check your NAS architecture:
+```bash
+# On your NAS, run:
+docker info | grep Architecture
+# or
+uname -m
+```
+
+Common architectures:
+- `x86_64` or `amd64` → Use AMD64 image
+- `aarch64` or `arm64` → Use ARM64 image
 
 ## 🧪 Testing
 
