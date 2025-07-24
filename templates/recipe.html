@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}{{ recipe.title }} - Recetas de Tía Carmen{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('category_recipes', category_name=recipe.category) }}">{{ recipe.category }}</a></li>
+                <li class="breadcrumb-item active">{{ recipe.title }}</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1 class="mb-0">
+                        <i class="fas fa-utensils me-2"></i>
+                        {{ recipe.title }}
+                    </h1>
+                    <span class="badge bg-light text-dark">{{ recipe.category }}</span>
+                </div>
+            </div>
+            <div class="card-body">
+                {% if recipe.description %}
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>Descripción:</strong> {{ recipe.description }}
+                    </div>
+                {% endif %}
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card bg-light mb-4">
+                            <div class="card-header">
+                                <h4 class="mb-0">
+                                    <i class="fas fa-shopping-basket me-2"></i>
+                                    Ingredientes
+                                </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="ingredients-content">
+                                    {{ recipe.ingredients_html|safe }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card bg-light mb-4">
+                            <div class="card-header">
+                                <h4 class="mb-0">
+                                    <i class="fas fa-list-ol me-2"></i>
+                                    Preparación
+                                </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="instructions-content">
+                                    {{ recipe.instructions_html|safe }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-1"></i>
+                                Volver a todas las recetas
+                            </a>
+                            <a href="{{ url_for('category_recipes', category_name=recipe.category) }}" class="btn btn-outline-primary">
+                                <i class="fas fa-tags me-1"></i>
+                                Más recetas de {{ recipe.category }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-muted text-center">
+                <small>
+                    <i class="fas fa-heart text-danger me-1"></i>
+                    Receta de Tía Carmen
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.ingredients-content ul,
+.instructions-content ol {
+    padding-left: 1.5rem;
+}
+
+.ingredients-content li,
+.instructions-content li {
+    margin-bottom: 0.5rem;
+}
+
+.ingredients-content h3,
+.instructions-content h3 {
+    color: #495057;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+</style>
+{% endblock %}

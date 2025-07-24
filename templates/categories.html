@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Categorías - Recetas de Tía Carmen{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Inicio</a></li>
+                <li class="breadcrumb-item active">Categorías</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h1 class="mb-0">
+                    <i class="fas fa-list me-2"></i>
+                    Categorías de Recetas
+                </h1>
+            </div>
+            <div class="card-body">
+                <p class="text-muted">Explora nuestras recetas organizadas por categorías:</p>
+                
+                <div class="row">
+                    {% for category in categories %}
+                        <div class="col-md-6 col-lg-4 mb-3">
+                            <div class="card h-100 shadow-sm category-card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-folder-open fa-3x text-primary mb-3"></i>
+                                    <h5 class="card-title">{{ category }}</h5>
+                                    <a href="{{ url_for('category_recipes', category_name=category) }}" class="btn btn-outline-primary">
+                                        <i class="fas fa-eye me-1"></i>
+                                        Ver Recetas
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.category-card {
+    transition: transform 0.2s;
+}
+
+.category-card:hover {
+    transform: translateY(-2px);
+}
+</style>
+{% endblock %}
