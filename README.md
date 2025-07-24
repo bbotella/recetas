@@ -6,6 +6,8 @@ A beautiful web application to preserve and share traditional Spanish family rec
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-2.3+-green.svg)](https://flask.palletsprojects.com/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://docker.com)
+[![Docker Hub](https://img.shields.io/badge/Docker%20Hub-bbotella%2Frecetas--tia--carmen-blue.svg)](https://hub.docker.com/r/bbotella/recetas-tia-carmen)
+[![Build Status](https://github.com/bbotella/recetas/actions/workflows/docker-build-push.yml/badge.svg)](https://github.com/bbotella/recetas/actions/workflows/docker-build-push.yml)
 
 ## 🌟 Features
 
@@ -17,6 +19,7 @@ A beautiful web application to preserve and share traditional Spanish family rec
 - **🗄️ SQLite Database**: Lightweight, fast, and reliable data storage
 - **🔄 Real-time Search**: Instant results as you type
 - **📄 Individual Recipe Pages**: Detailed view with ingredients and step-by-step instructions
+- **🔄 Automated CI/CD**: Automatic Docker builds and deployments via GitHub Actions
 
 ## 📸 Screenshots
 
@@ -190,6 +193,7 @@ The application is available as a public Docker image:
 - **URL**: https://hub.docker.com/r/bbotella/recetas-tia-carmen
 - **Port**: 5014 (both host and container)
 - **Architectures**: linux/amd64, linux/arm64 (multi-architecture support)
+- **Auto-updates**: Automatically built and pushed via GitHub Actions on every commit
 
 ### Architecture Compatibility
 
@@ -206,6 +210,21 @@ If you encounter `exec format error` when deploying to NAS devices, rebuild the 
 # For multi-architecture (recommended)
 ./push-to-dockerhub.sh
 ```
+
+### Continuous Integration/Deployment
+
+The repository includes automated CI/CD via GitHub Actions:
+
+- **Automatic builds**: Every push to `main` triggers a Docker build
+- **Multi-architecture**: Builds for both AMD64 and ARM64 automatically
+- **Docker Hub integration**: Images are automatically pushed to Docker Hub
+- **Build status**: Check the build badge above for current status
+- **Setup guide**: See [GITHUB_ACTIONS_SETUP.md](GITHUB_ACTIONS_SETUP.md) for configuration
+
+**Build triggers**:
+- Push to `main` branch → Build and push `latest` tag
+- Pull requests → Build for testing (no push)
+- Manual trigger → Available in GitHub Actions tab
 
 ### Environment Variables
 
