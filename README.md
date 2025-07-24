@@ -30,8 +30,8 @@ A beautiful web application to preserve and share traditional Spanish family rec
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/tia-carmen-recipes.git
-cd tia-carmen-recipes
+git clone https://github.com/bbotella/recetas.git
+cd recetas
 
 # Deploy with Docker Compose
 docker-compose up -d
@@ -44,8 +44,8 @@ open http://localhost:5000
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/tia-carmen-recipes.git
-cd tia-carmen-recipes
+git clone https://github.com/bbotella/recetas.git
+cd recetas
 
 # Set up virtual environment
 python3 -m venv venv
@@ -73,7 +73,7 @@ cd tia-carmen-recipes
 ## 🏗️ Project Structure
 
 ```
-tia-carmen-recipes/
+recetas/
 ├── 📁 recipes/              # 73 original markdown recipe files
 ├── 📁 templates/            # HTML templates (Jinja2)
 ├── 📁 static/              # CSS, JavaScript, and assets
@@ -113,8 +113,8 @@ The application automatically categorizes recipes into:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/tia-carmen-recipes.git
-   cd tia-carmen-recipes
+   git clone https://github.com/bbotella/recetas.git
+   cd recetas
    ```
 
 2. **Create virtual environment**
@@ -249,9 +249,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📬 Contact
 
-- **Author**: [Your Name]
-- **Email**: [your.email@example.com]
-- **GitHub**: [@yourusername](https://github.com/yourusername)
+- **Author**: Bernardo Botella
+- **Email**: bernardobotellacorbi@gmail.com
+- **GitHub**: [@bbotella](https://github.com/bbotella)
 
 ---
 

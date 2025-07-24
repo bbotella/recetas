@@ -30,8 +30,8 @@ Enhancement suggestions are welcome! Please provide:
 
 1. **Fork the repository**
    ```bash
-   git clone https://github.com/yourusername/tia-carmen-recipes.git
-   cd tia-carmen-recipes
+   git clone https://github.com/bbotella/recetas.git
+   cd recetas
    ```
 
 2. **Create a virtual environment**
