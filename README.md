@@ -188,6 +188,7 @@ The application is available as a public Docker image:
 - **Registry**: Docker Hub (public)
 - **Repository**: `docker.io/bbotella/recetas-tia-carmen`
 - **URL**: https://hub.docker.com/r/bbotella/recetas-tia-carmen
+- **Port**: 5014 (both host and container)
 
 ### Environment Variables
 

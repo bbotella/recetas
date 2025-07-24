@@ -45,11 +45,11 @@ echo "🔧 Option 4: Manual Docker Commands"
 echo "-----------------------------------"
 echo "1. Pull and run public image:"
 echo "   docker pull docker.io/bbotella/recetas-tia-carmen:latest"
-echo "   docker run -d -p 5014:5000 --name tia-carmen-recipes docker.io/bbotella/recetas-tia-carmen:latest"
+echo "   docker run -d -p 5014:5014 --name tia-carmen-recipes docker.io/bbotella/recetas-tia-carmen:latest"
 echo ""
 echo "2. Build from source:"
 echo "   docker build -t tia-carmen-recipes ."
-echo "   docker run -d -p 5014:5000 --name tia-carmen-recipes tia-carmen-recipes"
+echo "   docker run -d -p 5014:5014 --name tia-carmen-recipes tia-carmen-recipes"
 echo ""
 
 # Production deployment

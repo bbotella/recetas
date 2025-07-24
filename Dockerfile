@@ -28,11 +28,11 @@ RUN useradd -m -u 1000 flaskuser && chown -R flaskuser:flaskuser /app
 USER flaskuser
 
 # Expose port
-EXPOSE 5000
+EXPOSE 5014
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:5000/ || exit 1
+  CMD curl -f http://localhost:5014/ || exit 1
 
 # Run the application
 CMD ["python", "app.py"]
