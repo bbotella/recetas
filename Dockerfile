@@ -23,6 +23,12 @@ RUN mkdir -p /app/data
 # Import recipes to database
 RUN python import_recipes.py
 
+# Generate complete AI translations for all recipes
+RUN python generate_complete_translations.py
+
+# Compile Flask-Babel translations
+RUN python babel_manager.py compile
+
 # Create non-root user for security
 RUN useradd -m -u 1000 flaskuser && chown -R flaskuser:flaskuser /app
 USER flaskuser
