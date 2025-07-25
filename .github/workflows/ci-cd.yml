@@ -160,13 +160,13 @@ jobs:
           type=raw,value=latest,enable={{is_default_branch}}
           type=sha,prefix={{branch}}-
     
-    - name: Build Docker image
+    - name: Build Docker image for testing
       uses: docker/build-push-action@v5
       with:
         context: .
-        platforms: linux/amd64,linux/arm64
+        platforms: linux/amd64
         push: false
-        tags: ${{ steps.meta.outputs.tags }}
+        tags: ${{ env.REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:test
         labels: ${{ steps.meta.outputs.labels }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
@@ -174,13 +174,13 @@ jobs:
     
     - name: Test Docker container
       run: |
-        docker run -d -p 5000:5000 --name test-container ${{ env.REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+        docker run -d -p 5000:5000 --name test-container ${{ env.REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:test
         sleep 10
         curl -f http://localhost:5000/health || exit 1
         docker stop test-container
         docker rm test-container
     
-    - name: Push Docker image to registry
+    - name: Build and push multi-platform Docker image
       uses: docker/build-push-action@v5
       with:
         context: .
