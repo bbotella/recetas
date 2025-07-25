@@ -7,7 +7,7 @@ def init_database():
     """Initialize the database and create tables if they don't exist."""
     conn = sqlite3.connect(DATABASE_PATH)
     cursor = conn.cursor()
-    
+
     # Create recipes table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS recipes (
@@ -21,7 +21,7 @@ def init_database():
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
-    
+
     # Create recipe translations table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS recipe_translations (
@@ -38,14 +38,18 @@ def init_database():
             UNIQUE(recipe_id, language)
         )
     ''')
-    
+
     # Create index for better search performance
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_title ON recipes(title)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_category ON recipes(category)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_ingredients ON recipes(ingredients)')
-    cursor.execute('CREATE INDEX IF NOT EXISTS idx_translations_recipe ON recipe_translations(recipe_id)')
-    cursor.execute('CREATE INDEX IF NOT EXISTS idx_translations_language ON recipe_translations(language)')
-    
+    cursor.execute(
+        'CREATE INDEX IF NOT EXISTS idx_translations_recipe ON recipe_translations(recipe_id)'
+    )
+    cursor.execute(
+        'CREATE INDEX IF NOT EXISTS idx_translations_language ON recipe_translations(language)'
+    )
+
     conn.commit()
     conn.close()
 
