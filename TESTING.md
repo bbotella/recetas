@@ -73,10 +73,8 @@ docker run --rm tia-carmen-tests
 #### Main CI/CD Pipeline (`.github/workflows/ci-cd.yml`)
 - **Test Job**: Runs on Python 3.9, 3.10, 3.11
   - Installs dependencies
-  - Initializes test database
-  - Runs pytest with coverage
-  - Uploads coverage to Codecov
-  - Runs basic functionality tests
+  - Runs comprehensive test suite
+  - Generates coverage reports
   - Tests application startup
 
 - **Lint Job**: Code quality checks
@@ -88,15 +86,17 @@ docker run --rm tia-carmen-tests
   - Safety check for known vulnerabilities
   - Bandit security linter
 
-- **Deploy Job**: Deployment (main branch only)
-  - Builds Docker image
-  - Tests Docker container
-  - Deploys to production
+- **Deploy Job**: Production deployment (main branch only)
+  - Builds multi-platform Docker image (amd64, arm64)
+  - Tests Docker container functionality
+  - Pushes to Docker Hub registry
+  - Updates Docker Hub description
+  - Implements proper quality gates
 
 #### Simple Test Workflow (`.github/workflows/test.yml`)
 - Lightweight testing for quick feedback
 - Runs on every push and pull request
-- Uses custom test runner
+- Uses custom test runner for fast validation
 
 ### Pre-commit Hooks
 - Automatically runs tests before commits
