@@ -25,12 +25,10 @@ def validate_github_actions():
         print(f"❌ GitHub Actions workflows directory missing: {workflows_dir}")
         return False
     
-    # Check workflow files
+    # Check main CI/CD workflow file
     ci_cd_file = os.path.join(workflows_dir, "ci-cd.yml")
-    test_file = os.path.join(workflows_dir, "test.yml")
     
-    ci_cd_exists = check_file_exists(ci_cd_file, "Main CI/CD workflow")
-    test_exists = check_file_exists(test_file, "Simple test workflow")
+    ci_cd_exists = check_file_exists(ci_cd_file, "CI/CD workflow")
     
     if ci_cd_exists:
         try:
@@ -38,7 +36,7 @@ def validate_github_actions():
                 ci_content = f.read()
                 
             # Check for required jobs (simple text search)
-            required_jobs = ['test:', 'lint:', 'security:']
+            required_jobs = ['test:', 'lint:', 'security:', 'deploy:']
             
             for job in required_jobs:
                 if job in ci_content:
@@ -49,7 +47,14 @@ def validate_github_actions():
         except Exception as e:
             print(f"❌ Error reading CI/CD workflow: {e}")
     
-    return ci_cd_exists and test_exists
+    # Check that no redundant workflows exist
+    workflow_files = [f for f in os.listdir(workflows_dir) if f.endswith('.yml')]
+    if len(workflow_files) == 1:
+        print("✅ Single consolidated CI/CD workflow (no redundancy)")
+    else:
+        print(f"⚠️  Found {len(workflow_files)} workflow files - consider consolidation")
+    
+    return ci_cd_exists
 
 def validate_testing_setup():
     """Validate testing configuration."""

@@ -68,9 +68,11 @@ docker run --rm tia-carmen-tests
 
 ## CI/CD Pipeline
 
-### GitHub Actions Workflows
+### GitHub Actions Workflow
 
-#### Main CI/CD Pipeline (`.github/workflows/ci-cd.yml`)
+#### CI/CD Pipeline (`.github/workflows/ci-cd.yml`)
+Complete automated pipeline that runs on every push and pull request:
+
 - **Test Job**: Runs on Python 3.9, 3.10, 3.11
   - Installs dependencies
   - Runs comprehensive test suite
@@ -93,10 +95,10 @@ docker run --rm tia-carmen-tests
   - Updates Docker Hub description
   - Implements proper quality gates
 
-#### Simple Test Workflow (`.github/workflows/test.yml`)
-- Lightweight testing for quick feedback
-- Runs on every push and pull request
-- Uses custom test runner for fast validation
+**Triggers:**
+- Push to main, master, or develop branches
+- Pull requests to main, master, or develop branches
+- Deploy job only runs on main/master branch pushes
 
 ### Pre-commit Hooks
 - Automatically runs tests before commits
