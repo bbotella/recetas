@@ -26,6 +26,9 @@ RUN python import_recipes.py
 # Generate complete AI translations for all recipes
 RUN python generate_complete_translations.py
 
+# Generate Chinese translations for all recipes
+RUN python generate_chinese_translations.py
+
 # Compile Flask-Babel translations
 RUN python babel_manager.py compile
 

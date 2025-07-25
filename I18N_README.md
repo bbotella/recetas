@@ -17,6 +17,7 @@ The Tía Carmen's Recipes web application now supports multiple languages using 
 
 - **Spanish (es)**: Default language
 - **English (en)**: Full translation available
+- **Chinese (zh)**: Complete translation available
 
 ## Implementation
 
@@ -30,7 +31,8 @@ from flask_babel import Babel, gettext as _, ngettext, lazy_gettext
 # Configuration
 app.config['LANGUAGES'] = {
     'es': 'Español',
-    'en': 'English'
+    'en': 'English',
+    'zh': '中文'
 }
 
 babel = Babel(app)
@@ -190,11 +192,19 @@ The application uses Claude AI to provide high-quality, natural translations for
 
 **Translation Scripts:**
 1. **`generate_ai_translations.py`**: Uses Claude AI for high-quality translations
-2. **`generate_recipe_translations.py`**: Basic dictionary-based translation (fallback)
+2. **`generate_complete_translations.py`**: Complete AI translations for all recipes
+3. **`generate_chinese_translations.py`**: Professional Chinese translations for all recipes
+4. **`generate_recipe_translations.py`**: Basic dictionary-based translation (fallback)
 
 **Usage:**
 ```bash
-# Generate AI-powered translations
+# Generate complete AI-powered translations
+python generate_complete_translations.py
+
+# Generate Chinese translations
+python generate_chinese_translations.py
+
+# Generate AI-powered translations (first 10 recipes)
 python generate_ai_translations.py
 
 # Generate basic translations (fallback)
@@ -223,6 +233,17 @@ Ingredients:
 - Lean meat
 - Ham
 - Spices
+```
+
+*AI Chinese Translation:*
+```
+标题: 酿朝鲜蓟
+描述: 煮熟的朝鲜蓟塞入瘦肉、火腿和香料的混合馅料，用白汁和奶酪烤制。
+食材:
+- 朝鲜蓟
+- 瘦肉
+- 火腿
+- 香料
 ```
 
 **Translation Database Schema:**
@@ -340,7 +361,7 @@ If some text isn't translated:
 - [ ] Advanced pluralization support
 - [ ] Date/time localization
 - [ ] Number formatting
-- [ ] More languages (French, Portuguese, Italian)
+- [ ] More languages (French, Portuguese, Italian, German, Japanese, Korean)
 
 ## Contributing Translations
 
@@ -362,7 +383,8 @@ app.config['BABEL_DEFAULT_LOCALE'] = 'es'
 app.config['BABEL_DEFAULT_TIMEZONE'] = 'UTC'
 app.config['LANGUAGES'] = {
     'es': 'Español',
-    'en': 'English'
+    'en': 'English',
+    'zh': '中文'
 }
 ```
 

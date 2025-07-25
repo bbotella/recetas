@@ -12,7 +12,8 @@ app.secret_key = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-producti
 # Babel configuration
 app.config['LANGUAGES'] = {
     'es': 'Español',
-    'en': 'English'
+    'en': 'English',
+    'zh': '中文'
 }
 app.config['BABEL_DEFAULT_LOCALE'] = 'es'
 app.config['BABEL_DEFAULT_TIMEZONE'] = 'UTC'
