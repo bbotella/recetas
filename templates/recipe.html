@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}{{ recipe.title }} - Recetas de la Tía Carmen{% endblock %}
+{% block title %}{{ recipe.title }} - {{ _('Aunt Carmen\'s Recipes') }}{% endblock %}
 
 {% block content %}
 <div class="row">
     <div class="col-12">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('index') }}">{{ _('Home') }}</a></li>
                 <li class="breadcrumb-item"><a href="{{ url_for('category_recipes', category_name=recipe.category) }}">{{ recipe.category }}</a></li>
                 <li class="breadcrumb-item active">{{ recipe.title }}</li>
             </ol>
@@ -31,7 +31,7 @@
                 {% if recipe.description %}
                     <div class="alert alert-info">
                         <i class="fas fa-info-circle me-2"></i>
-                        <strong>Descripción:</strong> {{ recipe.description }}
+                        <strong>{{ _('Description:') }}</strong> {{ recipe.description }}
                     </div>
                 {% endif %}
 
@@ -41,7 +41,7 @@
                             <div class="card-header">
                                 <h4 class="mb-0">
                                     <i class="fas fa-shopping-basket me-2"></i>
-                                    Ingredientes
+                                    {{ _('Ingredients') }}
                                 </h4>
                             </div>
                             <div class="card-body">
@@ -57,7 +57,7 @@
                             <div class="card-header">
                                 <h4 class="mb-0">
                                     <i class="fas fa-list-ol me-2"></i>
-                                    Preparación
+                                    {{ _('Instructions') }}
                                 </h4>
                             </div>
                             <div class="card-body">
@@ -74,11 +74,11 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
                                 <i class="fas fa-arrow-left me-1"></i>
-                                Volver a todas las recetas
+                                {{ _('Back to all recipes') }}
                             </a>
                             <a href="{{ url_for('category_recipes', category_name=recipe.category) }}" class="btn btn-outline-primary">
                                 <i class="fas fa-tags me-1"></i>
-                                Más recetas de {{ recipe.category }}
+                                {{ _('More recipes from') }} {{ recipe.category }}
                             </a>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
             <div class="card-footer text-muted text-center">
                 <small>
                     <i class="fas fa-heart text-danger me-1"></i>
-                    Receta de la Tía Carmen
+                    {{ _('Recipe from Aunt Carmen') }}
                 </small>
             </div>
         </div>

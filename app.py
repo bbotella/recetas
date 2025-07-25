@@ -1,22 +1,72 @@
-from flask import Flask, render_template, request, redirect, url_for
-from database import init_database, get_all_recipes, search_recipes, get_recipe_by_id, get_categories
+from flask import Flask, render_template, request, redirect, url_for, session
+from flask_babel import Babel, gettext as _, ngettext, lazy_gettext, get_locale
+from database import (init_database, get_all_recipes_with_translation, 
+                     search_recipes_with_translation, get_recipe_with_translation, 
+                     get_categories)
 import markdown
+import os
 
 app = Flask(__name__)
+app.secret_key = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
+
+# Babel configuration
+app.config['LANGUAGES'] = {
+    'es': 'Español',
+    'en': 'English'
+}
+app.config['BABEL_DEFAULT_LOCALE'] = 'es'
+app.config['BABEL_DEFAULT_TIMEZONE'] = 'UTC'
+
+def get_locale():
+    # 1. Check if language is forced in URL
+    if 'language' in request.args:
+        language = request.args['language']
+        if language in app.config['LANGUAGES']:
+            session['language'] = language
+            return language
+    
+    # 2. Check if language is stored in session
+    if 'language' in session:
+        if session['language'] in app.config['LANGUAGES']:
+            return session['language']
+    
+    # 3. Try to match browser language
+    return request.accept_languages.best_match(app.config['LANGUAGES'].keys()) or 'es'
+
+# Initialize Babel with the app and configure locale selector
+babel = Babel()
+babel.init_app(app, locale_selector=get_locale)
+
+# For Flask-Babel 4.0+, use the context processor approach
+@app.context_processor
+def inject_conf_vars():
+    return dict(
+        LANGUAGES=app.config['LANGUAGES'],
+        CURRENT_LANGUAGE=session.get('language', 'es'),
+        get_locale=get_locale,
+        _=_
+    )
 
 # Initialize database on startup
 init_database()
+
+@app.route('/set_language/<language>')
+def set_language(language=None):
+    if language in app.config['LANGUAGES']:
+        session['language'] = language
+    return redirect(request.referrer or url_for('index'))
 
 @app.route('/')
 def index():
     """Main page with recipe search."""
     query = request.args.get('q', '')
     category = request.args.get('category', '')
+    current_language = get_locale()
     
     if query or category:
-        recipes = search_recipes(query, category if category else None)
+        recipes = search_recipes_with_translation(query, category if category else None, current_language)
     else:
-        recipes = get_all_recipes()
+        recipes = get_all_recipes_with_translation(current_language)
     
     categories = get_categories()
     
@@ -29,16 +79,16 @@ def index():
 @app.route('/recipe/<int:recipe_id>')
 def recipe_detail(recipe_id):
     """Show detailed view of a specific recipe."""
-    recipe = get_recipe_by_id(recipe_id)
+    current_language = get_locale()
+    recipe = get_recipe_with_translation(recipe_id, current_language)
     if not recipe:
         return redirect(url_for('index'))
     
     # Convert markdown to HTML for better formatting
-    recipe_dict = dict(recipe)
-    recipe_dict['ingredients_html'] = markdown.markdown(recipe_dict['ingredients'])
-    recipe_dict['instructions_html'] = markdown.markdown(recipe_dict['instructions'])
+    recipe['ingredients_html'] = markdown.markdown(recipe['ingredients'])
+    recipe['instructions_html'] = markdown.markdown(recipe['instructions'])
     
-    return render_template('recipe.html', recipe=recipe_dict)
+    return render_template('recipe.html', recipe=recipe)
 
 @app.route('/categories')
 def categories():
@@ -49,13 +99,14 @@ def categories():
 @app.route('/category/<category_name>')
 def category_recipes(category_name):
     """Show all recipes in a specific category."""
-    recipes = search_recipes('', category_name)
+    current_language = get_locale()
+    recipes = search_recipes_with_translation('', category_name, current_language)
     return render_template('category.html', recipes=recipes, category=category_name)
 
 @app.route('/health')
 def health_check():
     """Health check endpoint for monitoring."""
-    return {'status': 'healthy', 'recipes_count': len(get_all_recipes())}, 200
+    return {'status': 'healthy', 'recipes_count': len(get_all_recipes_with_translation())}, 200
 
 if __name__ == '__main__':
     import os

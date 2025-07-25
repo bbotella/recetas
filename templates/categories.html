@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
-{% block title %}Categorías - Recetas de la Tía Carmen{% endblock %}
+{% block title %}{{ _('Categories') }} - {{ _('Aunt Carmen\'s Recipes') }}{% endblock %}
 
 {% block content %}
 <div class="row">
     <div class="col-12">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Inicio</a></li>
-                <li class="breadcrumb-item active">Categorías</li>
+                <li class="breadcrumb-item"><a href="{{ url_for('index') }}">{{ _('Home') }}</a></li>
+                <li class="breadcrumb-item active">{{ _('Categories') }}</li>
             </ol>
         </nav>
     </div>
@@ -20,11 +20,11 @@
             <div class="card-header bg-primary text-white">
                 <h1 class="mb-0">
                     <i class="fas fa-list me-2"></i>
-                    Categorías de Recetas
+                    {{ _('Recipe Categories') }}
                 </h1>
             </div>
             <div class="card-body">
-                <p class="text-muted">Explora nuestras recetas organizadas por categorías:</p>
+                <p class="text-muted">{{ _('Explore our recipes organized by categories:') }}</p>
                 
                 <div class="row">
                     {% for category in categories %}
@@ -35,7 +35,7 @@
                                     <h5 class="card-title">{{ category }}</h5>
                                     <a href="{{ url_for('category_recipes', category_name=category) }}" class="btn btn-outline-primary">
                                         <i class="fas fa-eye me-1"></i>
-                                        Ver Recetas
+                                        {{ _('View Recipes') }}
                                     </a>
                                 </div>
                             </div>

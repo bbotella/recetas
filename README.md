@@ -20,6 +20,7 @@ A beautiful web application to preserve and share traditional Spanish family rec
 - **🔄 Real-time Search**: Instant results as you type
 - **📄 Individual Recipe Pages**: Detailed view with ingredients and step-by-step instructions
 - **🔄 Automated CI/CD**: Automatic Docker builds and deployments via GitHub Actions
+- **🌍 Internationalization**: Multi-language support with Spanish and English
 
 ## 📸 Screenshots
 
@@ -78,16 +79,22 @@ cd tia-carmen-recipes
 ```
 recetas/
 ├── 📁 recipes/              # 73 original markdown recipe files
-├── 📁 templates/            # HTML templates (Jinja2)
+├── 📁 templates/            # HTML templates (Jinja2) with i18n support
 ├── 📁 static/              # CSS, JavaScript, and assets
-├── 📄 app.py               # Main Flask application
+├── 📁 translations/        # Translation files (Spanish, English)
+├── 📄 app.py               # Main Flask application with i18n
+├── 📄 app_simple.py        # Fallback app (simple translations)
 ├── 📄 database.py          # Database operations
 ├── 📄 import_recipes.py    # Script to import recipes to database
+├── 📄 babel.cfg            # Babel configuration for i18n
+├── 📄 compile_translations.py # Translation compiler
+├── 📄 setup_i18n.sh        # Internationalization setup script
 ├── 📄 requirements.txt     # Python dependencies
 ├── 📄 Dockerfile          # Docker configuration
 ├── 📄 docker-compose.yml  # Docker Compose setup
 ├── 📄 setup.sh            # Quick setup script
 ├── 📄 deploy.sh           # Deployment guide
+├── 📄 I18N_README.md      # Internationalization documentation
 └── 📄 README.md           # This file
 ```
 
@@ -374,7 +381,9 @@ We welcome contributions! Please follow these steps:
 - [ ] Advanced search filters
 - [ ] Recipe scaling calculator
 - [ ] Print-friendly recipe format
-- [ ] Multi-language support
+- [x] Multi-language support (Spanish and English)
+- [ ] Recipe content translation (ingredients, instructions)
+- [ ] Additional languages (French, Portuguese, etc.)
 
 ## 📄 License
 
