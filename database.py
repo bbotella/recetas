@@ -1,7 +1,7 @@
 import sqlite3
 import os
 
-DATABASE_PATH = 'recipes.db'
+DATABASE_PATH = os.environ.get('DATABASE_PATH', 'recipes.db')
 
 def init_database():
     """Initialize the database and create tables if they don't exist."""

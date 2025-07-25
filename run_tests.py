@@ -20,6 +20,78 @@ def setup_test_environment():
     
     return db_fd, db_path
 
+def populate_test_database():
+    """Populate the test database with sample data."""
+    try:
+        from database import get_db_connection
+        
+        conn = get_db_connection()
+        
+        # Check if data already exists
+        cursor = conn.cursor()
+        cursor.execute("SELECT COUNT(*) FROM recipes")
+        count = cursor.fetchone()[0]
+        
+        if count > 0:
+            # Data already exists, skip population
+            conn.close()
+            return True
+        
+        # Insert test recipes
+        test_recipes = [
+            {
+                'title': 'Test Recipe 1',
+                'description': 'Test description 1',
+                'ingredients': 'Test ingredients 1',
+                'instructions': 'Test instructions 1',
+                'category': 'Postres',
+                'filename': 'test_recipe_1.md'
+            },
+            {
+                'title': 'Test Recipe 2',
+                'description': 'Test description 2',
+                'ingredients': 'Test ingredients 2',
+                'instructions': 'Test instructions 2',
+                'category': 'Pollo',
+                'filename': 'test_recipe_2.md'
+            },
+            {
+                'title': 'Chicken Test',
+                'description': 'Chicken test description',
+                'ingredients': 'Chicken, spices',
+                'instructions': 'Cook chicken',
+                'category': 'Pollo',
+                'filename': 'chicken_test.md'
+            }
+        ]
+        
+        for recipe in test_recipes:
+            conn.execute('''
+                INSERT INTO recipes (title, description, ingredients, instructions, category, filename)
+                VALUES (?, ?, ?, ?, ?, ?)
+            ''', (recipe['title'], recipe['description'], recipe['ingredients'], 
+                  recipe['instructions'], recipe['category'], recipe['filename']))
+        
+        # Insert test translations
+        conn.execute('''
+            INSERT INTO recipe_translations (recipe_id, language, title, description, ingredients, instructions, category)
+            VALUES (1, 'en', 'Test Recipe 1 EN', 'Test description 1 EN', 'Test ingredients 1 EN', 'Test instructions 1 EN', 'Desserts')
+        ''')
+        
+        conn.execute('''
+            INSERT INTO recipe_translations (recipe_id, language, title, description, ingredients, instructions, category)
+            VALUES (1, 'zh', 'Test Recipe 1 ZH', 'Test description 1 ZH', 'Test ingredients 1 ZH', 'Test instructions 1 ZH', '甜点')
+        ''')
+        
+        conn.commit()
+        conn.close()
+        
+        return True
+        
+    except Exception as e:
+        print(f"Error populating test database: {e}")
+        return False
+
 def test_database_operations():
     """Test basic database operations."""
     try:
@@ -27,6 +99,10 @@ def test_database_operations():
         
         # Initialize database
         init_database()
+        
+        # Populate with test data
+        if not populate_test_database():
+            return False
         
         # Test getting all recipes
         recipes = get_all_recipes()
@@ -79,6 +155,10 @@ def test_internationalization():
         
         # Initialize database first
         init_database()
+        
+        # Populate with test data
+        if not populate_test_database():
+            return False
         
         app = create_app_for_testing()
         

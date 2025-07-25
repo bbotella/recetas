@@ -32,31 +32,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     
-    - name: Initialize database
-      run: |
-        python -c "
-        import os
-        os.environ['DATABASE_PATH'] = 'test_recipes.db'
-        from database import init_database
-        init_database()
-        "
-    
-    - name: Run tests with pytest
-      run: |
-        pytest tests/ -v --tb=short --cov=. --cov-report=xml --cov-report=term-missing
-      env:
-        DATABASE_PATH: test_recipes.db
-    
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v4
-      with:
-        file: ./coverage.xml
-        flags: unittests
-        name: codecov-umbrella
-        fail_ci_if_error: false
-        token: ${{ secrets.CODECOV_TOKEN }}
-    
-    - name: Run basic functionality test
+    - name: Run tests with basic test runner
       run: |
         python run_tests.py
       env:
@@ -66,6 +42,9 @@ jobs:
     - name: Generate coverage report
       run: |
         python coverage_report.py
+      env:
+        DATABASE_PATH: test_recipes.db
+        FLASK_ENV: testing
     
     - name: Test application startup
       run: |
