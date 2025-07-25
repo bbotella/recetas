@@ -1,0 +1,28 @@
+# Dockerfile for testing environment
+FROM python:3.10-slim
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gettext \
+    sqlite3 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /app
+
+# Copy requirements and install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
+COPY . .
+
+# Set environment variables for testing
+ENV FLASK_ENV=testing
+ENV DATABASE_PATH=test_recipes.db
+
+# Initialize test database
+RUN python -c "from database import init_database; init_database()"
+
+# Run tests by default
+CMD ["python", "run_tests.py"]

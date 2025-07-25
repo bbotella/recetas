@@ -109,6 +109,51 @@ def health_check():
     """Health check endpoint for monitoring."""
     return {'status': 'healthy', 'recipes_count': len(get_all_recipes_with_translation())}, 200
 
+
+def create_app_for_testing(config=None):
+    """Create Flask app instance for testing."""
+    test_app = Flask(__name__)
+    
+    # Default test configuration
+    test_app.config.update({
+        'TESTING': True,
+        'SECRET_KEY': 'test-secret-key',
+        'LANGUAGES': {
+            'es': 'Español',
+            'en': 'English',
+            'zh': '中文'
+        },
+        'BABEL_DEFAULT_LOCALE': 'es',
+        'BABEL_DEFAULT_TIMEZONE': 'UTC'
+    })
+    
+    if config:
+        test_app.config.update(config)
+    
+    # Configure Babel for testing
+    babel = Babel()
+    babel.init_app(test_app, locale_selector=get_locale)
+    
+    # Register context processor
+    @test_app.context_processor
+    def inject_conf_vars():
+        return dict(
+            LANGUAGES=test_app.config['LANGUAGES'],
+            CURRENT_LANGUAGE=session.get('language', 'es'),
+            get_locale=get_locale,
+            _=_
+        )
+    
+    # Register routes
+    test_app.add_url_rule('/set_language/<language>', 'set_language', set_language)
+    test_app.add_url_rule('/', 'index', index)
+    test_app.add_url_rule('/recipe/<int:recipe_id>', 'recipe_detail', recipe_detail)
+    test_app.add_url_rule('/categories', 'categories', categories)
+    test_app.add_url_rule('/category/<category_name>', 'category_recipes', category_recipes)
+    test_app.add_url_rule('/health', 'health_check', health_check)
+    
+    return test_app
+
 if __name__ == '__main__':
     import os
     # Get configuration from environment variables
