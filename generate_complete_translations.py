@@ -1411,10 +1411,10 @@ def generate_complete_translations():
         existing_translation = get_recipe_translation(recipe["id"], "en")
 
         if existing_translation:
-            print(f"  - Translation exists, updating with complete AI translation...")
+            print("  - Translation exists, updating with complete AI translation...")
             updated_count += 1
         else:
-            print(f"  - Creating new complete AI translation...")
+            print("  - Creating new complete AI translation...")
             translated_count += 1
 
         # Get AI translation
@@ -1444,9 +1444,9 @@ def generate_complete_translations():
             translation["category"],
         )
 
-        print(f"  - Complete AI translation saved successfully")
+        print("  - Complete AI translation saved successfully")
 
-    print(f"\nComplete AI Translation finished!")
+    print("\nComplete AI Translation finished!")
     print(f"  - New translations: {translated_count}")
     print(f"  - Updated translations: {updated_count}")
     print(f"  - Total recipes: {len(recipes)}")

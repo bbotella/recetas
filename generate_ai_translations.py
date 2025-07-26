@@ -29,7 +29,6 @@ def translate_recipe_with_ai(recipe):
     This function contains the AI-generated translations.
     """
 
-    recipe_id = recipe["id"]
     title = recipe["title"]
     description = recipe["description"]
     ingredients = recipe["ingredients"]
@@ -251,10 +250,10 @@ def generate_ai_recipe_translations():
         existing_translation = get_recipe_translation(recipe["id"], "en")
 
         if existing_translation:
-            print(f"  - Translation exists, updating with AI translation...")
+            print("  - Translation exists, updating with AI translation...")
             updated_count += 1
         else:
-            print(f"  - Creating new AI translation...")
+            print("  - Creating new AI translation...")
             translated_count += 1
 
         # Generate AI translation
@@ -271,9 +270,9 @@ def generate_ai_recipe_translations():
             translation["category"],
         )
 
-        print(f"  - AI translation completed successfully")
+        print("  - AI translation completed successfully")
 
-    print(f"\nAI Translation completed!")
+    print("\nAI Translation completed!")
     print(f"  - New translations: {translated_count}")
     print(f"  - Updated translations: {updated_count}")
     print(f"  - Total recipes: {len(recipes)}")

@@ -84,15 +84,17 @@ def populate_test_database():
         # Insert test translations
         conn.execute(
             """
-            INSERT INTO recipe_translations (recipe_id, language, title, description, ingredients, instructions, category)
-            VALUES (1, 'en', 'Test Recipe 1 EN', 'Test description 1 EN', 'Test ingredients 1 EN', 'Test instructions 1 EN', 'Desserts')
+            INSERT INTO recipe_translations (recipe_id, language, title, description,
+            ingredients, instructions, category) VALUES (1, 'en', 'Test Recipe 1 EN',
+            'Test description 1 EN', 'Test ingredients 1 EN', 'Test instructions 1 EN', 'Desserts')
         """
         )
 
         conn.execute(
             """
-            INSERT INTO recipe_translations (recipe_id, language, title, description, ingredients, instructions, category)
-            VALUES (1, 'zh', 'Test Recipe 1 ZH', 'Test description 1 ZH', 'Test ingredients 1 ZH', 'Test instructions 1 ZH', '甜点')
+            INSERT INTO recipe_translations (recipe_id, language, title, description,
+            ingredients, instructions, category) VALUES (1, 'zh', 'Test Recipe 1 ZH',
+            'Test description 1 ZH', 'Test ingredients 1 ZH', 'Test instructions 1 ZH', '甜点')
         """
         )
 

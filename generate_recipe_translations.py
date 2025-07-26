@@ -30,7 +30,7 @@ INGREDIENT_TRANSLATIONS = {
     "carne": "meat",
     "pescado": "fish",
     "arroz": "rice",
-    "pasta": "pasta",
+    "pasta_alimenticia": "pasta",
     "queso": "cheese",
     "jamón": "ham",
     "chorizo": "chorizo",
@@ -75,7 +75,7 @@ INGREDIENT_TRANSLATIONS = {
     "crema": "cream",
     "natillas": "custard",
     "flan": "flan",
-    "helado": "ice cream",
+    "helado_postre": "ice cream",
     "sorbete": "sorbet",
     "granizado": "slush",
     "horchata": "horchata",
@@ -118,11 +118,11 @@ INGREDIENT_TRANSLATIONS = {
     "majada": "crushed mixture",
     "refrito": "sautéed mixture",
     "guiso": "stew",
-    "cocido": "boiled",
+    "cocido_hervido": "boiled",
     "asado": "roasted",
     "frito": "fried",
     "plancha": "grilled",
-    "vapor": "steamed",
+    "vapor_coccion": "steamed",
     "horno": "oven",
     "fuego": "fire",
     "llama": "flame",
@@ -576,7 +576,6 @@ def generate_recipe_translations():
     print(f"Found {len(recipes)} recipes to translate.")
 
     translated_count = 0
-    updated_count = 0
 
     for recipe in recipes:
         print(f"Processing recipe: {recipe['title']}")
@@ -585,7 +584,7 @@ def generate_recipe_translations():
         existing_translation = get_recipe_translation(recipe["id"], "en")
 
         if existing_translation:
-            print(f"  - Translation already exists, skipping...")
+            print("  - Translation already exists, skipping...")
             continue
 
         # Generate translation
@@ -603,9 +602,9 @@ def generate_recipe_translations():
         )
 
         translated_count += 1
-        print(f"  - Translated successfully")
+        print("  - Translated successfully")
 
-    print(f"\nTranslation completed!")
+    print("\nTranslation completed!")
     print(f"  - Recipes translated: {translated_count}")
     print(f"  - Total recipes: {len(recipes)}")
 

@@ -86,7 +86,7 @@ def validate_testing_setup():
 
     all_exist = True
     for test_file in test_files:
-        if not check_file_exists(test_file, f"Test file"):
+        if not check_file_exists(test_file, "Test file"):
             all_exist = False
 
     # Check test coverage
@@ -163,20 +163,25 @@ def run_quick_validation():
         # Test basic imports
         sys.path.insert(0, ".")
 
-        import database
-        import app
+        # Test imports
+        try:
+            import database  # noqa: F401
+            import app  # noqa: F401
+        except ImportError as e:
+            print("❌ Import error: " + str(e))
+            return False
 
         print("✅ Core modules import successfully")
 
         # Test database functions
-        from database import init_database
+        from database import init_database  # noqa: F401
 
         print("✅ Database functions accessible")
 
         # Test Flask app creation
         from app import create_app_for_testing
 
-        test_app = create_app_for_testing()
+        test_app = create_app_for_testing()  # noqa: F841
         print("✅ Flask test app creation works")
 
         return True

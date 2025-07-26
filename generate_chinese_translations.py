@@ -1411,10 +1411,10 @@ def generate_chinese_recipe_translations():
         existing_translation = get_recipe_translation(recipe["id"], "zh")
 
         if existing_translation:
-            print(f"  - 翻译已存在，正在更新为中文翻译...")
+            print("  - 翻译已存在，正在更新为中文翻译...")
             updated_count += 1
         else:
-            print(f"  - 正在创建新的中文翻译...")
+            print("  - 正在创建新的中文翻译...")
             translated_count += 1
 
         # Get Chinese translation
@@ -1444,9 +1444,9 @@ def generate_chinese_recipe_translations():
             translation["category"],
         )
 
-        print(f"  - 中文翻译保存成功")
+        print("  - 中文翻译保存成功")
 
-    print(f"\n中文翻译完成！")
+    print("\n中文翻译完成！")
     print(f"  - 新翻译：{translated_count}")
     print(f"  - 更新翻译：{updated_count}")
     print(f"  - 总食谱数：{len(recipes)}")
