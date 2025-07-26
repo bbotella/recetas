@@ -25,9 +25,9 @@ setup:
 test:
 	@echo "Running basic test suite..."
 	@if [ -d "venv" ]; then \
-		. venv/bin/activate && python run_tests.py; \
+		. venv/bin/activate && python scripts/run_tests.py; \
 	else \
-		python3 run_tests.py; \
+		python3 scripts/run_tests.py; \
 	fi
 
 # Run quick tests only
@@ -43,14 +43,14 @@ test-full:
 # Generate coverage report
 coverage:
 	@echo "Generating coverage report..."
-	python coverage_report.py
+	python scripts/coverage_report.py
 
 # Run code linting
 lint:
 	@echo "Running code linting..."
 	-flake8 --max-line-length=88 --extend-ignore=E203,W503 .
 	-black --check --diff .
-	-pylint --disable=all --enable=unused-import,undefined-variable,syntax-error *.py
+	-pylint --disable=all --enable=unused-import,undefined-variable,syntax-error *.py scripts/*.py
 
 # Run security checks
 security:

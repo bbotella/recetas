@@ -32,14 +32,14 @@ jobs:
     
     - name: Run tests with basic test runner
       run: |
-        python run_tests.py
+        python scripts/run_tests.py
       env:
         DATABASE_PATH: test_recipes.db
         FLASK_ENV: testing
     
     - name: Generate coverage report
       run: |
-        python coverage_report.py
+        python scripts/coverage_report.py
       env:
         DATABASE_PATH: test_recipes.db
         FLASK_ENV: testing

@@ -161,7 +161,7 @@ def run_quick_validation():
 
     try:
         # Test basic imports
-        sys.path.insert(0, ".")
+        sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
         # Test imports
         try:
