@@ -2,9 +2,9 @@
 """
 Babel management script for Flask-Babel internationalization
 """
-import os
 import sys
 import subprocess
+
 
 def run_command(cmd, description):
     """Run a command and print the result"""
@@ -16,25 +16,30 @@ def run_command(cmd, description):
     print(f"Success: {result.stdout}")
     return True
 
+
 def extract_messages():
     """Extract translatable strings from code"""
     cmd = "pybabel extract -F babel.cfg -k _ -o messages.pot ."
     return run_command(cmd, "Extracting translatable strings")
+
 
 def init_language(lang):
     """Initialize a new language"""
     cmd = f"pybabel init -i messages.pot -d translations -l {lang}"
     return run_command(cmd, f"Initializing language: {lang}")
 
+
 def update_translations():
     """Update existing translations"""
     cmd = "pybabel update -i messages.pot -d translations"
     return run_command(cmd, "Updating translations")
 
+
 def compile_translations():
     """Compile translations to .mo files"""
     cmd = "pybabel compile -d translations"
     return run_command(cmd, "Compiling translations")
+
 
 def main():
     if len(sys.argv) < 2:
@@ -47,7 +52,7 @@ def main():
         return
 
     action = sys.argv[1]
-    
+
     if action == "extract":
         extract_messages()
     elif action == "init":
@@ -68,6 +73,7 @@ def main():
                 compile_translations()
     else:
         print(f"Unknown action: {action}")
+
 
 if __name__ == "__main__":
     main()

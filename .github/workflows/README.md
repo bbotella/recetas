@@ -14,7 +14,7 @@ This project uses a two-tier GitHub Actions workflow system to optimize CI/CD pe
 
 **Jobs:**
 - **test**: Runs comprehensive test suite on Python 3.9, 3.10, 3.11
-- **lint**: Code style and formatting checks (non-blocking)
+- **lint**: Code style and formatting checks (BLOCKING - must pass)
 - **security**: Security vulnerability scanning (non-blocking)
 - **validate**: CI/CD setup validation and app startup test
 - **pr-summary**: Generates summary report for PR review
@@ -35,7 +35,7 @@ This project uses a two-tier GitHub Actions workflow system to optimize CI/CD pe
 
 **Jobs:**
 - **test**: Same as PR tests but runs on actual pushes
-- **lint**: Code quality checks (non-blocking)
+- **lint**: Code quality checks (BLOCKING - must pass)
 - **security**: Security vulnerability scanning (non-blocking)
 - **deploy**: Docker build, test, and push to registry (main/master only)
 
@@ -63,12 +63,13 @@ push:
 
 ### Pull Request Requirements
 - ✅ All tests must pass across Python versions
-- ⚠️ Linting issues are informational (non-blocking)
+- ⚠️ Linting issues are blocking (must be fixed)
 - ⚠️ Security issues are flagged but non-blocking
 - ✅ Application must start successfully
 
 ### Deployment Requirements
 - ✅ All tests must pass
+- ✅ All lint checks must pass
 - ✅ Docker container must build successfully
 - ✅ Container health check must pass
 - ✅ Only deploys from main/master branch
@@ -78,7 +79,7 @@ push:
 ### For Contributors
 - **Fast Feedback**: Quick test results on PRs
 - **Clear Status**: Automated PR summary with next steps
-- **Non-blocking**: Linting issues don't prevent contribution
+- **Quality Control**: Linting issues must be fixed before merge
 - **Comprehensive**: Tests across multiple Python versions
 
 ### For Maintainers
@@ -139,8 +140,9 @@ push:
 
 **Linting Issues:**
 - Run `black .` for formatting
-- Run `flake8 --max-line-length=88 .` for style check
-- Issues are informational, won't block PR
+- Run `flake8 .` for style check
+- Run `pylint --disable=all --enable=unused-import,undefined-variable,syntax-error *.py` for analysis
+- Issues are blocking and must be fixed
 
 **Security Issues:**
 - Review Bandit report artifacts

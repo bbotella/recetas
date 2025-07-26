@@ -1,0 +1,18 @@
+[flake8]
+max-line-length = 100
+extend-ignore = E203,W503,E501,F401,F841,E402
+exclude = 
+    venv/,
+    __pycache__/,
+    .git/,
+    .pytest_cache/,
+    htmlcov/,
+    build/,
+    dist/,
+    *.egg-info/,
+    generate_*_translations.py,
+    babel_manager.py,
+    coverage_report.py,
+    import_recipes.py,
+    run_tests.py,
+    validate_cicd.py
