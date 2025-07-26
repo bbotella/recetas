@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Script to update all 40 remaining recipe descriptions with gastronomic and emotional tone.
+Script to update the remaining 40 recipe descriptions with gastronomic and emotional tone.
 """
 
 import sqlite3
@@ -15,7 +15,7 @@ def get_db_connection():
     return conn
 
 
-# Enhanced descriptions for all 40 remaining recipes with gastronomic and emotional tone
+# Enhanced descriptions for the remaining recipes with gastronomic and emotional tone
 REMAINING_DESCRIPTIONS = {
     180: (
         "Sumérgete en la delicadeza suprema de esta Tarta Teresa Ferri, una obra de arte culinaria que "
@@ -167,146 +167,6 @@ REMAINING_DESCRIPTIONS = {
         "es tanto elegancia como sustancia, perfecto para esos momentos cuando se busca la satisfacción "
         "profunda de los sabores auténticos."
     ),
-    200: (
-        "Refréscate con la dulzura tropical de este Helado de Plátano, donde la fruta madura se convierte en "
-        "protagonista de una sinfonía helada. La leche concentrada envuelve los plátanos en cremosidad "
-        "láctea, mientras que el toque de limón aporta esa acidez que realza los sabores naturales. Cortado "
-        "en cachitos para servir, cada porción es una pequeña celebración de la simplicidad hecha arte, "
-        "perfecta para esos momentos cuando el alma necesita ser consolada con dulzura pura y refrescante."
-    ),
-    201: (
-        "Descubre la genialidad de la repostería práctica con esta Tarta de Yogurt, donde la simplicidad se "
-        "convierte en sabiduría culinaria. El yogurt actúa como medida universal, creando una textura "
-        "esponjosa que se perfuma con ralladura de limón y se eleva con la levadura Royal. Cada bocado es "
-        "una explosión de frescura láctea que demuestra que los postres más satisfactorios nacen de la "
-        "combinación inteligente de ingredientes cotidianos transformados en pura magia gastronómica."
-    ),
-    202: (
-        "Sumérgete en la versatilidad de la repostería clásica con este Bizcocho y Tortada, donde la "
-        "tradición se adapta a los gustos personales. La clara montada aporta esa ligereza etérea que hace "
-        "que cada bocado se deshaga en el paladar, mientras que en su variante tortada, la almendra molida "
-        "sustituye a la harina creando una textura rica y aromática. Es la prueba de que los postres básicos "
-        "pueden ser la base de infinitas posibilidades creativas."
-    ),
-    203: (
-        "Déjate cautivar por la acidez refrescante de esta Tarta de Limón Carmela, donde los cítricos se "
-        "convierten en protagonistas de una sinfonía de contrastes. La pasta de mantequilla y manteca crea "
-        "una base rica que contrasta con la intensidad de la crema de limón, mientras que el gratinado final "
-        "aporta esa textura dorada que promete el primer bocado crujiente. Cada porción es una explosión de "
-        "frescura que despierta los sentidos y transporta a huertos mediterráneos bañados por el sol."
-    ),
-    204: (
-        "Experimenta la elegancia de lo frío con esta Tarta de Carlota, donde los sabores del café se "
-        "encuentran con la sofisticación del coñac. La carlota triturada se funde con las galletas "
-        "empapadas, creando una base aromática que se corona con coco rallado. El contraste entre la "
-        "intensidad del café y la dulzura del coco crea una experiencia sensorial que evoca salones "
-        "elegantes y tardes de invierno junto al fuego."
-    ),
-    205: (
-        "Redescubre la cremosidad del queso en esta Tarta de Queso alternativa, donde los quesitos se "
-        "transforman en protagonistas de una sinfonía láctea. La base de galletas molidas y mantequilla "
-        "aporta esa textura crujiente que contrasta con la suavidad del relleno, mientras que la mezcla de "
-        "quesitos, leche y huevos se transforma en el horno en una crema sedosa que abraza el paladar con su "
-        "dulzura característica."
-    ),
-    206: (
-        "Déjate seducir por los sabores mediterráneos de este Lomo a la Naranja con Olla, donde la carne se "
-        "transforma en una experiencia gastronómica única. El lomo dorado se impregna de los jugos cítricos "
-        "de la naranja, mientras que el jerez aporta notas complejas que elevan el plato a nuevas alturas. "
-        "El orégano perfuma cada bocado con su aroma característico, creando un guiso que es tanto comfort "
-        "food como sofisticación culinaria."
-    ),
-    207: (
-        "Sumérgete en la creatividad culinaria con estas Tortillas de Pisos, donde cada capa cuenta una "
-        "historia de sabores diferentes. Las tortillas se apilan como pisos de un edificio gastronómico, "
-        "separadas por capas de tomate frito perfumado con curry que aporta ese toque exótico. Cada bocado "
-        "es una aventura sensorial que demuestra que la comida puede ser tanto arte como sustancia, perfecta "
-        "para esos momentos cuando se busca sorprender y deleitar."
-    ),
-    208: (
-        "Descubre la elegancia de la charcutería casera con este Trufado María Teresa, donde el magro picado "
-        "se convierte en una experiencia gastronómica refinada. Las lechugas aportan frescura que contrasta "
-        "con la riqueza de los huevos y especias, mientras que las trufas elevan el plato a categoría de "
-        "lujo. La cocción al baño maría permite que todos los sabores se integren lentamente, creando una "
-        "terrina que es tanto arte como tradición."
-    ),
-    209: (
-        "Experimenta la sofisticación de la carne rellena con este Lomo Relleno, donde cada corte revela una "
-        "sorpresa gastronómica. El lomo abierto como un libro abraza el relleno de huevos duros y jamón, "
-        "mientras que la mantequilla dorada crea una superficie crujiente que contrasta con la jugosidad "
-        "interior. La leche y naranja aportan notas dulces que equilibran los sabores salados, creando un "
-        "plato que es tanto elegancia como sustancia."
-    ),
-    210: (
-        "Sumérgete en la tradición cinegética con este Faisán a la Cazuela, donde la caza se convierte en "
-        "protagonista de una experiencia gastronómica única. El faisán se cocina lentamente rodeado de lomo "
-        "fino y cebolla, absorbiendo todos los sabores del guiso, mientras que la nata sin montar corona el "
-        "plato con su cremosidad característica. Es la prueba de que los platos tradicionales pueden ser "
-        "tanto rústicos como sofisticados."
-    ),
-    211: (
-        "Viaja a Bélgica con este Faisán a la Belga, donde la caza se encuentra con la tradición culinaria "
-        "europea. Las endivias aportan ese toque amargo característico que contrasta con la riqueza de la "
-        "carne, mientras que las zanahorias y cebolla crean una base aromática que se intensifica durante el "
-        "estofado. Servido sobre un lecho de endivias cocidas, cada bocado es una celebración de los sabores "
-        "auténticos y la cocina tradicional."
-    ),
-    212: (
-        "Déjate reconfortar con estas Espinacas a la Crema, donde las verduras se convierten en "
-        "protagonistas de una sinfonía de sabores. La cebolla y ajos aportan esa base aromática que realza "
-        "el sabor terroso de las espinacas, mientras que la bechamel las envuelve en cremosidad sedosa. El "
-        "gratinado final crea una superficie dorada que promete el primer bocado crujiente, convirtiendo "
-        "este plato en comfort food elevado a arte culinario."
-    ),
-    213: (
-        "Experimenta la frescura primaveral con estos Guisantes con Jamón, donde la verdura tierna se "
-        "encuentra con la intensidad del jamón curado. El jamón, cebolla, perejil y ajo crean una base "
-        "aromática que se intensifica con la cocción en caldo, mientras que el cogollo de lechuga aporta "
-        "frescura y textura. Es la prueba de que los platos simples pueden ser tanto nutritivos como "
-        "deliciosos cuando se preparan con amor y respeto por los ingredientes."
-    ),
-    214: (
-        "Descubre la elegancia italiana con esta Ternera a la Italiana, donde la carne se transforma en una "
-        "experiencia gastronómica refinada. Las chuletas rebozadas con harina se doran hasta alcanzar una "
-        "textura crujiente que contrasta con la jugosidad interior, mientras que el jamón aporta notas "
-        "salinas que se equilibran con el jerez y caldo. Cada bocado es una celebración de la simplicidad "
-        "italiana hecha arte culinario."
-    ),
-    215: (
-        "Sumérgete en la sofisticación de lo salado con esta Tarta de Cebolla, donde la humilde cebolla se "
-        "convierte en protagonista de una sinfonía de sabores. La cebolla pochada lentamente desarrolla una "
-        "dulzura natural que se equilibra con la cremosidad de la nata y la intensidad del queso gruyere. La "
-        "base de pasta quebrada aporta esa textura crujiente que contrasta con la suavidad del relleno, "
-        "creando un plato que es tanto elegancia como comfort food."
-    ),
-    216: (
-        "Redescubre la alegría de los sabores marineros con estos Emparedados de Merluza, donde el pescado "
-        "se viste de fiesta con jamón y queso. La merluza fresca se funde con el jamón y queso creando una "
-        "combinación que explota de sabor en cada bocado, mientras que el rebozado crujiente aporta esa "
-        "textura que contrasta con la suavidad interior. Fritos en abundante aceite, cada emparedado es una "
-        "pequeña celebración de los sabores del mar."
-    ),
-    217: (
-        "Déjate seducir por la simplicidad sofisticada de este Pollo con Mostaza, donde el ave se transforma "
-        "en una experiencia gastronómica única. El adobo de mostaza y mantequilla penetra en cada fibra de "
-        "la carne, mientras que la cocción al horno permite que los sabores se concentren. La nata final "
-        "corona el plato con su cremosidad característica, creando un contraste de texturas que convierte "
-        "cada bocado en una caricia al paladar."
-    ),
-    218: (
-        "Experimenta la elegancia dorada de esta Merluza a la Bechamel, donde el pescado se viste de gala "
-        "con una salsa que es pura sofisticación. Los filetes rebozados y fritos crean una base crujiente "
-        "que contrasta con la cremosidad de la bechamel de tomate, mientras que el queso y especias aportan "
-        "notas complejas que elevan el plato a nuevas alturas. El gratinado final promete ese primer bocado "
-        "dorado que da paso a una experiencia sensorial completa."
-    ),
-    219: (
-        "Sumérgete en la versatilidad gastronómica de este Pastel de Patata, donde el humilde tubérculo se "
-        "convierte en lienzo para infinitas posibilidades. El puré de patata cremoso abraza rellenos "
-        "variados que van desde las espinacas frescas hasta el atún con tomate o el magro con jamón, "
-        "mientras que la cocción al horno crea una superficie dorada que promete momentos de puro confort. "
-        "Es la prueba de que los ingredientes simples pueden ser la base de creaciones extraordinarias."
-    ),
 }
 
 
@@ -322,13 +182,13 @@ def update_recipe_description(recipe_id, new_description):
 
 
 def main():
-    """Main function to update all remaining descriptions"""
-    print("🍽️ Updating all 40 remaining recipe descriptions...")
+    """Main function to update remaining descriptions"""
+    print("🍽️ Updating remaining recipe descriptions (Part 1/2)...")
     print("=" * 60)
 
     updated_count = 0
 
-    # Update descriptions for all remaining recipes
+    # Update descriptions for the first 20 remaining recipes
     for recipe_id, new_description in REMAINING_DESCRIPTIONS.items():
         print(f"📝 Updating recipe ID {recipe_id}")
         update_recipe_description(recipe_id, new_description)
@@ -336,7 +196,7 @@ def main():
 
     print("=" * 60)
     print(f"✅ Updated {updated_count} additional recipe descriptions successfully!")
-    print("🎉 All remaining recipes now have gastronomic and emotional descriptions!")
+    print("🎉 Part 1 complete - continuing with remaining recipes...")
 
 
 if __name__ == "__main__":

@@ -14,7 +14,12 @@ app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-key-change-in-production")
 
 # Babel configuration
-app.config["LANGUAGES"] = {"es": "Español", "en": "English", "zh": "中文"}
+app.config["LANGUAGES"] = {
+    "es": "Español",
+    "va": "Valencià",
+    "en": "English",
+    "zh": "中文",
+}
 app.config["BABEL_DEFAULT_LOCALE"] = "es"
 app.config["BABEL_DEFAULT_TIMEZONE"] = "UTC"
 
@@ -139,7 +144,12 @@ def create_app_for_testing(config=None):
         {
             "TESTING": True,
             "SECRET_KEY": "test-secret-key",
-            "LANGUAGES": {"es": "Español", "en": "English", "zh": "中文"},
+            "LANGUAGES": {
+                "es": "Español",
+                "va": "Valencià",
+                "en": "English",
+                "zh": "中文",
+            },
             "BABEL_DEFAULT_LOCALE": "es",
             "BABEL_DEFAULT_TIMEZONE": "UTC",
         }

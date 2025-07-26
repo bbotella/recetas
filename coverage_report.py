@@ -120,7 +120,7 @@ def generate_coverage_report():
     )
 
     # Test files summary
-    print(f"\nTest Files:")
+    print("\nTest Files:")
     test_files = glob.glob("tests/test_*.py")
     for test_file in test_files:
         functions = analyze_function_coverage(test_file)

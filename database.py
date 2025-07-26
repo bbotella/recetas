@@ -297,7 +297,8 @@ def save_recipe_translation(
         # Insert new translation
         conn.execute(
             """
-            INSERT INTO recipe_translations (recipe_id, language, title, description, ingredients, instructions, category)
+            INSERT INTO recipe_translations (recipe_id, language, title, description,
+            ingredients, instructions, category)
             VALUES (?, ?, ?, ?, ?, ?, ?)
         """,
             [
