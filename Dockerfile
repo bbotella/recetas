@@ -35,6 +35,12 @@ RUN if [ -f "scripts/migrate_valencian_language_code.py" ]; then python scripts/
 # Generate high-quality Valencian translations using AI
 RUN if [ -f "scripts/generate_ai_valencian_translations.py" ]; then python scripts/generate_ai_valencian_translations.py; fi
 
+# Generate high-quality Basque translations using AI
+RUN if [ -f "scripts/generate_basque_translations.py" ]; then python scripts/generate_basque_translations.py; fi
+
+# Create Basque interface translations
+RUN if [ -f "scripts/create_basque_po.py" ]; then python scripts/create_basque_po.py; fi
+
 # Compile Flask-Babel translations (always run to ensure translations are available)
 RUN python scripts/babel_manager.py compile
 

@@ -19,6 +19,7 @@ app.config["LANGUAGES"] = {
     "ca": "Valencià",
     "en": "English",
     "zh": "中文",
+    "eu": "Euskera",
 }
 app.config["BABEL_DEFAULT_LOCALE"] = "es"
 app.config["BABEL_DEFAULT_TIMEZONE"] = "UTC"

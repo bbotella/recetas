@@ -1,0 +1,214 @@
+# Basque (Euskera) translations for Recipe App
+# This file is distributed under the same license as the Recipe App project.
+# Generated with AI translation system.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Recipe App 1.0\n"
+"Report-Msgid-Bugs-To: admin@example.com\n"
+"POT-Creation-Date: 2024-01-01 12:00+0000\n"
+"PO-Revision-Date: 2024-01-01 12:00+0000\n"
+"Last-Translator: AI Translation System\n"
+"Language: eu\n"
+"Language-Team: Basque\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: AI Translation System\n"
+
+msgid "Aunt Carmen's Recipes"
+msgstr "Aunt Carmen's Recipes"
+
+msgid "Traditional family recipes"
+msgstr "Traditional family recipes"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Categories"
+msgstr "Categories"
+
+msgid "Language"
+msgstr "Language"
+
+msgid "Search recipes..."
+msgstr "Search recipes..."
+
+msgid "Search"
+msgstr "Search"
+
+msgid "All categories"
+msgstr "All categories"
+
+msgid "Recipes found"
+msgstr "Recipes found"
+
+msgid "No recipes found"
+msgstr "No recipes found"
+
+msgid "Back to home"
+msgstr "Back to home"
+
+msgid "Ingredients"
+msgstr "Ingredients"
+
+msgid "Instructions"
+msgstr "Instructions"
+
+msgid "Preparation"
+msgstr "Preparation"
+
+msgid "Preparation time"
+msgstr "Preparation time"
+
+msgid "Servings"
+msgstr "Servings"
+
+msgid "Difficulty"
+msgstr "Difficulty"
+
+msgid "Easy"
+msgstr "Easy"
+
+msgid "Medium"
+msgstr "Medium"
+
+msgid "Hard"
+msgstr "Hard"
+
+msgid "View recipe"
+msgstr "View recipe"
+
+msgid "Share"
+msgstr "Share"
+
+msgid "Print"
+msgstr "Print"
+
+msgid "Favorites"
+msgstr "Favorites"
+
+msgid "Add to favorites"
+msgstr "Add to favorites"
+
+msgid "Remove from favorites"
+msgstr "Remove from favorites"
+
+msgid "Comments"
+msgstr "Comments"
+
+msgid "Write comment"
+msgstr "Write comment"
+
+msgid "Send"
+msgstr "Send"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Save"
+msgstr "Save"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "Confirm"
+msgstr "Confirm"
+
+msgid "About us"
+msgstr "About us"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Terms of use"
+msgstr "Terms of use"
+
+msgid "Privacy policy"
+msgstr "Privacy policy"
+
+msgid "All rights reserved"
+msgstr "All rights reizanved"
+
+msgid "Developed with"
+msgstr "Developed with"
+
+msgid "Filter by"
+msgstr "Filter by"
+
+msgid "Sort by"
+msgstr "Sort by"
+
+msgid "Relevance"
+msgstr "Relevance"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Alphabetical"
+msgstr "Alphabetical"
+
+msgid "Popular"
+msgstr "Popular"
+
+msgid "Recent"
+msgstr "Recent"
+
+msgid "Most rated"
+msgstr "Most rated"
+
+msgid "Loading..."
+msgstr "Loading..."
+
+msgid "Error loading"
+msgstr "Error loading"
+
+msgid "Page not found"
+msgstr "Page not found"
+
+msgid "Go back"
+msgstr "Go back"
+
+msgid "Try again"
+msgstr "Try again"
+
+msgid "Successful operation"
+msgstr "Successful oudaretion"
+
+msgid "Saved correctly"
+msgstr "Saved correctly"
+
+msgid "Changes saved"
+msgstr "Changes saved"
+
+msgid "Preserving family culinary traditions"
+msgstr "Preizanving family culinary traditions"
+
+msgid "Desserts"
+msgstr "Desizants"
+
+msgid "Drinks"
+msgstr "Drinks"
+
+msgid "Chicken"
+msgstr "Chicken"
+
+msgid "Fish"
+msgstr "Fish"
+
+msgid "Meat"
+msgstr "Meat"
+
+msgid "Vegetables"
+msgstr "Vegetables"
+
+msgid "Appetizers"
+msgstr "Appetizers"
+
+msgid "Others"
+msgstr "Others"
+
