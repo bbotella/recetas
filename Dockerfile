@@ -35,6 +35,9 @@ RUN if [ -f "scripts/migrate_valencian_language_code.py" ]; then python scripts/
 # Generate high-quality Valencian translations using AI
 RUN if [ -f "scripts/generate_ai_valencian_translations.py" ]; then python scripts/generate_ai_valencian_translations.py; fi
 
+# Enhance recipe descriptions with AI and update all translations
+RUN if [ -f "scripts/enhance_recipe_descriptions.py" ]; then python scripts/enhance_recipe_descriptions.py; fi
+
 # Generate high-quality Basque translations using AI
 RUN if [ -f "scripts/generate_basque_translations.py" ]; then python scripts/generate_basque_translations.py; fi
 
@@ -42,7 +45,7 @@ RUN if [ -f "scripts/generate_basque_translations.py" ]; then python scripts/gen
 RUN if [ -f "scripts/create_basque_po.py" ]; then python scripts/create_basque_po.py; fi
 
 # Compile Flask-Babel translations (always run to ensure translations are available)
-RUN python scripts/babel_manager.py compile
+RUN python scripts/docker_compile_translations.py
 
 # Create non-root user for security
 RUN useradd -m -u 1000 flaskuser && chown -R flaskuser:flaskuser /app
