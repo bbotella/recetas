@@ -29,6 +29,12 @@ RUN if [ -d "recipes" ]; then python scripts/import_recipes.py; fi
 RUN if [ -f "scripts/generate_complete_translations.py" ]; then python scripts/generate_complete_translations.py; fi
 RUN if [ -f "scripts/generate_chinese_translations.py" ]; then python scripts/generate_chinese_translations.py; fi
 
+# Migrate Valencian language code from 'va' to 'ca' (if needed)
+RUN if [ -f "scripts/migrate_valencian_language_code.py" ]; then python scripts/migrate_valencian_language_code.py; fi
+
+# Generate high-quality Valencian translations using AI
+RUN if [ -f "scripts/generate_ai_valencian_translations.py" ]; then python scripts/generate_ai_valencian_translations.py; fi
+
 # Compile Flask-Babel translations (always run to ensure translations are available)
 RUN python scripts/babel_manager.py compile
 
