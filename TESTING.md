@@ -68,37 +68,58 @@ docker run --rm tia-carmen-tests
 
 ## CI/CD Pipeline
 
-### GitHub Actions Workflow
+### GitHub Actions Workflows
 
-#### CI/CD Pipeline (`.github/workflows/ci-cd.yml`)
-Complete automated pipeline that runs on every push and pull request:
+#### Pull Request Tests (`.github/workflows/pr-tests.yml`)
+**Trigger:** Pull requests to main/master/develop branches
 
+Provides fast feedback to contributors without running expensive deployment operations:
 - **Test Job**: Runs on Python 3.9, 3.10, 3.11
-  - Installs dependencies
-  - Runs comprehensive test suite
-  - Generates coverage reports
-  - Tests application startup
+  - Comprehensive test suite execution
+  - Coverage report generation
+  - Cross-version compatibility testing
 
-- **Lint Job**: Code quality checks
-  - Black code formatter
-  - Flake8 linter
+- **Lint Job**: Code quality checks (non-blocking)
+  - Black code formatter validation
+  - Flake8 linting
   - Pylint analysis
 
-- **Security Job**: Security scanning
-  - Safety check for known vulnerabilities
-  - Bandit security linter
+- **Security Job**: Security scanning (non-blocking)
+  - Safety vulnerability check
+  - Bandit security linting
+  - Report artifact generation
 
-- **Deploy Job**: Production deployment (main branch only)
-  - Builds multi-platform Docker image (amd64, arm64)
-  - Tests Docker container functionality
-  - Pushes to Docker Hub registry
-  - Updates Docker Hub description
-  - Implements proper quality gates
+- **Validate Job**: CI/CD validation
+  - Setup validation
+  - Application startup testing
+
+- **PR Summary Job**: Automated reporting
+  - Test status summary
+  - Next steps guidance
+  - Results consolidation
+
+#### CI/CD Pipeline (`.github/workflows/ci-cd.yml`)
+**Trigger:** Push to main/master/develop branches
+
+Complete automated pipeline for testing, validation, and deployment:
+- **Test Job**: Same as PR tests but for production readiness
+- **Lint Job**: Code quality validation
+- **Security Job**: Security vulnerability assessment
+- **Deploy Job**: Production deployment (main/master only)
+  - Multi-platform Docker builds (amd64, arm64)
+  - Container testing and validation
+  - Docker Hub registry push
+  - Automated documentation updates
+
+**Quality Gates:**
+- Deploy only runs after all tests pass
+- Docker container must pass health checks
+- Only deploys from main/master branches
 
 **Triggers:**
-- Push to main, master, or develop branches
-- Pull requests to main, master, or develop branches
-- Deploy job only runs on main/master branch pushes
+- Pull requests: Run PR tests only (no deployment)
+- Push to main/master: Run full CI/CD pipeline with deployment
+- Push to develop: Run CI/CD pipeline without deployment
 
 ### Pre-commit Hooks
 - Automatically runs tests before commits

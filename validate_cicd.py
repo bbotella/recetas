@@ -47,10 +47,17 @@ def validate_github_actions():
         except Exception as e:
             print(f"❌ Error reading CI/CD workflow: {e}")
     
-    # Check that no redundant workflows exist
+    # Check that workflow structure is appropriate
     workflow_files = [f for f in os.listdir(workflows_dir) if f.endswith('.yml')]
     if len(workflow_files) == 1:
-        print("✅ Single consolidated CI/CD workflow (no redundancy)")
+        print("✅ Single consolidated CI/CD workflow")
+    elif len(workflow_files) == 2:
+        # Check if we have the expected two-tier structure
+        expected_files = ['ci-cd.yml', 'pr-tests.yml']
+        if all(f in workflow_files for f in expected_files):
+            print("✅ Two-tier workflow structure (CI/CD + PR tests)")
+        else:
+            print(f"⚠️  Found {len(workflow_files)} workflow files - verify structure")
     else:
         print(f"⚠️  Found {len(workflow_files)} workflow files - consider consolidation")
     
