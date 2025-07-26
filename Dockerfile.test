@@ -25,4 +25,4 @@ ENV DATABASE_PATH=test_recipes.db
 RUN python -c "from database import init_database; init_database()"
 
 # Run tests by default
-CMD ["python", "run_tests.py"]
+CMD ["python", "scripts/run_tests.py"]

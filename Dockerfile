@@ -23,14 +23,14 @@ COPY . .
 RUN mkdir -p /app/data
 
 # Import recipes to database (only if recipes directory exists)
-RUN if [ -d "recipes" ]; then python import_recipes.py; fi
+RUN if [ -d "recipes" ]; then python scripts/import_recipes.py; fi
 
 # Generate translations (only if translation scripts exist)
-RUN if [ -f "generate_complete_translations.py" ]; then python generate_complete_translations.py; fi
-RUN if [ -f "generate_chinese_translations.py" ]; then python generate_chinese_translations.py; fi
+RUN if [ -f "scripts/generate_complete_translations.py" ]; then python scripts/generate_complete_translations.py; fi
+RUN if [ -f "scripts/generate_chinese_translations.py" ]; then python scripts/generate_chinese_translations.py; fi
 
 # Compile Flask-Babel translations
-RUN if [ -f "babel_manager.py" ]; then python babel_manager.py compile; fi
+RUN if [ -f "scripts/babel_manager.py" ]; then python scripts/babel_manager.py compile; fi
 
 # Create non-root user for security
 RUN useradd -m -u 1000 flaskuser && chown -R flaskuser:flaskuser /app
