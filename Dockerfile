@@ -29,8 +29,8 @@ RUN if [ -d "recipes" ]; then python scripts/import_recipes.py; fi
 RUN if [ -f "scripts/generate_complete_translations.py" ]; then python scripts/generate_complete_translations.py; fi
 RUN if [ -f "scripts/generate_chinese_translations.py" ]; then python scripts/generate_chinese_translations.py; fi
 
-# Compile Flask-Babel translations
-RUN if [ -f "scripts/babel_manager.py" ]; then python scripts/babel_manager.py compile; fi
+# Compile Flask-Babel translations (always run to ensure translations are available)
+RUN python scripts/babel_manager.py compile
 
 # Create non-root user for security
 RUN useradd -m -u 1000 flaskuser && chown -R flaskuser:flaskuser /app

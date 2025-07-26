@@ -30,6 +30,14 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     
+    - name: Compile translations
+      run: |
+        python scripts/babel_manager.py compile
+    
+    - name: Verify translations
+      run: |
+        python scripts/verify_translations.py
+    
     - name: Run tests with basic test runner
       run: |
         python scripts/run_tests.py

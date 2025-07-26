@@ -1,11 +1,12 @@
 # Makefile for Tia Carmen Recipe App Testing
 
-.PHONY: help test test-fast test-full coverage lint security clean setup docker-test
+.PHONY: help test test-fast test-full coverage lint security clean setup docker-test compile-translations
 
 # Default target
 help:
 	@echo "Available commands:"
 	@echo "  setup       - Set up development environment"
+	@echo "  compile-translations - Compile Flask-Babel translations"
 	@echo "  test        - Run basic test suite"
 	@echo "  test-fast   - Run quick tests only"
 	@echo "  test-full   - Run full pytest suite with coverage"
@@ -21,8 +22,17 @@ setup:
 	. venv/bin/activate && pip install -r requirements.txt
 	@echo "Setup complete. Activate with: source venv/bin/activate"
 
+# Compile Flask-Babel translations
+compile-translations:
+	@echo "Compiling Flask-Babel translations..."
+	@if [ -d "venv" ]; then \
+		. venv/bin/activate && python scripts/babel_manager.py compile; \
+	else \
+		python3 scripts/babel_manager.py compile; \
+	fi
+
 # Run basic test suite
-test:
+test: compile-translations
 	@echo "Running basic test suite..."
 	@if [ -d "venv" ]; then \
 		. venv/bin/activate && python scripts/run_tests.py; \
