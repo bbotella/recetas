@@ -209,6 +209,22 @@ jobs:
         echo "Final health check..."
         curl -f http://localhost:5000/health || (echo "Final health check failed" && docker logs test-container && exit 1)
         
+        echo "Verifying Valencian translations are available..."
+        docker exec test-container python -c "
+        from database import get_db_connection
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('SELECT COUNT(*) FROM recipe_translations WHERE language = \"ca\"')
+        count = cursor.fetchone()[0]
+        print(f'Found {count} Valencian (ca) translations')
+        if count == 0:
+            print('ERROR: No Valencian translations found!')
+            exit(1)
+        else:
+            print('✅ Valencian translations are available in container')
+        conn.close()
+        "
+        
         echo "Cleaning up container..."
         docker stop test-container
         docker rm test-container
