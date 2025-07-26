@@ -19,9 +19,11 @@ class TestI18nConfiguration:
         """Test that supported languages are configured correctly."""
         languages = app.config["LANGUAGES"]
         assert "es" in languages
+        assert "ca" in languages
         assert "en" in languages
         assert "zh" in languages
         assert languages["es"] == "Español"
+        assert languages["ca"] == "Valencià"
         assert languages["en"] == "English"
         assert languages["zh"] == "中文"
 
@@ -116,6 +118,16 @@ class TestLanguageSwitching:
 
         with client.session_transaction() as sess:
             assert sess["language"] == "es"
+
+    @pytest.mark.unit
+    @pytest.mark.i18n
+    def test_language_switch_to_valencian(self, client):
+        """Test switching to Valencian."""
+        response = client.get("/set_language/ca")
+        assert response.status_code == 302
+
+        with client.session_transaction() as sess:
+            assert sess["language"] == "ca"
 
     @pytest.mark.unit
     @pytest.mark.i18n

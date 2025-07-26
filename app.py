@@ -16,7 +16,7 @@ app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-key-change-in-producti
 # Babel configuration
 app.config["LANGUAGES"] = {
     "es": "Español",
-    "va": "Valencià",
+    "ca": "Valencià",
     "en": "English",
     "zh": "中文",
 }
