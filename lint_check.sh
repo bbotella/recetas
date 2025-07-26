@@ -13,6 +13,9 @@ flake8 .
 echo "3. Pylint analysis..."
 pylint --disable=all --enable=unused-import,undefined-variable,syntax-error *.py
 
+echo "4. Bandit security scan..."
+bandit -r . -c .bandit
+
 echo "================================="
 echo "✅ All linting checks passed!"
 echo "Ready for CI/CD pipeline!"

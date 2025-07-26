@@ -146,6 +146,7 @@ push:
 
 **Security Issues:**
 - Review Bandit report artifacts
+- Run `bandit -r . -c .bandit` locally
 - Run `safety check` locally
 - Issues are flagged but won't block PR
 

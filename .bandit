@@ -1,0 +1,18 @@
+exclude_dirs:
+  - venv
+  - __pycache__
+  - .git
+  - .pytest_cache
+  - htmlcov
+  - build
+  - dist
+  - "*.egg-info"
+
+# Skip specific tests that are false positives or acceptable risks
+skips:
+  - B104  # Hardcoded bind all interfaces - acceptable for containerized apps
+  - B602  # Subprocess with shell=True - acceptable for build/dev scripts
+  - B101  # Assert used - acceptable in tests and dev scripts
+  - B404  # Subprocess import - acceptable for build/dev scripts
+  - B607  # Start process with partial path - acceptable for dev scripts
+  - B603  # Subprocess without shell=True - acceptable for dev scripts

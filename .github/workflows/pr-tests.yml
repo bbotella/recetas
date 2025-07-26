@@ -104,7 +104,7 @@ jobs:
     - name: Run Bandit security linter
       run: |
         echo "Running Bandit security scan..."
-        bandit -r . -f json -o bandit-report.json || echo "Bandit issues found"
+        bandit -r . -f json -o bandit-report.json -c .bandit || echo "Bandit issues found"
       continue-on-error: true
     
     - name: Upload Bandit report
