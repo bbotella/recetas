@@ -25,8 +25,9 @@ def migrate_language_code(old_code, new_code):
     old_count = cursor.fetchone()[0]
 
     if old_count == 0:
-        print(f"No translations found for language '{old_code}'")
-        return False
+        print(f"No translations found for language '{old_code}' - skipping migration")
+        conn.close()
+        return True  # Return True instead of False - no migration needed is OK
 
     # Check if new language code already exists
     cursor.execute(
@@ -65,7 +66,7 @@ def main():
         print("\n✅ Migration completed successfully!")
         print("Valencian recipes should now display correctly in the web interface.")
     else:
-        print("\n❌ Migration failed or no translations to migrate.")
+        print("\n❌ Migration failed.")
 
     return success
 
