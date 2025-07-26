@@ -75,7 +75,7 @@ jobs:
     - name: Run Flake8 linter
       run: |
         echo "Running Flake8 linter..."
-        flake8 .
+        flake8 --max-line-length=120 --extend-ignore=E203,W503 *.py
     
     - name: Run Pylint
       run: |

@@ -20,12 +20,14 @@ def split_long_line(line, max_length=120):
         suffix = dict_match.group(3)
 
         # Split the content into chunks
-        words = content.split(' ')
+        words = content.split(" ")
         chunks = []
         current_chunk = ""
 
         for word in words:
-            if len(current_chunk + word + " ") <= max_length - 20:  # Leave room for quotes and formatting
+            if (
+                len(current_chunk + word + " ") <= max_length - 20
+            ):  # Leave room for quotes and formatting
                 current_chunk += word + " "
             else:
                 if current_chunk:
@@ -53,7 +55,7 @@ def process_file(filepath):
     """Process a single file to split long lines."""
     print(f"Processing {filepath}...")
 
-    with open(filepath, 'r', encoding='utf-8') as f:
+    with open(filepath, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
     new_lines = []
@@ -62,14 +64,14 @@ def process_file(filepath):
     for line in lines:
         if len(line.rstrip()) > 120:
             split_lines = split_long_line(line.rstrip())
-            new_lines.extend([line + '\n' for line in split_lines])
+            new_lines.extend([line + "\n" for line in split_lines])
             if len(split_lines) > 1:
                 modified = True
         else:
             new_lines.append(line)
 
     if modified:
-        with open(filepath, 'w', encoding='utf-8') as f:
+        with open(filepath, "w", encoding="utf-8") as f:
             f.writelines(new_lines)
         print(f"  ✅ Modified {filepath}")
     else:
@@ -85,7 +87,7 @@ def main():
         "update_all_remaining_descriptions.py",
         "update_remaining_descriptions.py",
         "add_all_valencian_translations.py",
-        "add_valencian_translations_part1.py"
+        "add_valencian_translations_part1.py",
     ]
 
     for filename in translation_files:
