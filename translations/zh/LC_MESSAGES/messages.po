@@ -1,23 +1,114 @@
-# zh translations for Recipe App (CI Testing)
+# Chinese (Simplified) translations for Recipe App
+# Generated using AI translation system
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Recipe App 1.0\n"
+"Report-Msgid-Bugs-To: admin@example.com\n"
+"POT-Creation-Date: 2024-01-01 12:00+0000\n"
+"PO-Revision-Date: 2024-01-01 12:00+0000\n"
+"Last-Translator: AI Translation System\n"
 "Language: zh\n"
+"Language-Team: Chinese (Simplified)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Generated-By: AI Translation System\n"
+
+msgid "Aunt Carmen's Recipes"
+msgstr "卡门阿姨的食谱"
+
+msgid "Traditional family recipes"
+msgstr "传统家庭食谱"
 
 msgid "Home"
-msgstr "Home (zh)"
+msgstr "首页"
 
 msgid "Categories"
-msgstr "Categories (zh)"
+msgstr "分类"
+
+msgid "Language"
+msgstr "语言"
+
+msgid "Search recipes..."
+msgstr "搜索食谱..."
 
 msgid "Search"
-msgstr "Search (zh)"
+msgstr "搜索"
+
+msgid "All categories"
+msgstr "所有分类"
+
+msgid "Recipes found"
+msgstr "找到食谱"
+
+msgid "No recipes found"
+msgstr "未找到食谱"
+
+msgid "Back to home"
+msgstr "返回首页"
 
 msgid "Ingredients"
-msgstr "Ingredients (zh)"
+msgstr "Ingredients"
 
 msgid "Instructions"
-msgstr "Instructions (zh)"
+msgstr "Instructions"
+
+msgid "Preparation"
+msgstr "Preparation"
+
+msgid "Preparation time"
+msgstr "准备时间"
+
+msgid "Servings"
+msgstr "份量"
+
+msgid "Difficulty"
+msgstr "难度"
+
+msgid "Easy"
+msgstr "简单"
+
+msgid "Medium"
+msgstr "中等"
+
+msgid "Hard"
+msgstr "困难"
+
+msgid "View recipe"
+msgstr "查看食谱"
+
+msgid "Share"
+msgstr "分享"
+
+msgid "Print"
+msgstr "打印"
+
+msgid "Favorites"
+msgstr "收藏"
+
+msgid "Desserts"
+msgstr "甜点"
+
+msgid "Drinks"
+msgstr "饮料"
+
+msgid "Chicken"
+msgstr "鸡肉"
+
+msgid "Fish"
+msgstr "鱼类"
+
+msgid "Meat"
+msgstr "肉类"
+
+msgid "Vegetables"
+msgstr "蔬菜"
+
+msgid "Appetizers"
+msgstr "开胃菜"
+
+msgid "Others"
+msgstr "其他"
+

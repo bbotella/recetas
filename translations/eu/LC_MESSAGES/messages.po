@@ -1,23 +1,114 @@
-# eu translations for Recipe App (CI Testing)
+# Euskera/Basque translations for Recipe App
+# Generated using AI translation system
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Recipe App 1.0\n"
+"Report-Msgid-Bugs-To: admin@example.com\n"
+"POT-Creation-Date: 2024-01-01 12:00+0000\n"
+"PO-Revision-Date: 2024-01-01 12:00+0000\n"
+"Last-Translator: AI Translation System\n"
 "Language: eu\n"
+"Language-Team: Euskera/Basque\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Generated-By: AI Translation System\n"
+
+msgid "Aunt Carmen's Recipes"
+msgstr "Karmen Izebaren Errezetak"
+
+msgid "Traditional family recipes"
+msgstr "Familia errezetak tradizionalak"
 
 msgid "Home"
-msgstr "Home (eu)"
+msgstr "Hasiera"
 
 msgid "Categories"
-msgstr "Categories (eu)"
+msgstr "Kategoriak"
+
+msgid "Language"
+msgstr "Hizkuntza"
+
+msgid "Search recipes..."
+msgstr "Bilatu errezetak..."
 
 msgid "Search"
-msgstr "Search (eu)"
+msgstr "Bilatu"
+
+msgid "All categories"
+msgstr "Kategoria guztiak"
+
+msgid "Recipes found"
+msgstr "Errezetak aurkitu"
+
+msgid "No recipes found"
+msgstr "Ez da errezetarik aurkitu"
+
+msgid "Back to home"
+msgstr "Hasierara itzuli"
 
 msgid "Ingredients"
-msgstr "Ingredients (eu)"
+msgstr "Ingredients"
 
 msgid "Instructions"
-msgstr "Instructions (eu)"
+msgstr "Instructions"
+
+msgid "Preparation"
+msgstr "Preparation"
+
+msgid "Preparation time"
+msgstr "Prestaketa denbora"
+
+msgid "Servings"
+msgstr "Banaketa"
+
+msgid "Difficulty"
+msgstr "Zailtasuna"
+
+msgid "Easy"
+msgstr "Erraza"
+
+msgid "Medium"
+msgstr "Ertaina"
+
+msgid "Hard"
+msgstr "Zaila"
+
+msgid "View recipe"
+msgstr "Errezeta ikusi"
+
+msgid "Share"
+msgstr "Partekatu"
+
+msgid "Print"
+msgstr "Inprimatu"
+
+msgid "Favorites"
+msgstr "Gogokoak"
+
+msgid "Desserts"
+msgstr "Postrea"
+
+msgid "Drinks"
+msgstr "Edariak"
+
+msgid "Chicken"
+msgstr "Oilaskoa"
+
+msgid "Fish"
+msgstr "Arraina"
+
+msgid "Meat"
+msgstr "Haragia"
+
+msgid "Vegetables"
+msgstr "Barazkiak"
+
+msgid "Appetizers"
+msgstr "Gozagaiak"
+
+msgid "Others"
+msgstr "Besteak"
+
