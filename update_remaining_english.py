@@ -1,0 +1,117 @@
+#!/usr/bin/env python3
+"""
+Script to update English translations for the remaining 40 recipes.
+"""
+
+import sqlite3
+import os
+
+DATABASE_PATH = os.environ.get('DATABASE_PATH', 'recipes.db')
+
+def get_db_connection():
+    conn = sqlite3.connect(DATABASE_PATH)
+    conn.row_factory = sqlite3.Row
+    return conn
+
+# Enhanced English translations for the remaining 40 recipes
+ENGLISH_TRANSLATIONS_REMAINING = {
+    180: "Immerse yourself in the supreme delicacy of this Teresa Ferri Cake, a culinary work of art that combines the crunchy texture of crushed cookies with the silky smoothness of condensed milk cream. Each bite is a caress to the palate that evokes Sunday afternoons in kitchens filled with love, where expert hands transform simple ingredients into moments of pure happiness. The slow cooking in a gentle oven allows the flavors to meld in perfect harmony, creating an experience that transcends sweetness to become a gastronomic embrace.",
+    
+    181: "Discover nostalgia made dessert in this Lolita Apple Cake, where family tradition becomes pure culinary magic. The bread rolls soaked in sweetened milk create a honeyed base that embraces the layers of caramelized apple, while the sugar transforms into crystalline notes that dance on the palate. Each layer tells a story of generations who knew how to find beauty in simplicity, turning this dessert into an emotional journey toward the sweetest memories of childhood.",
+    
+    182: "Let yourself be enveloped by the Parisian sophistication of this Mocha, a dessert that is pure elegance in every spoonful. The intense coffee merges with creamy butter and whipped whites, creating a symphony of textures that awaken the most refined senses. The coffee-soaked cookies provide an aromatic base that contrasts with the ethereal lightness of the mousse, while each layer reveals new nuances that evoke bohemian cafés and rainy afternoons. It's the perfect culmination for intimate dinners and moments of contemplation.",
+    
+    183: "Experience the sublime simplicity of this Coconut Flan in its purest version, where tropical essence is concentrated in every creamy spoonful. The grated coconut releases its natural oils during cooking, creating a silky texture that melts in the mouth like a tropical caress. The quick pot cooking allows the flavors to intensify, turning this humble dessert into an explosion of sensations that transport to paradisiacal beaches and golden sunsets.",
+    
+    184: "Rediscover the joy of childhood with these Filled Cookies, small gastronomic treasures that awaken smiles with every bite. The fruit jam hides between layers of spongy cake, while the sweetened milk bath wraps them in creamy sweetness. The grated coconut that crowns them adds a crunchy texture that contrasts with the interior softness, creating a game of sensations that evokes family snacks and shared laughter around the table.",
+    
+    185: "Immerse yourself in the very essence of pastry with this Pastry Cream, the fundamental base that has given life to thousands of sweet dreams. The milk transforms into liquid silk when it merges with golden yolks, while the sugar provides that sweetness that caresses the soul. The touch of cocoa awakens the senses with its aromatic depth, turning this cream into the soul of cakes and desserts that have fed generations of sweet lovers. It's proof that perfection resides in simplicity executed with mastery.",
+    
+    186: "Let yourself be captivated by the rustic elegance of these Baked Apples, where the fruit becomes a gastronomic jewel that celebrates autumn flavors. The melted butter mixes with caramelized sugar, creating a filling that melts with the apple pulp during cooking. The sherry provides complex notes that elevate the dessert to new heights, while the cornstarch sauce wraps each portion in a golden caress that promises moments of pure comfort.",
+    
+    187: "Refresh yourself with the tropical creaminess of this homemade Coconut Ice Cream, where each spoonful is an escape to distant paradises. The coconut melts with the milk creating a silky base that slowly thickens, concentrating the flavors until achieving an intensity that awakens the senses. The creamy texture achieved through patient cooking contrasts with the icy freshness, creating a dessert that is both refuge and celebration, perfect for those days when the soul needs a touch of tropical sweetness.",
+    
+    188: "Indulge in the pure decadence of this Chocolate Cream, where cocoa becomes the protagonist of a symphony of sensations. The creamy butter melts with the chocolate, creating a rich base that is lightened with whipped whites, achieving a texture that floats on the palate like a cloud of pleasure. Served in individual glasses and crowned with cream, each portion is a small work of art that promises moments of pure indulgence and satisfaction.",
+    
+    189: "Discover the art of pastry decoration with this Decorative Chocolate, where the water bath technique becomes a ritual of perfection. The chocolate melts slowly, merging with the butter until reaching a silky consistency that adheres perfectly to any creation. The egg yolk provides shine and smoothness, turning this chocolate into the final touch that transforms simple cakes into masterpieces worthy of the finest pastry shops.",
+    
+    190: "Transport your kitchen to the streets of Paris with these authentic Crepes, where French simplicity becomes gastronomic elegance. The thin batter spreads golden in the pan, creating a delicate texture that embraces the fruit jam with silky smoothness. Each crepe is a blank canvas that allows the jam flavors to express themselves in all their intensity, while the heat of service awakens the aromas that evoke Parisian cafés and lazy Sundays.",
+    
+    191: "Immerse yourself in home tradition with this Apple Pudding, where each layer tells a story of culinary love. The caramelized mold creates a golden base that merges with the alternating layers of tender apple and custard-soaked bread. The slow oven cooking allows all flavors to integrate in perfect harmony, creating a dessert that is embrace, memory, and celebration, perfect for those moments when the soul needs to be consoled with homemade sweetness.",
+    
+    192: "Let yourself be seduced by the citrus sophistication of this Donat Orange Cake, an elaborate creation that elevates orange to the category of culinary art. The crispy shortbread contrasts with the cooked orange filling, while the flavored milk cream wraps each bite in creamy smoothness. The citrus fruits release their essential oils during cooking, creating an explosion of freshness that awakens the senses and transports to Mediterranean orchards bathed in sunshine.",
+    
+    193: "Experience the tropical sweetness of this Pineapple Cake, where exotic fruit becomes the protagonist of a symphony of flavors. The natural pineapple juice transforms into a silky cream that embraces each portion with its characteristic sweetness, while the buttery base provides the perfect contrast. Each bite is a journey to paradisiacal islands where pineapple ripens under the tropical sun, turning this dessert into a celebration of the purest and most natural flavors.",
+    
+    194: "Connect with the roots of homemade pastry through this Pepica Baking Soda Cake, where simplicity becomes rustic elegance. The oil merges with the sugar creating a moist and spongy texture, while the cinnamon and lemon zest provide those aromatic notes that turn each bite into a family embrace. It's proof that the most memorable desserts are born from humble ingredients but worked with love and patience.",
+    
+    195: "Travel to the Austrian Alps with this Tirol Apple Cake, where Central European tradition is expressed in every delicious bite. The butter dough melts on the palate, revealing an aromatic filling of grated apple that is perfumed with cinnamon and enriched with the sophisticated touch of cognac. The raisins provide concentrated sweet notes that contrast with the apple's acidity, creating a symphony of flavors that evokes alpine cabins and winter afternoons by the fire.",
+    
+    196: "Discover the elegance of savory flavors with this Bacon and Cheese Tart, where the contrast of flavors creates a unique gastronomic experience. The fried bacon provides that crispy texture and smoky flavor that balances perfectly with the cheese's creaminess, while the shortbread base supports this symphony of flavors. The beaten eggs bind all ingredients in a silky mixture that transforms in the oven, creating a dish that is both comfort food and culinary sophistication.",
+    
+    197: "Surprise your senses with this Jam, Strawberry and Cream Cake, where fruit freshness meets dairy creaminess. The unique dough made with beer and oil provides a spongy texture that embraces the strawberry jam, while the cold cream crowns each portion with its ethereal sweetness. The contrast between the cake's warmth and the cream's freshness creates a sensory experience that celebrates summer flavors and the joy of shared desserts.",
+    
+    198: "Let yourself be refreshed by the tropical elegance of this Pineapple and Cream Cake, a cold dessert that is pure sophistication in every spoonful. The pineapple provides its natural sweetness that balances with the cream's creaminess, while the fish glue provides that silky texture that glides smoothly on the palate. Served frozen, each portion is a refreshing escape that transports to eternal summers and moments of pure happiness.",
+    
+    199: "Immerse yourself in the aromatic richness of this Walnut Cake, where nuts become protagonists of a symphony of textures. The crushed walnuts merge with the butter creating a rich and aromatic base, while the coffee meringue crowns the creation with its airy sweetness. The oven cooking allows all flavors to integrate, creating a dessert that is both elegance and substance, perfect for those moments when seeking deep satisfaction of authentic flavors.",
+    
+    200: "Refresh yourself with the tropical sweetness of this Banana Ice Cream, where ripe fruit becomes the protagonist of an icy symphony. The concentrated milk wraps the bananas in dairy creaminess, while the touch of lemon provides that acidity that enhances natural flavors. Cut into pieces to serve, each portion is a small celebration of simplicity made art, perfect for those moments when the soul needs to be consoled with pure and refreshing sweetness.",
+    
+    201: "Discover the genius of practical pastry with this Yogurt Cake, where simplicity becomes culinary wisdom. The yogurt acts as a universal measure, creating a spongy texture that is perfumed with lemon zest and elevated with Royal baking powder. Each bite is an explosion of dairy freshness that demonstrates that the most satisfying desserts are born from the intelligent combination of everyday ingredients transformed into pure gastronomic magic.",
+    
+    202: "Immerse yourself in the versatility of classic pastry with this Sponge Cake and Torta, where tradition adapts to personal tastes. The whipped whites provide that ethereal lightness that makes each bite melt on the palate, while in its torta variant, the ground almonds substitute flour creating a rich and aromatic texture. It's proof that basic desserts can be the foundation of infinite creative possibilities.",
+    
+    203: "Let yourself be captivated by the refreshing acidity of this Carmela Lemon Cake, where citrus fruits become protagonists of a symphony of contrasts. The butter and lard pastry creates a rich base that contrasts with the intensity of the lemon cream, while the final gratin provides that golden texture that promises the first crispy bite. Each portion is an explosion of freshness that awakens the senses and transports to Mediterranean orchards bathed in sunshine.",
+    
+    204: "Experience the elegance of cold desserts with this Charlotte Cake, where coffee flavors meet cognac sophistication. The crushed charlotte merges with the soaked cookies, creating an aromatic base that is crowned with grated coconut. The contrast between coffee intensity and coconut sweetness creates a sensory experience that evokes elegant salons and winter afternoons by the fire.",
+    
+    205: "Rediscover the creaminess of cheese in this alternative Cheesecake, where small cheeses become protagonists of a dairy symphony. The base of ground cookies and butter provides that crispy texture that contrasts with the filling's smoothness, while the mixture of cheeses, milk, and eggs transforms in the oven into a silky cream that embraces the palate with its characteristic sweetness.",
+    
+    206: "Let yourself be seduced by the Mediterranean flavors of this Orange Pork Loin with Pot, where meat transforms into a unique gastronomic experience. The golden loin is impregnated with the citrus juices of orange, while the sherry provides complex notes that elevate the dish to new heights. The oregano perfumes each bite with its characteristic aroma, creating a stew that is both comfort food and culinary sophistication.",
+    
+    207: "Immerse yourself in culinary creativity with these Layered Tortillas, where each layer tells a story of different flavors. The tortillas stack like floors of a gastronomic building, separated by layers of fried tomato perfumed with curry that provides that exotic touch. Each bite is a sensory adventure that demonstrates that food can be both art and substance, perfect for those moments when seeking to surprise and delight.",
+    
+    208: "Discover the elegance of homemade charcuterie with this María Teresa Truffle Terrine, where minced lean meat becomes a refined gastronomic experience. The lettuce provides freshness that contrasts with the richness of eggs and spices, while the truffles elevate the dish to luxury category. The water bath cooking allows all flavors to integrate slowly, creating a terrine that is both art and tradition.",
+    
+    209: "Experience the sophistication of stuffed meat with this Stuffed Loin, where each cut reveals a gastronomic surprise. The loin opened like a book embraces the filling of hard-boiled eggs and ham, while the golden butter creates a crispy surface that contrasts with the interior juiciness. The milk and orange provide sweet notes that balance the salty flavors, creating a dish that is both elegance and substance.",
+    
+    210: "Immerse yourself in hunting tradition with this Casserole Pheasant, where game becomes the protagonist of a unique gastronomic experience. The pheasant cooks slowly surrounded by fine loin and onion, absorbing all the stew flavors, while the unwhipped cream crowns the dish with its characteristic creaminess. It's proof that traditional dishes can be both rustic and sophisticated.",
+    
+    211: "Travel to Belgium with this Belgian-Style Pheasant, where game meets European culinary tradition. The endives provide that characteristic bitter touch that contrasts with the meat's richness, while the carrots and onion create an aromatic base that intensifies during stewing. Served on a bed of cooked endives, each bite is a celebration of authentic flavors and traditional cooking.",
+    
+    212: "Let yourself be comforted by these Creamed Spinach, where vegetables become protagonists of a symphony of flavors. The onion and garlic provide that aromatic base that enhances the earthy flavor of spinach, while the béchamel wraps them in silky creaminess. The final gratin creates a golden surface that promises the first crispy bite, turning this dish into comfort food elevated to culinary art.",
+    
+    213: "Experience spring freshness with these Peas with Ham, where tender vegetables meet the intensity of cured ham. The ham, onion, parsley, and garlic create an aromatic base that intensifies with cooking in broth, while the lettuce heart provides freshness and texture. It's proof that simple dishes can be both nutritious and delicious when prepared with love and respect for ingredients.",
+    
+    214: "Discover Italian elegance with this Italian-Style Veal, where meat transforms into a refined gastronomic experience. The chops floured and browned achieve a crispy texture that contrasts with the interior juiciness, while the ham provides saline notes that balance with the sherry and broth. Each bite is a celebration of Italian simplicity made culinary art.",
+    
+    215: "Immerse yourself in the sophistication of savory flavors with this Onion Tart, where humble onion becomes the protagonist of a symphony of flavors. The slowly cooked onion develops a natural sweetness that balances with the cream's creaminess and the gruyere cheese's intensity. The shortbread base provides that crispy texture that contrasts with the filling's smoothness, creating a dish that is both elegance and comfort food.",
+    
+    216: "Rediscover the joy of seafood flavors with these Hake Sandwiches, where fish dresses up with ham and cheese. The fresh hake melts with the ham and cheese creating a combination that explodes with flavor in every bite, while the crispy batter provides that texture that contrasts with the interior smoothness. Fried in abundant oil, each sandwich is a small celebration of sea flavors.",
+    
+    217: "Let yourself be seduced by the sophisticated simplicity of this Chicken with Mustard, where the bird transforms into a unique gastronomic experience. The mustard and butter marinade penetrates every fiber of the meat, while the oven cooking allows the flavors to concentrate. The final cream crowns the dish with its characteristic creaminess, creating a texture contrast that turns each bite into a palate caress.",
+    
+    218: "Experience the golden elegance of this Hake in Béchamel Sauce, where fish dresses up with a sauce that is pure sophistication. The floured and fried fillets create a crispy base that contrasts with the tomato béchamel's creaminess, while the cheese and spices provide complex notes that elevate the dish to new heights. The final gratin promises that first golden bite that leads to a complete sensory experience.",
+    
+    219: "Immerse yourself in the gastronomic versatility of this Potato Cake, where the humble tuber becomes a canvas for infinite possibilities. The creamy potato purée embraces varied fillings ranging from fresh spinach to tuna with tomato or lean meat with ham, while the oven cooking creates a golden surface that promises moments of pure comfort. It's proof that simple ingredients can be the foundation of extraordinary creations."
+}
+
+def update_translation():
+    """Update English translations for remaining recipes"""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    
+    print("🌍 Updating English translations for remaining 40 recipes...")
+    for recipe_id, english_desc in ENGLISH_TRANSLATIONS_REMAINING.items():
+        cursor.execute(
+            "UPDATE recipe_translations SET description = ? WHERE recipe_id = ? AND language = 'en'",
+            (english_desc, recipe_id)
+        )
+        print(f"Updated English for recipe {recipe_id}")
+    
+    conn.commit()
+    conn.close()
+    print("\n✅ All remaining English translations updated successfully!")
+
+if __name__ == "__main__":
+    update_translation()
