@@ -43,18 +43,15 @@ def compile_translations():
             # Add current directory to path for imports
             current_dir = os.path.dirname(os.path.abspath(__file__))
             sys.path.insert(0, current_dir)
-            from compile_basque_mo import create_mo_file
+            from compile_mo_files import compile_all_translations
 
-            # Compile Basque translations manually
-            po_file = "translations/eu/LC_MESSAGES/messages.po"
-            mo_file = "translations/eu/LC_MESSAGES/messages.mo"
-
-            if os.path.exists(po_file):
-                create_mo_file(po_file, mo_file)
-                print("✅ Basque translations compiled manually")
+            # Compile all translations manually
+            count = compile_all_translations()
+            if count > 0:
+                print(f"✅ {count} language files compiled manually")
                 return True
             else:
-                print("❌ Basque .po file not found")
+                print("❌ No translations files found to compile")
                 return False
         except Exception as fallback_error:
             print(f"❌ Fallback compilation failed: {fallback_error}")

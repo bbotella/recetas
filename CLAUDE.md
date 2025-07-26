@@ -78,11 +78,12 @@ tiaCarmen/
 ## Key Features
 
 ### 1. Multilingual Support
-- **Languages**: Spanish (default), English, Chinese (中文)
-- **Translation System**: Flask-Babel with fallback support
+- **Languages**: Spanish (default), English, Chinese (中文), Valencian (Català), Basque (Euskera)
+- **Translation System**: AI-powered translation with contextual understanding
 - **Dynamic Content**: Recipe translations stored in database
-- **UI Localization**: Complete interface translation
+- **UI Localization**: Complete interface translation using Flask-Babel
 - **Language Switching**: Session-based preference storage
+- **CRITICAL**: All translations MUST be generated using AI models, NOT dictionaries
 
 ### 2. Recipe Management
 - **Content Format**: Markdown for ingredients and instructions
@@ -344,19 +345,26 @@ def get_locale():
 
 ### Supported Languages
 - **Spanish (es)**: Default/original language
-- **English (en)**: Full translation support
-- **Chinese (zh)**: Full translation support
+- **English (en)**: Full translation support using AI
+- **Chinese (zh)**: Full translation support using AI
+- **Valencian (ca)**: Full translation support using AI  
+- **Basque (eu)**: Full translation support using AI
 
 ### Translation Workflow
 1. **Content Creation**: Original recipes in Spanish
-2. **Translation Generation**: Automated scripts for bulk translation
+2. **AI Translation**: All translations generated using AI models with contextual understanding
 3. **Database Storage**: Translations stored in `recipe_translations`
 4. **Fallback Handling**: Graceful degradation to original content
 
 ### Translation Scripts
-- `generate_complete_translations.py`: English translations
-- `generate_chinese_translations.py`: Chinese translations
-- `babel_manager.py`: Flask-Babel management
+- `ai_translation_system.py`: **PRIMARY** - AI-powered translation system for all languages
+- `babel_manager.py`: Flask-Babel management and compilation
+- `docker_compile_translations.py`: Docker-compatible compilation with fallback support
+
+### ⚠️ CRITICAL TRANSLATION POLICY
+**STRICTLY FORBIDDEN**: Dictionary-based translations, pre-defined lookup tables, or hardcoded translation mappings.
+
+**REQUIRED**: All translations must be generated using AI models with proper contextual understanding for culinary content.
 
 ## Deployment
 

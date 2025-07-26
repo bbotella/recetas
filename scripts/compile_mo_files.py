@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """
-Script to create Basque .mo compiled translation files manually.
+Manual compilation script for Flask-Babel .mo files.
+Used as fallback when pybabel is not available.
 """
 
 import os
 import struct
+from pathlib import Path
 
 
 def create_mo_file(po_file_path, mo_file_path):
@@ -77,12 +79,12 @@ def create_mo_file(po_file_path, mo_file_path):
     # Keys
     for key in keys:
         output.append(key.encode("utf-8"))
-        output.append(b"\\0")
+        output.append(b"\x00")
 
     # Values
     for value in values:
         output.append(value.encode("utf-8"))
-        output.append(b"\\0")
+        output.append(b"\x00")
 
     # Write to file
     os.makedirs(os.path.dirname(mo_file_path), exist_ok=True)
@@ -93,21 +95,28 @@ def create_mo_file(po_file_path, mo_file_path):
     print(f"✅ Created .mo file with {len(translations)} translations")
 
 
-def main():
-    """
-    Main function to create .mo files for Basque.
-    """
-    print("Creating Basque .mo compilation files...")
+def compile_all_translations():
+    """Compile all translation files to .mo format."""
+    translations_dir = Path("translations")
+    compiled_count = 0
 
-    po_file = "translations/eu/LC_MESSAGES/messages.po"
-    mo_file = "translations/eu/LC_MESSAGES/messages.mo"
+    for lang_dir in translations_dir.iterdir():
+        if lang_dir.is_dir():
+            po_file = lang_dir / "LC_MESSAGES" / "messages.po"
+            mo_file = lang_dir / "LC_MESSAGES" / "messages.mo"
 
-    if os.path.exists(po_file):
-        create_mo_file(po_file, mo_file)
-        print("✅ Basque translations compiled successfully!")
-    else:
-        print("❌ .po file not found")
+            if po_file.exists():
+                try:
+                    create_mo_file(str(po_file), str(mo_file))
+                    compiled_count += 1
+                except Exception as e:
+                    print(f"❌ Error compiling {lang_dir.name}: {e}")
+
+    return compiled_count
 
 
 if __name__ == "__main__":
-    main()
+    print("Manual Translation Compiler")
+    print("=" * 40)
+    count = compile_all_translations()
+    print(f"✅ Compiled {count} language files")

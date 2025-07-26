@@ -1,70 +1,113 @@
 #!/usr/bin/env python3
 """
-Script to verify that all translations are properly compiled.
+Verification script for AI-generated translations.
+Checks that all translations are properly generated and compiled.
 """
 
 import os
 import sys
+from pathlib import Path
 
 # Add the project root to the path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from database import get_db_connection
 
-def verify_translations():
-    """Verify that all translation files are properly compiled."""
-    print("Verifying translation compilation...")
 
-    # Check for translation directories
-    translations_dir = "translations"
-    if not os.path.exists(translations_dir):
-        print(f"❌ Translations directory not found: {translations_dir}")
-        return False
+def verify_database_translations():
+    """Verify that all translations exist in the database."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
 
-    # Expected languages
-    expected_languages = ["es", "ca", "en", "zh"]
+    # Get total number of recipes
+    cursor.execute("SELECT COUNT(*) FROM recipes")
+    total_recipes = cursor.fetchone()[0]
 
-    all_good = True
+    # Check translations for each language
+    expected_languages = ["en", "zh", "ca", "eu"]
+    results = {}
 
     for lang in expected_languages:
-        lang_dir = os.path.join(translations_dir, lang, "LC_MESSAGES")
-        po_file = os.path.join(lang_dir, "messages.po")
-        mo_file = os.path.join(lang_dir, "messages.mo")
+        cursor.execute(
+            "SELECT COUNT(*) FROM recipe_translations WHERE language = ?", (lang,)
+        )
+        count = cursor.fetchone()[0]
+        results[lang] = count
 
-        if not os.path.exists(lang_dir):
-            print(f"❌ Language directory not found: {lang_dir}")
-            all_good = False
-            continue
+        if count != total_recipes:
+            print(f"❌ Language {lang}: Expected {total_recipes}, found {count}")
+            return False
+        else:
+            print(f"✅ Language {lang}: {count} translations")
 
-        if not os.path.exists(po_file):
-            print(f"❌ Translation source file not found: {po_file}")
-            all_good = False
-            continue
+    conn.close()
+    return True
 
-        if not os.path.exists(mo_file):
-            print(f"❌ Compiled translation file not found: {mo_file}")
-            all_good = False
-            continue
 
-        # Check if .mo file is newer than .po file
-        po_mtime = os.path.getmtime(po_file)
-        mo_mtime = os.path.getmtime(mo_file)
+def verify_flask_babel_files():
+    """Verify that Flask-Babel files exist and are compiled."""
+    translations_dir = Path("translations")
+    languages = ["es", "en", "zh", "ca", "eu"]
 
-        if mo_mtime < po_mtime:
-            print("⚠️  Translation file outdated for {}: {}".format(lang, mo_file))
-            print("   Please run: python scripts/babel_manager.py compile")
-            all_good = False
-            continue
+    for lang in languages:
+        po_file = translations_dir / lang / "LC_MESSAGES" / "messages.po"
+        mo_file = translations_dir / lang / "LC_MESSAGES" / "messages.mo"
 
-        print(f"✅ Language {lang}: translations compiled successfully")
+        if not po_file.exists():
+            print(f"❌ Missing .po file for {lang}")
+            return False
 
-    if all_good:
-        print("✅ All translations verified successfully!")
-        return True
-    else:
-        print("❌ Some translations are missing or not properly compiled.")
+        if not mo_file.exists():
+            print(f"❌ Missing .mo file for {lang}")
+            return False
+
+        print(f"✅ Language {lang}: .po and .mo files exist")
+
+    return True
+
+
+def verify_ai_translation_system():
+    """Verify that the AI translation system is properly configured."""
+    ai_script = Path("scripts/ai_translation_system.py")
+
+    if not ai_script.exists():
+        print("❌ AI translation system script not found")
         return False
+
+    print("✅ AI translation system script exists")
+    return True
+
+
+def main():
+    """Main verification function."""
+    print("🔍 AI Translation System Verification")
+    print("=" * 50)
+
+    success = True
+
+    # Verify database translations
+    print("\n📊 Checking database translations...")
+    if not verify_database_translations():
+        success = False
+
+    # Verify Flask-Babel files
+    print("\n📁 Checking Flask-Babel files...")
+    if not verify_flask_babel_files():
+        success = False
+
+    # Verify AI translation system
+    print("\n🤖 Checking AI translation system...")
+    if not verify_ai_translation_system():
+        success = False
+
+    print("\n" + "=" * 50)
+    if success:
+        print("✅ All translations verified successfully!")
+        return 0
+    else:
+        print("❌ Translation verification failed!")
+        return 1
 
 
 if __name__ == "__main__":
-    success = verify_translations()
-    sys.exit(0 if success else 1)
+    sys.exit(main())

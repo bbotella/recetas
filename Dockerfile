@@ -25,24 +25,8 @@ RUN mkdir -p /app/data
 # Import recipes to database (only if recipes directory exists)
 RUN if [ -d "recipes" ]; then python scripts/import_recipes.py; fi
 
-# Generate translations (only if translation scripts exist)
-RUN if [ -f "scripts/generate_complete_translations.py" ]; then python scripts/generate_complete_translations.py; fi
-RUN if [ -f "scripts/generate_chinese_translations.py" ]; then python scripts/generate_chinese_translations.py; fi
-
-# Migrate Valencian language code from 'va' to 'ca' (if needed)
-RUN if [ -f "scripts/migrate_valencian_language_code.py" ]; then python scripts/migrate_valencian_language_code.py; fi
-
-# Generate high-quality Valencian translations using AI
-RUN if [ -f "scripts/generate_ai_valencian_translations.py" ]; then python scripts/generate_ai_valencian_translations.py; fi
-
-# Enhance recipe descriptions with AI and update all translations
-RUN if [ -f "scripts/enhance_recipe_descriptions.py" ]; then python scripts/enhance_recipe_descriptions.py; fi
-
-# Generate high-quality Basque translations using AI
-RUN if [ -f "scripts/generate_basque_translations.py" ]; then python scripts/generate_basque_translations.py; fi
-
-# Create Basque interface translations
-RUN if [ -f "scripts/create_basque_po.py" ]; then python scripts/create_basque_po.py; fi
+# Generate all translations using AI translation system
+RUN if [ -f "scripts/ai_translation_system.py" ]; then python scripts/ai_translation_system.py; fi
 
 # Compile Flask-Babel translations (always run to ensure translations are available)
 RUN python scripts/docker_compile_translations.py
