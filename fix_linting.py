@@ -6,7 +6,6 @@ Script to run linting checks locally and fix common issues
 import subprocess
 import sys
 import os
-import tempfile
 
 
 def run_command(cmd, description=""):
