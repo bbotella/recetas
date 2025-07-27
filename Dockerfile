@@ -31,11 +31,8 @@ RUN python -c "from database import init_database; init_database()"
 # Import existing translations from backup if available
 RUN if [ -f "translations_backup.json" ]; then python scripts/backup_translations.py import; fi
 
-# Generate interface translations
-RUN python -c "import sys; sys.path.append('scripts'); from fix_interface_translations import fix_interface_translations; fix_interface_translations()"
-
-# Compile .mo files
-RUN find translations -name "*.po" -exec sh -c 'msgfmt "$1" -o "${1%.po}.mo"' _ {} \;
+# Compile Flask-Babel translations
+RUN python scripts/docker_compile_translations.py
 
 # Create non-root user for security
 RUN useradd -m -u 1000 flaskuser && chown -R flaskuser:flaskuser /app
