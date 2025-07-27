@@ -1,18 +1,18 @@
-"""
-Pytest configuration and fixtures for the Tía Carmen's Recipes application.
-"""
-
 import os
 import sys
 import tempfile
 import pytest
 from flask import Flask
 from flask_babel import Babel
+from database import init_database, get_db_connection
+"""
+Pytest configuration and fixtures for the Tía Carmen's Recipes application.
+"""
+
 
 # Add project root to path before importing application modules
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from database import init_database, get_db_connection
 
 
 @pytest.fixture
@@ -86,7 +86,13 @@ def app():
         for recipe in test_recipes:
             conn.execute(
                 """
-                INSERT INTO recipes (title, description, ingredients, instructions, category, filename)
+                INSERT INTO recipes (
+                    title,
+                    description,
+                    ingredients,
+                    instructions,
+                    category,
+                    filename)
                 VALUES (?, ?, ?, ?, ?, ?)
             """,
                 (
@@ -102,15 +108,43 @@ def app():
         # Insert test translations
         conn.execute(
             """
-            INSERT INTO recipe_translations (recipe_id, language, title, description, ingredients, instructions, category)
-            VALUES (1, 'en', 'Test Recipe 1 EN', 'Test description 1 EN', 'Test ingredients 1 EN', 'Test instructions 1 EN', 'Desserts')
+            INSERT INTO recipe_translations (
+                recipe_id,
+                language,
+                title,
+                description,
+                ingredients,
+                instructions,
+                category)
+            VALUES (
+                1,
+                'en',
+                'Test Recipe 1 EN',
+                'Test description 1 EN',
+                'Test ingredients 1 EN',
+                'Test instructions 1 EN',
+                'Desserts')
         """
         )
 
         conn.execute(
             """
-            INSERT INTO recipe_translations (recipe_id, language, title, description, ingredients, instructions, category)
-            VALUES (1, 'zh', 'Test Recipe 1 ZH', 'Test description 1 ZH', 'Test ingredients 1 ZH', 'Test instructions 1 ZH', '甜点')
+            INSERT INTO recipe_translations (
+                recipe_id,
+                language,
+                title,
+                description,
+                ingredients,
+                instructions,
+                category)
+            VALUES (
+                1,
+                'zh',
+                'Test Recipe 1 ZH',
+                'Test description 1 ZH',
+                'Test ingredients 1 ZH',
+                'Test instructions 1 ZH',
+                '甜点')
         """
         )
 

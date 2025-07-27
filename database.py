@@ -49,10 +49,12 @@ def init_database():
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_category ON recipes(category)")
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_ingredients ON recipes(ingredients)")
     cursor.execute(
-        "CREATE INDEX IF NOT EXISTS idx_translations_recipe ON recipe_translations(recipe_id)"
+        "CREATE INDEX IF NOT EXISTS idx_translations_recipe "
+        "ON recipe_translations(recipe_id)"
     )
     cursor.execute(
-        "CREATE INDEX IF NOT EXISTS idx_translations_language ON recipe_translations(language)"
+        "CREATE INDEX IF NOT EXISTS idx_translations_language "
+        "ON recipe_translations(language)"
     )
 
     conn.commit()
@@ -190,9 +192,12 @@ def get_all_recipes_with_translation(language="es"):
         recipes = conn.execute(
             """
             SELECT r.id, r.filename, r.created_at,
-                   CASE WHEN t.title IS NOT NULL THEN t.title ELSE r.title END as title,
-                   CASE WHEN t.description IS NOT NULL THEN t.description ELSE r.description END as description,
-                   CASE WHEN t.ingredients IS NOT NULL THEN t.ingredients ELSE r.ingredients END as ingredients,
+                   CASE WHEN t.title IS NOT NULL THEN t.title 
+                        ELSE r.title END as title,
+                   CASE WHEN t.description IS NOT NULL THEN t.description 
+                        ELSE r.description END as description,
+                   CASE WHEN t.ingredients IS NOT NULL THEN t.ingredients 
+                        ELSE r.ingredients END as ingredients,
                    CASE WHEN t.instructions IS NOT NULL THEN t.instructions ELSE r.instructions END as instructions,
                    CASE WHEN t.category IS NOT NULL THEN t.category ELSE r.category END as category
             FROM recipes r
@@ -217,9 +222,12 @@ def search_recipes_with_translation(query, category=None, language="es"):
         if category:
             sql = """
                 SELECT r.id, r.filename, r.created_at,
-                       CASE WHEN t.title IS NOT NULL THEN t.title ELSE r.title END as title,
-                       CASE WHEN t.description IS NOT NULL THEN t.description ELSE r.description END as description,
-                       CASE WHEN t.ingredients IS NOT NULL THEN t.ingredients ELSE r.ingredients END as ingredients,
+                       CASE WHEN t.title IS NOT NULL THEN t.title 
+                        ELSE r.title END as title,
+                       CASE WHEN t.description IS NOT NULL THEN t.description 
+                        ELSE r.description END as description,
+                       CASE WHEN t.ingredients IS NOT NULL THEN t.ingredients 
+                        ELSE r.ingredients END as ingredients,
                        CASE WHEN t.instructions IS NOT NULL THEN t.instructions ELSE r.instructions END as instructions,
                        CASE WHEN t.category IS NOT NULL THEN t.category ELSE r.category END as category
                 FROM recipes r
@@ -235,9 +243,12 @@ def search_recipes_with_translation(query, category=None, language="es"):
         else:
             sql = """
                 SELECT r.id, r.filename, r.created_at,
-                       CASE WHEN t.title IS NOT NULL THEN t.title ELSE r.title END as title,
-                       CASE WHEN t.description IS NOT NULL THEN t.description ELSE r.description END as description,
-                       CASE WHEN t.ingredients IS NOT NULL THEN t.ingredients ELSE r.ingredients END as ingredients,
+                       CASE WHEN t.title IS NOT NULL THEN t.title 
+                        ELSE r.title END as title,
+                       CASE WHEN t.description IS NOT NULL THEN t.description 
+                        ELSE r.description END as description,
+                       CASE WHEN t.ingredients IS NOT NULL THEN t.ingredients 
+                        ELSE r.ingredients END as ingredients,
                        CASE WHEN t.instructions IS NOT NULL THEN t.instructions ELSE r.instructions END as instructions,
                        CASE WHEN t.category IS NOT NULL THEN t.category ELSE r.category END as category
                 FROM recipes r

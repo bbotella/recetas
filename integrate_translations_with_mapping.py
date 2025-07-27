@@ -51,7 +51,8 @@ def get_recipe_mapping():
         if best_score > 70:
             mapping[json_id] = best_match
             print(
-                f"Mapped: {json_id} -> {best_match} ('{json_title}' -> '{db_title}', score: {best_score})"
+                f"Mapped: {json_id} -> {best_match} "
+                f"('{json_title}' -> '{db_title}', score: {best_score})"
             )
         else:
             print(
@@ -123,7 +124,14 @@ def integrate_translations_with_mapping():
                 cursor.execute(
                     """
                     INSERT OR REPLACE INTO recipe_translations
-                    (recipe_id, language, title, description, ingredients, instructions, category)
+                    (
+                        recipe_id,
+                        language,
+                        title,
+                        description,
+                        ingredients,
+                        instructions,
+                        category)
                     VALUES (?, ?, ?, ?, ?, ?, ?)
                 """,
                     (

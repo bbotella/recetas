@@ -68,7 +68,13 @@ def populate_test_database():
         for recipe in test_recipes:
             conn.execute(
                 """
-                INSERT INTO recipes (title, description, ingredients, instructions, category, filename)
+                INSERT INTO recipes (
+                    title,
+                    description,
+                    ingredients,
+                    instructions,
+                    category,
+                    filename)
                 VALUES (?, ?, ?, ?, ?, ?)
             """,
                 (

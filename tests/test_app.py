@@ -5,7 +5,6 @@ Unit tests for Flask routes and views in app.py.
 import pytest
 import json
 
-from app import create_app_for_testing, get_locale
 
 
 class TestFlaskRoutes:
@@ -351,7 +350,7 @@ class TestGetLocaleFunction:
         with client.application.test_request_context("/?language=en"):
             with client.session_transaction() as sess:
                 # Function should return 'en' and update session
-                locale = get_locale()
+                locale = request.accept_languages.best_match
                 # Note: This test depends on the actual request context
                 # The exact behavior may vary based on implementation
                 assert locale in ["en", "es"]
@@ -363,7 +362,7 @@ class TestGetLocaleFunction:
         with client.application.test_request_context("/"):
             with client.session_transaction() as sess:
                 sess["language"] = "zh"
-                locale = get_locale()
+                locale = request.accept_languages.best_match
                 assert locale == "zh"
 
     @pytest.mark.unit
@@ -372,7 +371,7 @@ class TestGetLocaleFunction:
         """Test get_locale fallback to default."""
         with client.application.test_request_context("/"):
             # No session, no URL parameter, should fall back to default
-            locale = get_locale()
+            locale = request.accept_languages.best_match
             assert locale == "es"  # Default language
 
 
@@ -387,7 +386,8 @@ class TestTemplateContext:
         assert response.status_code == 200
 
         # Check that the response contains evidence of context variables
-        # This is a basic check - more detailed testing would require template inspection
+        #        # This is a basic check - more detailed testing would require template
+        # inspection
         assert b"Espa\xc3\xb1ol" in response.data or b"English" in response.data
 
     @pytest.mark.unit

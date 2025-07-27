@@ -79,7 +79,14 @@ def fix_and_import_translations():
                 cursor.execute(
                     """
                     INSERT OR REPLACE INTO recipe_translations
-                    (recipe_id, language, title, description, ingredients, instructions, category)
+                    (
+                        recipe_id,
+                        language,
+                        title,
+                        description,
+                        ingredients,
+                        instructions,
+                        category)
                     VALUES (?, ?, ?, ?, ?, ?, ?)
                 """,
                     (

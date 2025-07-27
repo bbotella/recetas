@@ -8,6 +8,7 @@ from pathlib import Path
 # Interface translations that we need in .po files
 INTERFACE_TRANSLATIONS = {
     "es": {
+        "Aunt Carmen's Recipes": "Recetas de la Tía Carmen",
         "Home": "Inicio",
         "Categories": "Categorías",
         "Language": "Idioma",
@@ -52,6 +53,7 @@ INTERFACE_TRANSLATIONS = {
         ),
     },
     "en": {
+        "Aunt Carmen's Recipes": "Aunt Carmen's Recipes",
         "Home": "Home",
         "Categories": "Categories",
         "Language": "Language",

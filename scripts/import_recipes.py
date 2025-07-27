@@ -125,7 +125,13 @@ def import_all_recipes():
 
                 cursor.execute(
                     """
-                    INSERT INTO recipes (title, description, ingredients, instructions, category, filename)
+                    INSERT INTO recipes (
+                        title,
+                        description,
+                        ingredients,
+                        instructions,
+                        category,
+                        filename)
                     VALUES (?, ?, ?, ?, ?, ?)
                 """,
                     (
