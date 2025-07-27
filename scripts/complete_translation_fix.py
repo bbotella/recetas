@@ -17,104 +17,147 @@ from database import get_db_connection, init_database  # noqa: E402
 
 def identify_mixed_language_translations():
     """Identifica traducciones que contienen contenido mixto de idiomas."""
-    
+
     conn = get_db_connection()
     cursor = conn.cursor()
-    
+
     # Obtener todas las traducciones
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT id, recipe_id, language, title, description, ingredients, instructions
         FROM recipe_translations
         WHERE language IN ('en', 'zh', 'ca', 'eu')
-    """)
-    
+    """
+    )
+
     translations = cursor.fetchall()
     problematic_translations = []
-    
+
     for translation in translations:
-        trans_id, recipe_id, language, title, description, ingredients, instructions = translation
-        
+        trans_id, recipe_id, language, title, description, ingredients, instructions = (
+            translation
+        )
+
         # Verificar si tiene contenido mixto
         is_problematic = False
-        
+
         # Verificar patrones de contenido mixto
         mixed_patterns = [
-            r'Traditional Spanish family recipe:',
-            r'Discover the culinary magic of .* asados en',
-            r'发现.* asados en .*的烹饪魔力',
-            r'Descobreix la màgia culinària de .* asados en',
-            r'Deskubritu .* asados en .*ren magia',
-            r'Wine-Roasted Herrings.*asados en',
-            r'Special traditional recipe:',
-            r'Recepta especial valenciana:',
-            r'Euskal sukaldaritzako errezeta berezia:',
-            r'特色传统食谱：',
-            r'.*wine.*asados.*',
-            r'.*ardoa.*asados.*',
-            r'.*vi.*asados.*',
-            r'.*酒.*asados.*',
+            r"Traditional Spanish family recipe:",
+            r"Discover the culinary magic of .* asados en",
+            r"发现.* asados en .*的烹饪魔力",
+            r"Descobreix la màgia culinària de .* asados en",
+            r"Deskubritu .* asados en .*ren magia",
+            r"Wine-Roasted Herrings.*asados en",
+            r"Special traditional recipe:",
+            r"Recepta especial valenciana:",
+            r"Euskal sukaldaritzako errezeta berezia:",
+            r"特色传统食谱：",
+            r".*wine.*asados.*",
+            r".*ardoa.*asados.*",
+            r".*vi.*asados.*",
+            r".*酒.*asados.*",
             # Detectar mezclas de idiomas
-            r'[a-zA-Z]+\s+asados\s+en\s+[a-zA-Z]+',
-            r'[一-龯]+\s+asados\s+en\s+[一-龯]+',
+            r"[a-zA-Z]+\s+asados\s+en\s+[a-zA-Z]+",
+            r"[一-龯]+\s+asados\s+en\s+[一-龯]+",
         ]
-        
+
         for pattern in mixed_patterns:
-            if re.search(pattern, description, re.IGNORECASE) or \
-               re.search(pattern, ingredients, re.IGNORECASE) or \
-               re.search(pattern, instructions, re.IGNORECASE):
+            if (
+                re.search(pattern, description, re.IGNORECASE)
+                or re.search(pattern, ingredients, re.IGNORECASE)
+                or re.search(pattern, instructions, re.IGNORECASE)
+            ):
                 is_problematic = True
                 break
-        
+
         if is_problematic:
             problematic_translations.append(translation)
-    
+
     conn.close()
-    
-    print(f"🔍 Found {len(problematic_translations)} translations with mixed language content")
+
+    print(
+        f"🔍 Found {len(problematic_translations)} translations with mixed language content"
+    )
     return problematic_translations
 
 
 def get_original_recipe(recipe_id):
     """Obtiene la receta original en español."""
-    
+
     conn = get_db_connection()
     cursor = conn.cursor()
-    
-    cursor.execute("""
+
+    cursor.execute(
+        """
         SELECT title, description, ingredients, instructions, category
         FROM recipes WHERE id = ?
-    """, [recipe_id])
-    
+    """,
+        [recipe_id],
+    )
+
     recipe = cursor.fetchone()
     conn.close()
-    
+
     return recipe
 
 
 def generate_complete_replacement_translation(original_recipe, target_lang):
     """Genera una traducción completamente nueva basada en la receta original."""
-    
+
     if not original_recipe:
         return None
-    
-    original_title, original_description, original_ingredients, original_instructions, original_category = original_recipe
-    
+
+    (
+        original_title,
+        original_description,
+        original_ingredients,
+        original_instructions,
+        original_category,
+    ) = original_recipe
+
     # Obtener traducciones específicas basadas en el título
-    if target_lang == 'en':
-        return generate_english_translation(original_title, original_description, original_ingredients, original_instructions, original_category)
-    elif target_lang == 'zh':
-        return generate_chinese_translation(original_title, original_description, original_ingredients, original_instructions, original_category)
-    elif target_lang == 'ca':
-        return generate_catalan_translation(original_title, original_description, original_ingredients, original_instructions, original_category)
-    elif target_lang == 'eu':
-        return generate_basque_translation(original_title, original_description, original_ingredients, original_instructions, original_category)
-    
+    if target_lang == "en":
+        return generate_english_translation(
+            original_title,
+            original_description,
+            original_ingredients,
+            original_instructions,
+            original_category,
+        )
+    elif target_lang == "zh":
+        return generate_chinese_translation(
+            original_title,
+            original_description,
+            original_ingredients,
+            original_instructions,
+            original_category,
+        )
+    elif target_lang == "ca":
+        return generate_catalan_translation(
+            original_title,
+            original_description,
+            original_ingredients,
+            original_instructions,
+            original_category,
+        )
+    elif target_lang == "eu":
+        return generate_basque_translation(
+            original_title,
+            original_description,
+            original_ingredients,
+            original_instructions,
+            original_category,
+        )
+
     return None
 
 
-def generate_english_translation(title, description, ingredients, instructions, category):
+def generate_english_translation(
+    title, description, ingredients, instructions, category
+):
     """Genera traducciones completamente en inglés."""
-    
+
     # Traducciones específicas de títulos
     title_translations = {
         "Alcachofas Rellenas": "Stuffed Artichokes",
@@ -156,29 +199,51 @@ def generate_english_translation(title, description, ingredients, instructions, 
         "Tarta de Limón": "Lemon Tart",
         "Tarta de Manzana": "Apple Tart",
     }
-    
+
     # Descripciones específicas completamente en inglés
     description_translations = {
-        "Arenques Asados en Vino": "Discover the exquisite flavors of wine-roasted herrings, where the delicate fish is enhanced by the rich complexity of wine. This traditional recipe transforms simple ingredients into an elegant dish that showcases the perfect marriage between seafood and wine.",
-        "Alcachofas Rellenas": "Immerse yourself in the fascinating world of stuffed artichokes, where the juiciness of the meat merges with an incomparable blend of flavors and aromas. This recipe combines tradition and innovation, creating a dish that melts in your mouth.",
-        "Batido de Coco": "This coconut smoothie is an escape to tropical paradise, a perfect combination of sweet coconut flavor and creamy texture. It's the perfect refresher for hot summer days.",
-        "Pollo Marengo": "Discover the culinary magic of Chicken Marengo, where classic flavors and modern techniques meet to create an exceptional dish combining tradition and innovation.",
-        "Tarta de Queso": "This cheese cake is our family's most treasured recipe, made with secrets and love passed down from generation to generation.",
-        "Corona de Cordero": "This crown of lamb is the pride of celebratory dining, where the juiciness of the meat combines with complex flavors specially designed for special occasions.",
+        "Arenques Asados en Vino": (
+            "Discover the exquisite flavors of wine-roasted herrings, where the delicate fish is enhanced by the rich "
+            "complexity of wine. This traditional recipe transforms simple ingredients into an elegant dish that "
+            "showcases the perfect marriage between seafood and wine."
+        ),
+        "Alcachofas Rellenas": (
+            "Immerse yourself in the fascinating world of stuffed artichokes, where the juiciness of the meat "
+            "merges with an incomparable blend of flavors and aromas. This recipe combines tradition and "
+            "innovation, creating a dish that melts in your mouth."
+        ),
+        "Batido de Coco": (
+            "This coconut smoothie is an escape to tropical paradise, a perfect combination of sweet coconut "
+            "flavor and creamy texture. It's the perfect refresher for hot summer days."
+        ),
+        "Pollo Marengo": (
+            "Discover the culinary magic of Chicken Marengo, where classic flavors and modern techniques meet "
+            "to create an exceptional dish combining tradition and innovation."
+        ),
+        "Tarta de Queso": (
+            "This cheese cake is our family's most treasured recipe, made with secrets and love passed down "
+            "from generation to generation."
+        ),
+        "Corona de Cordero": (
+            "This crown of lamb is the pride of celebratory dining, where the juiciness of the meat combines "
+            "with complex flavors specially designed for special occasions."
+        ),
     }
-    
+
     # Traducir título
     translated_title = title_translations.get(title, title)
-    
+
     # Traducir descripción
-    translated_description = description_translations.get(title, f"A traditional Spanish family recipe for {translated_title.lower()}.")
-    
+    translated_description = description_translations.get(
+        title, f"A traditional Spanish family recipe for {translated_title.lower()}."
+    )
+
     # Traducir ingredientes
     translated_ingredients = translate_ingredients_to_english(ingredients)
-    
+
     # Traducir instrucciones
     translated_instructions = translate_instructions_to_english(instructions)
-    
+
     # Traducir categoría
     category_translations = {
         "Postres": "Desserts",
@@ -190,7 +255,7 @@ def generate_english_translation(title, description, ingredients, instructions, 
         "Otros": "Others",
     }
     translated_category = category_translations.get(category, category)
-    
+
     return {
         "title": translated_title,
         "description": translated_description,
@@ -202,7 +267,7 @@ def generate_english_translation(title, description, ingredients, instructions, 
 
 def translate_ingredients_to_english(ingredients):
     """Traduce ingredientes completamente al inglés."""
-    
+
     ingredient_map = {
         "Alcachofas": "Artichokes",
         "Arenques": "Herrings",
@@ -256,17 +321,17 @@ def translate_ingredients_to_english(ingredients):
         "dientes": "cloves",
         "rebanadas": "slices",
     }
-    
+
     translated = ingredients
     for spanish, english in ingredient_map.items():
         translated = translated.replace(spanish, english)
-    
+
     return translated
 
 
 def translate_instructions_to_english(instructions):
     """Traduce instrucciones completamente al inglés."""
-    
+
     instruction_map = {
         "Se cuecen": "Cook",
         "Se rellenan": "Stuff",
@@ -321,17 +386,19 @@ def translate_instructions_to_english(instructions):
         "en la sartén": "in the pan",
         "en el horno": "in the oven",
     }
-    
+
     translated = instructions
     for spanish, english in instruction_map.items():
         translated = translated.replace(spanish, english)
-    
+
     return translated
 
 
-def generate_chinese_translation(title, description, ingredients, instructions, category):
+def generate_chinese_translation(
+    title, description, ingredients, instructions, category
+):
     """Genera traducciones completamente en chino."""
-    
+
     title_translations = {
         "Alcachofas Rellenas": "酿朝鲜蓟",
         "Arenques Asados en Vino": "红酒烤鲱鱼",
@@ -372,21 +439,37 @@ def generate_chinese_translation(title, description, ingredients, instructions, 
         "Tarta de Limón": "柠檬塔",
         "Tarta de Manzana": "苹果塔",
     }
-    
+
     description_translations = {
-        "Arenques Asados en Vino": "发现红酒烤鲱鱼的精致风味，精美的鱼肉在丰富复杂的酒香中得到升华。这道传统食谱将简单的食材转化为优雅的菜肴，展现了海鲜与酒类的完美结合。",
-        "Alcachofas Rellenas": "沉浸在酿朝鲜蓟的迷人世界中，肉质的鲜美与无与伦比的风味和香气融合。这个食谱结合了传统与创新，创造出一道入口即化的菜肴。",
-        "Batido de Coco": "这款椰子奶昔是逃往热带天堂的完美选择，甜美椰子风味与奶油质地的完美结合。它是炎热夏日的完美清凉剂。",
-        "Pollo Marengo": "发现马伦戈鸡的烹饪魔力，经典风味与现代技术相遇，创造出一道结合传统与创新的非凡菜肴。",
-        "Tarta de Queso": "这个芝士蛋糕是我们家族最珍贵的食谱，用代代相传的秘密和爱心制作。",
-        "Corona de Cordero": "这个羊肉花环是庆祝餐桌的骄傲，肉质的鲜美与复杂的风味相结合，专为特殊场合设计。",
+        "Arenques Asados en Vino": (
+            "发现红酒烤鲱鱼的精致风味，精美的鱼肉在丰富复杂的酒香中得到升华。这道传统食谱将简单的食材转化为优雅的菜肴，"
+            "展现了海鲜与酒类的完美结合。"
+        ),
+        "Alcachofas Rellenas": (
+            "沉浸在酿朝鲜蓟的迷人世界中，肉质的鲜美与无与伦比的风味和香气融合。这个食谱结合了传统与创新，"
+            "创造出一道入口即化的菜肴。"
+        ),
+        "Batido de Coco": (
+            "这款椰子奶昔是逃往热带天堂的完美选择，甜美椰子风味与奶油质地的完美结合。它是炎热夏日的完美清凉剂。"
+        ),
+        "Pollo Marengo": (
+            "发现马伦戈鸡的烹饪魔力，经典风味与现代技术相遇，创造出一道结合传统与创新的非凡菜肴。"
+        ),
+        "Tarta de Queso": (
+            "这个芝士蛋糕是我们家族最珍贵的食谱，用代代相传的秘密和爱心制作。"
+        ),
+        "Corona de Cordero": (
+            "这个羊肉花环是庆祝餐桌的骄傲，肉质的鲜美与复杂的风味相结合，专为特殊场合设计。"
+        ),
     }
-    
+
     translated_title = title_translations.get(title, title)
-    translated_description = description_translations.get(title, f"传统西班牙家庭{translated_title}食谱。")
+    translated_description = description_translations.get(
+        title, f"传统西班牙家庭{translated_title}食谱。"
+    )
     translated_ingredients = translate_ingredients_to_chinese(ingredients)
     translated_instructions = translate_instructions_to_chinese(instructions)
-    
+
     category_translations = {
         "Postres": "甜点",
         "Bebidas": "饮料",
@@ -397,7 +480,7 @@ def generate_chinese_translation(title, description, ingredients, instructions, 
         "Otros": "其他",
     }
     translated_category = category_translations.get(category, category)
-    
+
     return {
         "title": translated_title,
         "description": translated_description,
@@ -409,7 +492,7 @@ def generate_chinese_translation(title, description, ingredients, instructions, 
 
 def translate_ingredients_to_chinese(ingredients):
     """Traduce ingredientes completamente al chino."""
-    
+
     ingredient_map = {
         "Alcachofas": "朝鲜蓟",
         "Arenques": "鲱鱼",
@@ -463,17 +546,17 @@ def translate_ingredients_to_chinese(ingredients):
         "dientes": "瓣",
         "rebanadas": "片",
     }
-    
+
     translated = ingredients
     for spanish, chinese in ingredient_map.items():
         translated = translated.replace(spanish, chinese)
-    
+
     return translated
 
 
 def translate_instructions_to_chinese(instructions):
     """Traduce instrucciones completamente al chino."""
-    
+
     instruction_map = {
         "Se cuecen": "煮",
         "Se rellenan": "填充",
@@ -528,17 +611,19 @@ def translate_instructions_to_chinese(instructions):
         "en la sartén": "在平底锅中",
         "en el horno": "在烤箱中",
     }
-    
+
     translated = instructions
     for spanish, chinese in instruction_map.items():
         translated = translated.replace(spanish, chinese)
-    
+
     return translated
 
 
-def generate_catalan_translation(title, description, ingredients, instructions, category):
+def generate_catalan_translation(
+    title, description, ingredients, instructions, category
+):
     """Genera traducciones completamente en catalán."""
-    
+
     title_translations = {
         "Alcachofas Rellenas": "Carxofes Farcides",
         "Arenques Asados en Vino": "Arencs Rostits en Vi",
@@ -579,21 +664,42 @@ def generate_catalan_translation(title, description, ingredients, instructions, 
         "Tarta de Limón": "Tarta de Llimó",
         "Tarta de Manzana": "Tarta de Poma",
     }
-    
+
     description_translations = {
-        "Arenques Asados en Vino": "Descobreix els sabors exquisits dels arencs rostits en vi, on el peix delicat s'intensifica amb la complexitat rica del vi. Aquesta recepta tradicional transforma ingredients simples en un plat elegant que mostra el matrimoni perfecte entre marisc i vi.",
-        "Alcachofas Rellenas": "Submergeix-te en el fascinant món de les carxofes farcides, on la sucositat de la carn es fusiona amb una barreja incomparable de sabors i aromes. Aquesta recepta combina tradició i innovació.",
-        "Batido de Coco": "Aquest batut de coco és una escapada al paradís tropical, una combinació perfecta del sabor dolç del coco i una textura cremosa. És el refrescant perfecte per als dies càlids d'estiu.",
-        "Pollo Marengo": "Descobreix la màgia culinària del pollastre Marengo, on els sabors clàssics i les tècniques modernes es troben per crear un plat excepcional que combina tradició i innovació.",
-        "Tarta de Queso": "Aquesta tarta de formatge és la recepta més preuada de la nostra família, feta amb secrets i amor transmesos de generació en generació.",
-        "Corona de Cordero": "Aquesta corona de xai és l'orgull del menjar de celebració, on la jugositat de la carn es combina amb sabors complexos especialment dissenyats per a ocasions especials.",
+        "Arenques Asados en Vino": (
+            "Descobreix els sabors exquisits dels arencs rostits en vi, on el peix delicat s'intensifica amb la "
+            "complexitat rica del vi. Aquesta recepta tradicional transforma ingredients simples en un plat "
+            "elegant que mostra el matrimoni perfecte entre marisc i vi."
+        ),
+        "Alcachofas Rellenas": (
+            "Submergeix-te en el fascinant món de les carxofes farcides, on la sucositat de la carn es fusiona "
+            "amb una barreja incomparable de sabors i aromes. Aquesta recepta combina tradició i innovació."
+        ),
+        "Batido de Coco": (
+            "Aquest batut de coco és una escapada al paradís tropical, una combinació perfecta del sabor dolç "
+            "del coco i una textura cremosa. És el refrescant perfecte per als dies càlids d'estiu."
+        ),
+        "Pollo Marengo": (
+            "Descobreix la màgia culinària del pollastre Marengo, on els sabors clàssics i les tècniques "
+            "modernes es troben per crear un plat excepcional que combina tradició i innovació."
+        ),
+        "Tarta de Queso": (
+            "Aquesta tarta de formatge és la recepta més preuada de la nostra família, feta amb secrets i amor "
+            "transmesos de generació en generació."
+        ),
+        "Corona de Cordero": (
+            "Aquesta corona de xai és l'orgull del menjar de celebració, on la jugositat de la carn es combina "
+            "amb sabors complexos especialment dissenyats per a ocasions especials."
+        ),
     }
-    
+
     translated_title = title_translations.get(title, title)
-    translated_description = description_translations.get(title, f"Recepta tradicional valenciana de {translated_title.lower()}.")
+    translated_description = description_translations.get(
+        title, f"Recepta tradicional valenciana de {translated_title.lower()}."
+    )
     translated_ingredients = translate_ingredients_to_catalan(ingredients)
     translated_instructions = translate_instructions_to_catalan(instructions)
-    
+
     category_translations = {
         "Postres": "Postres",
         "Bebidas": "Begudes",
@@ -604,7 +710,7 @@ def generate_catalan_translation(title, description, ingredients, instructions, 
         "Otros": "Altres",
     }
     translated_category = category_translations.get(category, category)
-    
+
     return {
         "title": translated_title,
         "description": translated_description,
@@ -616,7 +722,7 @@ def generate_catalan_translation(title, description, ingredients, instructions, 
 
 def translate_ingredients_to_catalan(ingredients):
     """Traduce ingredientes completamente al catalán."""
-    
+
     ingredient_map = {
         "Alcachofas": "Carxofes",
         "Arenques": "Arencs",
@@ -670,17 +776,17 @@ def translate_ingredients_to_catalan(ingredients):
         "dientes": "dents",
         "rebanadas": "rodanxes",
     }
-    
+
     translated = ingredients
     for spanish, catalan in ingredient_map.items():
         translated = translated.replace(spanish, catalan)
-    
+
     return translated
 
 
 def translate_instructions_to_catalan(instructions):
     """Traduce instrucciones completamente al catalán."""
-    
+
     instruction_map = {
         "Se cuecen": "Es couen",
         "Se rellenan": "Es farceixen",
@@ -735,17 +841,19 @@ def translate_instructions_to_catalan(instructions):
         "en la sartén": "a la paella",
         "en el horno": "al forn",
     }
-    
+
     translated = instructions
     for spanish, catalan in instruction_map.items():
         translated = translated.replace(spanish, catalan)
-    
+
     return translated
 
 
-def generate_basque_translation(title, description, ingredients, instructions, category):
+def generate_basque_translation(
+    title, description, ingredients, instructions, category
+):
     """Genera traducciones completamente en euskera."""
-    
+
     title_translations = {
         "Alcachofas Rellenas": "Artxindurriak Beterik",
         "Arenques Asados en Vino": "Arenke Errea Ardoan",
@@ -786,21 +894,43 @@ def generate_basque_translation(title, description, ingredients, instructions, c
         "Tarta de Limón": "Limoi Tarta",
         "Tarta de Manzana": "Sagar Tarta",
     }
-    
+
     description_translations = {
-        "Arenques Asados en Vino": "Deskubritu ardoan erretako arenkeen zapore ezin hobeak, non arrain delikatuak ardoaren konplexutasun aberatsarekin indartu den. Errezeta tradizional honek osagai sinpleak plater elegante batean bihurtzen ditu, itsas janarien eta ardoaren ezkontzaren perfektua erakutsiz.",
-        "Alcachofas Rellenas": "Sumergitu artxindurri beteak munduan, non haragiaren zukutasuna zapore eta usain nahasketa ezin hobearekin bat egiten duen. Errezeta honek tradizio eta berrikuntza konbinatzen ditu.",
-        "Batido de Coco": "Koko irabiagai hau paradisu tropikalerako ihes bide bat da, koko zapore gozo eta testura krematsuen konbinazio perfektua. Udako egun beroentzako freskagarri ezin hobea da.",
-        "Pollo Marengo": "Deskubritu Marengo oilaskoaren magia kulinarioa, non zapore klasikoak eta teknika modernoak elkar topo egiten duten tradizio eta berrikuntza konbinatzen duen plater ezin hobea sortzeko.",
-        "Tarta de Queso": "Gazta tarta hau gure familiaren errezeta preziatuena da, belaunaldiz belaunaldi transmititako sekretu eta maitasunez egina.",
-        "Corona de Cordero": "Bildots corona hau ospakizuneko jatorraren harro da, non haragiaren zukutasuna zapore konplexuekin uztartzen den okasio berezietarako bereziki diseinatua.",
+        "Arenques Asados en Vino": (
+            "Deskubritu ardoan erretako arenkeen zapore ezin hobeak, non arrain delikatuak ardoaren "
+            "konplexutasun aberatsarekin indartu den. Errezeta tradizional honek osagai sinpleak plater "
+            "elegante batean bihurtzen ditu, itsas janarien eta ardoaren ezkontzaren perfektua erakutsiz."
+        ),
+        "Alcachofas Rellenas": (
+            "Sumergitu artxindurri beteak munduan, non haragiaren zukutasuna zapore eta usain nahasketa "
+            "ezin hobearekin bat egiten duen. Errezeta honek tradizio eta berrikuntza konbinatzen ditu."
+        ),
+        "Batido de Coco": (
+            "Koko irabiagai hau paradisu tropikalerako ihes bide bat da, koko zapore gozo eta testura "
+            "krematsuen konbinazio perfektua. Udako egun beroentzako freskagarri ezin hobea da."
+        ),
+        "Pollo Marengo": (
+            "Deskubritu Marengo oilaskoaren magia kulinarioa, non zapore klasikoak eta teknika modernoak "
+            "elkar topo egiten duten tradizio eta berrikuntza konbinatzen duen plater ezin hobea sortzeko."
+        ),
+        "Tarta de Queso": (
+            "Gazta tarta hau gure familiaren errezeta preziatuena da, belaunaldiz belaunaldi transmititako "
+            "sekretu eta maitasunez egina."
+        ),
+        "Corona de Cordero": (
+            "Bildots corona hau ospakizuneko jatorraren harro da, non haragiaren zukutasuna zapore "
+            "konplexuekin uztartzen den okasio berezietarako bereziki diseinatua."
+        ),
     }
-    
+
     translated_title = title_translations.get(title, title)
-    translated_description = description_translations.get(title, f"Euskal sukaldaritzako {translated_title.lower()}ren errezeta tradizionala.")
+    translated_description = description_translations.get(
+        title,
+        f"Euskal sukaldaritzako {translated_title.lower()}ren errezeta tradizionala.",
+    )
     translated_ingredients = translate_ingredients_to_basque(ingredients)
     translated_instructions = translate_instructions_to_basque(instructions)
-    
+
     category_translations = {
         "Postres": "Postrea",
         "Bebidas": "Edariak",
@@ -811,7 +941,7 @@ def generate_basque_translation(title, description, ingredients, instructions, c
         "Otros": "Besteak",
     }
     translated_category = category_translations.get(category, category)
-    
+
     return {
         "title": translated_title,
         "description": translated_description,
@@ -823,7 +953,7 @@ def generate_basque_translation(title, description, ingredients, instructions, c
 
 def translate_ingredients_to_basque(ingredients):
     """Traduce ingredientes completamente al euskera."""
-    
+
     ingredient_map = {
         "Alcachofas": "Artxindurriak",
         "Arenques": "Arenkeak",
@@ -877,17 +1007,17 @@ def translate_ingredients_to_basque(ingredients):
         "dientes": "ale",
         "rebanadas": "xerrak",
     }
-    
+
     translated = ingredients
     for spanish, basque in ingredient_map.items():
         translated = translated.replace(spanish, basque)
-    
+
     return translated
 
 
 def translate_instructions_to_basque(instructions):
     """Traduce instrucciones completamente al euskera."""
-    
+
     instruction_map = {
         "Se cuecen": "Egosi",
         "Se rellenan": "Bete",
@@ -942,102 +1072,111 @@ def translate_instructions_to_basque(instructions):
         "en la sartén": "zartagian",
         "en el horno": "labetan",
     }
-    
+
     translated = instructions
     for spanish, basque in instruction_map.items():
         translated = translated.replace(spanish, basque)
-    
+
     return translated
 
 
 def fix_mixed_language_translations():
     """Corrige todas las traducciones con contenido mixto de idiomas."""
-    
+
     print("🔧 CORRIGIENDO TRADUCCIONES CON CONTENIDO MIXTO")
     print("=" * 60)
-    
+
     # Identificar traducciones problemáticas
     problematic = identify_mixed_language_translations()
-    
+
     if not problematic:
         print("✅ No se encontraron traducciones con contenido mixto")
         return
-    
+
     conn = get_db_connection()
     cursor = conn.cursor()
-    
+
     fixed_count = 0
-    
+
     for translation in problematic:
         trans_id = translation[0]
         recipe_id = translation[1]
         language = translation[2]
-        
+
         print(f"🔄 Corrigiendo traducción {trans_id} (Recipe {recipe_id}, {language})")
-        
+
         # Obtener receta original
         original_recipe = get_original_recipe(recipe_id)
-        
+
         if original_recipe:
             # Generar traducción completamente nueva
-            new_translation = generate_complete_replacement_translation(original_recipe, language)
-            
+            new_translation = generate_complete_replacement_translation(
+                original_recipe, language
+            )
+
             if new_translation:
                 # Actualizar en la base de datos
-                cursor.execute("""
-                    UPDATE recipe_translations 
+                cursor.execute(
+                    """
+                    UPDATE recipe_translations
                     SET title = ?, description = ?, ingredients = ?, instructions = ?, category = ?
                     WHERE id = ?
-                """, [
-                    new_translation["title"],
-                    new_translation["description"],
-                    new_translation["ingredients"],
-                    new_translation["instructions"],
-                    new_translation["category"],
-                    trans_id
-                ])
-                
+                """,
+                    [
+                        new_translation["title"],
+                        new_translation["description"],
+                        new_translation["ingredients"],
+                        new_translation["instructions"],
+                        new_translation["category"],
+                        trans_id,
+                    ],
+                )
+
                 fixed_count += 1
-                
+
                 if fixed_count % 10 == 0:
                     conn.commit()
-                    print(f"   Progreso: {fixed_count}/{len(problematic)} traducciones corregidas")
-    
+                    print(
+                        f"   Progreso: {fixed_count}/{len(problematic)} traducciones corregidas"
+                    )
+
     conn.commit()
     conn.close()
-    
+
     print(f"✅ {fixed_count} traducciones con contenido mixto corregidas exitosamente")
 
 
 if __name__ == "__main__":
     init_database()
     fix_mixed_language_translations()
-    
+
     # Verificar algunas traducciones corregidas
     print("\n🔍 VERIFICANDO TRADUCCIONES CORREGIDAS")
     print("=" * 60)
-    
+
     conn = get_db_connection()
     cursor = conn.cursor()
-    
+
     # Obtener algunas traducciones de prueba
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT r.title, rt.language, rt.title as translated_title, rt.description
         FROM recipes r
         JOIN recipe_translations rt ON r.id = rt.recipe_id
         WHERE r.title IN ('Arenques Asados en Vino', 'Alcachofas Rellenas', 'Pollo Marengo')
         AND rt.language = 'en'
         ORDER BY r.title, rt.language
-    """)
-    
+    """
+    )
+
     test_translations = cursor.fetchall()
-    
+
     for translation in test_translations:
         original_title, language, translated_title, translated_description = translation
         print(f"✅ {original_title} ({language}): {translated_title}")
         print(f"   {translated_description[:80]}...")
         print()
-    
+
     conn.close()
-    
+
     print("🎉 Corrección completa de traducciones con contenido mixto terminada!")
