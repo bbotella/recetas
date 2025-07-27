@@ -1,23 +1,123 @@
-# en translations for Recipe App (CI Testing)
+# en translations for Recetas de la Tía Carmen
 msgid ""
 msgstr ""
-"Project-Id-Version: Recipe App 1.0\n"
+"Project-Id-Version: Recetas de la Tía Carmen 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: AI Translation System\n"
 "Language: en\n"
+"Language-Team: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Home"
-msgstr "Home (en)"
+msgstr "Home"
 
 msgid "Categories"
-msgstr "Categories (en)"
+msgstr "Categories"
+
+msgid "Language"
+msgstr "Language"
+
+msgid "Search Recipes"
+msgstr "Search Recipes"
+
+msgid "Search by name, ingredients or description..."
+msgstr "Search by name, ingredients or description..."
+
+msgid "All categories"
+msgstr "All categories"
 
 msgid "Search"
-msgstr "Search (en)"
+msgstr "Search"
+
+msgid "Search results"
+msgstr "Search results"
+
+msgid "for"
+msgstr "for"
+
+msgid "in"
+msgstr "in"
+
+msgid "All Recipes"
+msgstr "All Recipes"
+
+msgid "Clear search"
+msgstr "Clear search"
+
+msgid "View Recipe"
+msgstr "View Recipe"
+
+msgid "No recipes found matching your search."
+msgstr "No recipes found matching your search."
+
+msgid "View all recipes"
+msgstr "View all recipes"
+
+msgid "Search tip"
+msgstr "Search tip"
+
+msgid "You can search by recipe name, specific ingredients or dish type."
+msgstr "You can search by recipe name, specific ingredients or dish type."
 
 msgid "Ingredients"
-msgstr "Ingredients (en)"
+msgstr "Ingredients"
 
 msgid "Instructions"
-msgstr "Instructions (en)"
+msgstr "Instructions"
+
+msgid "Preparation"
+msgstr "Preparation"
+
+msgid "Category"
+msgstr "Category"
+
+msgid "Back to recipes"
+msgstr "Back to recipes"
+
+msgid "Print recipe"
+msgstr "Print recipe"
+
+msgid "Share recipe"
+msgstr "Share recipe"
+
+msgid "Related recipes"
+msgstr "Related recipes"
+
+msgid "Recipe not found"
+msgstr "Recipe not found"
+
+msgid "The requested recipe could not be found."
+msgstr "The requested recipe could not be found."
+
+msgid "minutes"
+msgstr "minutes"
+
+msgid "servings"
+msgstr "servings"
+
+msgid "Difficulty"
+msgstr "Difficulty"
+
+msgid "Easy"
+msgstr "Easy"
+
+msgid "Medium"
+msgstr "Medium"
+
+msgid "Hard"
+msgstr "Hard"
+
+msgid "Traditional family recipes"
+msgstr "Traditional family recipes"
+
+msgid "Discover the traditional flavors of family cooking"
+msgstr "Discover the traditional flavors of family cooking"
+
+msgid "Preserving family culinary traditions"
+msgstr "Preserving family culinary traditions"
+

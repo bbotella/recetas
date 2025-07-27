@@ -1,23 +1,123 @@
-# ca translations for Recipe App (CI Testing)
+# ca translations for Recetas de la Tía Carmen
 msgid ""
 msgstr ""
-"Project-Id-Version: Recipe App 1.0\n"
+"Project-Id-Version: Recetas de la Tía Carmen 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: AI Translation System\n"
 "Language: ca\n"
+"Language-Team: ca\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Home"
-msgstr "Home (ca)"
+msgstr "Inici"
 
 msgid "Categories"
-msgstr "Categories (ca)"
+msgstr "Categories"
+
+msgid "Language"
+msgstr "Idioma"
+
+msgid "Search Recipes"
+msgstr "Cerca Receptes"
+
+msgid "Search by name, ingredients or description..."
+msgstr "Cerca per nom, ingredients o descripció..."
+
+msgid "All categories"
+msgstr "Totes les categories"
 
 msgid "Search"
-msgstr "Search (ca)"
+msgstr "Cerca"
+
+msgid "Search results"
+msgstr "Resultats de la cerca"
+
+msgid "for"
+msgstr "per a"
+
+msgid "in"
+msgstr "en"
+
+msgid "All Recipes"
+msgstr "Totes les Receptes"
+
+msgid "Clear search"
+msgstr "Neteja la cerca"
+
+msgid "View Recipe"
+msgstr "Veure Recepta"
+
+msgid "No recipes found matching your search."
+msgstr "No s'han trobat receptes que coincideixin amb la vostra cerca."
+
+msgid "View all recipes"
+msgstr "Veure totes les receptes"
+
+msgid "Search tip"
+msgstr "Consell de cerca"
+
+msgid "You can search by recipe name, specific ingredients or dish type."
+msgstr "Pots cercar per nom de recepta, ingredients específics o tipus de plat."
 
 msgid "Ingredients"
-msgstr "Ingredients (ca)"
+msgstr "Ingredients"
 
 msgid "Instructions"
-msgstr "Instructions (ca)"
+msgstr "Instruccions"
+
+msgid "Preparation"
+msgstr "Preparació"
+
+msgid "Category"
+msgstr "Categoria"
+
+msgid "Back to recipes"
+msgstr "Tornar a les receptes"
+
+msgid "Print recipe"
+msgstr "Imprimir recepta"
+
+msgid "Share recipe"
+msgstr "Compartir recepta"
+
+msgid "Related recipes"
+msgstr "Receptes relacionades"
+
+msgid "Recipe not found"
+msgstr "Recepta no trobada"
+
+msgid "The requested recipe could not be found."
+msgstr "No s'ha pogut trobar la recepta sol·licitada."
+
+msgid "minutes"
+msgstr "minuts"
+
+msgid "servings"
+msgstr "racions"
+
+msgid "Difficulty"
+msgstr "Dificultat"
+
+msgid "Easy"
+msgstr "Fàcil"
+
+msgid "Medium"
+msgstr "Mitjà"
+
+msgid "Hard"
+msgstr "Difícil"
+
+msgid "Traditional family recipes"
+msgstr "Receptes tradicionals familiars"
+
+msgid "Discover the traditional flavors of family cooking"
+msgstr "Descobreix els sabors tradicionals de la cuina familiar"
+
+msgid "Preserving family culinary traditions"
+msgstr "Preservant les tradicions culinàries familiars"
+
