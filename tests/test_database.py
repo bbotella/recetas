@@ -3,10 +3,6 @@ Unit tests for database.py functions.
 """
 
 import pytest
-import sqlite3
-import tempfile
-import os
-from unittest.mock import patch, MagicMock
 
 from database import (
     init_database,

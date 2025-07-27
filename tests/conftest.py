@@ -12,7 +12,6 @@ from flask_babel import Babel
 # Add project root to path before importing application modules
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from app import create_app_for_testing
 from database import init_database, get_db_connection
 
 

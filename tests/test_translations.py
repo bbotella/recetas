@@ -3,8 +3,6 @@ Unit tests for recipe translation scripts and functionality.
 """
 
 import pytest
-import tempfile
-import os
 from unittest.mock import patch, MagicMock, call
 
 from database import (

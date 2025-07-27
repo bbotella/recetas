@@ -4,7 +4,6 @@ Integration tests for the complete application.
 
 import pytest
 import json
-from flask import url_for
 
 from database import get_all_recipes, get_recipe_by_id
 

@@ -4,8 +4,6 @@ Unit tests for Flask routes and views in app.py.
 
 import pytest
 import json
-from unittest.mock import patch, MagicMock
-from flask import url_for, session
 
 from app import create_app_for_testing, get_locale
 

@@ -94,7 +94,7 @@ def save_recipe_translations_to_db():
                 cursor.execute(
                     """
                     INSERT OR REPLACE INTO recipe_translations
-                    (recipe_id, language, title, description, 
+                    (recipe_id, language, title, description,
                      ingredients, instructions, category)
                     VALUES (?, ?, ?, ?, ?, ?, ?)
                 """,

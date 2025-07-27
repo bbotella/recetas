@@ -3,9 +3,6 @@ Unit tests for internationalization (i18n) functionality.
 """
 
 import pytest
-from unittest.mock import patch, MagicMock
-from flask import session, request
-from flask_babel import get_locale
 
 from app import get_locale as app_get_locale
 
