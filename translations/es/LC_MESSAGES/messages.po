@@ -1,23 +1,174 @@
-# es translations for Recipe App (CI Testing)
+# Español translations for Recipe App
+# Interface translations corrected
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Recipe App 1.0\n"
+"Report-Msgid-Bugs-To: admin@example.com\n"
+"POT-Creation-Date: 2024-01-01 12:00+0000\n"
+"PO-Revision-Date: 2024-01-01 12:00+0000\n"
+"Last-Translator: Interface Translation System\n"
 "Language: es\n"
+"Language-Team: Español\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Interface Translation System\n"
 
 msgid "Home"
-msgstr "Home (es)"
+msgstr "Inicio"
 
 msgid "Categories"
-msgstr "Categories (es)"
+msgstr "Categorías"
 
 msgid "Search"
-msgstr "Search (es)"
+msgstr "Buscar"
 
 msgid "Ingredients"
-msgstr "Ingredients (es)"
+msgstr "Ingredientes"
 
 msgid "Instructions"
-msgstr "Instructions (es)"
+msgstr "Instrucciones"
+
+msgid "View Recipe"
+msgstr "Ver Receta"
+
+msgid "All categories"
+msgstr "Todas las categorías"
+
+msgid "Search results"
+msgstr "Resultados de búsqueda"
+
+msgid "No recipes found"
+msgstr "No se encontraron recetas"
+
+msgid "Back to all recipes"
+msgstr "Volver a todas las recetas"
+
+msgid "Language"
+msgstr "Idioma"
+
+msgid "Aunt Carmen's Recipes"
+msgstr "Recetas de la Tía Carmen"
+
+msgid "Traditional family recipes"
+msgstr "Recetas familiares tradicionales"
+
+msgid "Search recipes..."
+msgstr "Buscar recetas..."
+
+msgid "Recipes found"
+msgstr "Recetas encontradas"
+
+msgid "No recipes found matching your search."
+msgstr "No se encontraron recetas que coincidan con tu búsqueda."
+
+msgid "View all recipes"
+msgstr "Ver todas las recetas"
+
+msgid "Search tip"
+msgstr "Consejo de búsqueda"
+
+msgid "You can search by recipe name, specific ingredients or dish type. Try \"chicken\", \"chocolate\" or \"cake\"!"
+msgstr "Puedes buscar por nombre de receta, ingredientes específicos o tipo de plato. ¡Prueba \"pollo\", \"chocolate\" o \"tarta\"!"
+
+msgid "Description:"
+msgstr "Descripción:"
+
+msgid "More recipes from"
+msgstr "Más recetas de"
+
+msgid "Recipe from Aunt Carmen"
+msgstr "Receta de la Tía Carmen"
+
+msgid "Recipe Categories"
+msgstr "Categorías de Recetas"
+
+msgid "Explore our recipes organized by categories:"
+msgstr "Explora nuestras recetas organizadas por categorías:"
+
+msgid "View Recipes"
+msgstr "Ver Recetas"
+
+msgid "Recipes from"
+msgstr "Recetas de"
+
+msgid "No recipes found in this category."
+msgstr "No se encontraron recetas en esta categoría."
+
+msgid "All Recipes"
+msgstr "Todas las Recetas"
+
+msgid "Clear search"
+msgstr "Limpiar búsqueda"
+
+msgid "for"
+msgstr "para"
+
+msgid "in"
+msgstr "en"
+
+msgid "Preserving family culinary traditions"
+msgstr "Preservando las tradiciones culinarias familiares"
+
+msgid "Discover the traditional flavors of family cooking"
+msgstr "Descubre los sabores tradicionales de la cocina familiar"
+
+msgid "Search by name, ingredients or description..."
+msgstr "Buscar por nombre, ingredientes o descripción..."
+
+msgid "Preparation"
+msgstr "Preparación"
+
+msgid "Preparation time"
+msgstr "Tiempo de preparación"
+
+msgid "Servings"
+msgstr "Porciones"
+
+msgid "Difficulty"
+msgstr "Dificultad"
+
+msgid "Easy"
+msgstr "Fácil"
+
+msgid "Medium"
+msgstr "Medio"
+
+msgid "Hard"
+msgstr "Difícil"
+
+msgid "Share"
+msgstr "Compartir"
+
+msgid "Print"
+msgstr "Imprimir"
+
+msgid "Favorites"
+msgstr "Favoritos"
+
+msgid "Desserts"
+msgstr "Postres"
+
+msgid "Drinks"
+msgstr "Bebidas"
+
+msgid "Chicken"
+msgstr "Pollo"
+
+msgid "Fish"
+msgstr "Pescado"
+
+msgid "Meat"
+msgstr "Carne"
+
+msgid "Vegetables"
+msgstr "Verduras"
+
+msgid "Appetizers"
+msgstr "Aperitivos"
+
+msgid "Others"
+msgstr "Otros"
+
