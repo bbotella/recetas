@@ -17,10 +17,16 @@ msgstr ""
 "Generated-By: Contextual AI Translation System\n"
 
 msgid "Aunt Carmen's Recipes"
-msgstr "Karmen Izebaren Errezetak"
+msgstr "Carmen Izebaren Errezetek"
 
 msgid "Traditional family recipes"
-msgstr "Familia errezetak tradizionalak"
+msgstr "Familia-errezetak tradizionalak"
+
+msgid "Discover the traditional flavors of family cooking"
+msgstr "Aurkitu familia-sukaldaritzaren zapore tradizionalak"
+
+msgid "Preserving family culinary traditions"
+msgstr "Familiaren kultura-tradizio kulinarioak mantenduz"
 
 msgid "Home"
 msgstr "Hasiera"
@@ -31,23 +37,47 @@ msgstr "Kategoriak"
 msgid "Language"
 msgstr "Hizkuntza"
 
-msgid "Search recipes..."
-msgstr "Bilatu errezetak..."
+msgid "Search Recipes"
+msgstr "Bilatu Errezetek"
 
-msgid "Search"
-msgstr "Bilatu"
+msgid "Search by name, ingredients or description..."
+msgstr "Bilatu izenez, osagaiez edo deskribpenez..."
 
 msgid "All categories"
 msgstr "Kategoria guztiak"
 
-msgid "Recipes found"
-msgstr "Errezetak aurkitu"
+msgid "Search"
+msgstr "Bilatu"
 
-msgid "No recipes found"
-msgstr "Ez da errezetarik aurkitu"
+msgid "Search results"
+msgstr "Bilaketa emaitzak"
 
-msgid "Back to home"
-msgstr "Hasierara itzuli"
+msgid "for"
+msgstr "honentzako"
+
+msgid "in"
+msgstr "hemen"
+
+msgid "All Recipes"
+msgstr "Errezeta Guztiak"
+
+msgid "Clear search"
+msgstr "Bilaketa garbitu"
+
+msgid "View Recipe"
+msgstr "Errezeta Ikusi"
+
+msgid "No recipes found matching your search."
+msgstr "Ez da zure bilaketarekin bat datorren errezeta aurkitu."
+
+msgid "View all recipes"
+msgstr "Errezeta guztiak ikusi"
+
+msgid "Search tip"
+msgstr "Bilaketa aholkua"
+
+msgid "You can search by recipe name, specific ingredients or dish type. Try chicken, chocolate or cake!"
+msgstr "Errezeta izenez, osagai zehatzez edo plater motaz bilatu dezakezu. Saiatu oilaskoa, txokolatea edo pastela!"
 
 msgid "Ingredients"
 msgstr "Osagaiak"
@@ -58,11 +88,32 @@ msgstr "Jarraibideak"
 msgid "Preparation"
 msgstr "Prestaketa"
 
-msgid "Preparation time"
-msgstr "Prestaketa denbora"
+msgid "Category"
+msgstr "Kategoria"
 
-msgid "Servings"
-msgstr "Banaketak"
+msgid "Back to recipes"
+msgstr "Errezetak itzuli"
+
+msgid "Print recipe"
+msgstr "Errezeta inprimatu"
+
+msgid "Share recipe"
+msgstr "Errezeta partekatu"
+
+msgid "Related recipes"
+msgstr "Erlazionatutako errezetek"
+
+msgid "Recipe not found"
+msgstr "Errezeta ez da aurkitu"
+
+msgid "The requested recipe could not be found."
+msgstr "Eskatutako errezeta ezin izan da aurkitu."
+
+msgid "minutes"
+msgstr "minutu"
+
+msgid "servings"
+msgstr "razio"
 
 msgid "Difficulty"
 msgstr "Zailtasuna"
@@ -75,16 +126,4 @@ msgstr "Ertaina"
 
 msgid "Hard"
 msgstr "Zaila"
-
-msgid "View recipe"
-msgstr "Errezeta ikusi"
-
-msgid "Share"
-msgstr "Partekatu"
-
-msgid "Print"
-msgstr "Inprimatu"
-
-msgid "Favorites"
-msgstr "Gogokoak"
 

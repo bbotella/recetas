@@ -20,7 +20,13 @@ msgid "Aunt Carmen's Recipes"
 msgstr "Receptes de la Tia Carmen"
 
 msgid "Traditional family recipes"
-msgstr "Receptes familiars tradicionals"
+msgstr "Receptes tradicionals familiars"
+
+msgid "Discover the traditional flavors of family cooking"
+msgstr "Descobreix els sabors tradicionals de la cuina familiar"
+
+msgid "Preserving family culinary traditions"
+msgstr "Preservant les tradicions culinàries familiars"
 
 msgid "Home"
 msgstr "Inici"
@@ -31,23 +37,47 @@ msgstr "Categories"
 msgid "Language"
 msgstr "Idioma"
 
-msgid "Search recipes..."
-msgstr "Buscar receptes..."
+msgid "Search Recipes"
+msgstr "Cerca Receptes"
 
-msgid "Search"
-msgstr "Buscar"
+msgid "Search by name, ingredients or description..."
+msgstr "Cerca per nom, ingredients o descripció..."
 
 msgid "All categories"
 msgstr "Totes les categories"
 
-msgid "Recipes found"
-msgstr "Receptes trobades"
+msgid "Search"
+msgstr "Cerca"
 
-msgid "No recipes found"
-msgstr "No s'han trobat receptes"
+msgid "Search results"
+msgstr "Resultats de la cerca"
 
-msgid "Back to home"
-msgstr "Tornar a l'inici"
+msgid "for"
+msgstr "per a"
+
+msgid "in"
+msgstr "en"
+
+msgid "All Recipes"
+msgstr "Totes les Receptes"
+
+msgid "Clear search"
+msgstr "Neteja la cerca"
+
+msgid "View Recipe"
+msgstr "Veure Recepta"
+
+msgid "No recipes found matching your search."
+msgstr "No s'han trobat receptes que coincideixin amb la vostra cerca."
+
+msgid "View all recipes"
+msgstr "Veure totes les receptes"
+
+msgid "Search tip"
+msgstr "Consell de cerca"
+
+msgid "You can search by recipe name, specific ingredients or dish type. Try chicken, chocolate or cake!"
+msgstr "Pots cercar per nom de recepta, ingredients específics o tipus de plat. Prova pollastre, xocolata o pastís!"
 
 msgid "Ingredients"
 msgstr "Ingredients"
@@ -58,11 +88,32 @@ msgstr "Instruccions"
 msgid "Preparation"
 msgstr "Preparació"
 
-msgid "Preparation time"
-msgstr "Temps de preparació"
+msgid "Category"
+msgstr "Categoria"
 
-msgid "Servings"
-msgstr "Racions"
+msgid "Back to recipes"
+msgstr "Tornar a les receptes"
+
+msgid "Print recipe"
+msgstr "Imprimir recepta"
+
+msgid "Share recipe"
+msgstr "Compartir recepta"
+
+msgid "Related recipes"
+msgstr "Receptes relacionades"
+
+msgid "Recipe not found"
+msgstr "Recepta no trobada"
+
+msgid "The requested recipe could not be found."
+msgstr "No s'ha pogut trobar la recepta sol·licitada."
+
+msgid "minutes"
+msgstr "minuts"
+
+msgid "servings"
+msgstr "racions"
 
 msgid "Difficulty"
 msgstr "Dificultat"
@@ -75,16 +126,4 @@ msgstr "Mitjà"
 
 msgid "Hard"
 msgstr "Difícil"
-
-msgid "View recipe"
-msgstr "Veure recepta"
-
-msgid "Share"
-msgstr "Compartir"
-
-msgid "Print"
-msgstr "Imprimir"
-
-msgid "Favorites"
-msgstr "Favorites"
 

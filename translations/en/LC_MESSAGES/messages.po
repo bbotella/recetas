@@ -22,6 +22,12 @@ msgstr "Aunt Carmen's Recipes"
 msgid "Traditional family recipes"
 msgstr "Traditional family recipes"
 
+msgid "Discover the traditional flavors of family cooking"
+msgstr "Discover the traditional flavors of family cooking"
+
+msgid "Preserving family culinary traditions"
+msgstr "Preserving family culinary traditions"
+
 msgid "Home"
 msgstr "Home"
 
@@ -31,23 +37,47 @@ msgstr "Categories"
 msgid "Language"
 msgstr "Language"
 
-msgid "Search recipes..."
-msgstr "Search recipes..."
+msgid "Search Recipes"
+msgstr "Search Recipes"
 
-msgid "Search"
-msgstr "Search"
+msgid "Search by name, ingredients or description..."
+msgstr "Search by name, ingredients or description..."
 
 msgid "All categories"
 msgstr "All categories"
 
-msgid "Recipes found"
-msgstr "Recipes found"
+msgid "Search"
+msgstr "Search"
 
-msgid "No recipes found"
-msgstr "No recipes found"
+msgid "Search results"
+msgstr "Search results"
 
-msgid "Back to home"
-msgstr "Back to home"
+msgid "for"
+msgstr "for"
+
+msgid "in"
+msgstr "in"
+
+msgid "All Recipes"
+msgstr "All Recipes"
+
+msgid "Clear search"
+msgstr "Clear search"
+
+msgid "View Recipe"
+msgstr "View Recipe"
+
+msgid "No recipes found matching your search."
+msgstr "No recipes found matching your search."
+
+msgid "View all recipes"
+msgstr "View all recipes"
+
+msgid "Search tip"
+msgstr "Search tip"
+
+msgid "You can search by recipe name, specific ingredients or dish type. Try chicken, chocolate or cake!"
+msgstr "You can search by recipe name, specific ingredients or dish type. Try chicken, chocolate or cake!"
 
 msgid "Ingredients"
 msgstr "Ingredients"
@@ -58,11 +88,32 @@ msgstr "Instructions"
 msgid "Preparation"
 msgstr "Preparation"
 
-msgid "Preparation time"
-msgstr "Preparation time"
+msgid "Category"
+msgstr "Category"
 
-msgid "Servings"
-msgstr "Servings"
+msgid "Back to recipes"
+msgstr "Back to recipes"
+
+msgid "Print recipe"
+msgstr "Print recipe"
+
+msgid "Share recipe"
+msgstr "Share recipe"
+
+msgid "Related recipes"
+msgstr "Related recipes"
+
+msgid "Recipe not found"
+msgstr "Recipe not found"
+
+msgid "The requested recipe could not be found."
+msgstr "The requested recipe could not be found."
+
+msgid "minutes"
+msgstr "minutes"
+
+msgid "servings"
+msgstr "servings"
 
 msgid "Difficulty"
 msgstr "Difficulty"
@@ -75,16 +126,4 @@ msgstr "Medium"
 
 msgid "Hard"
 msgstr "Hard"
-
-msgid "View recipe"
-msgstr "View recipe"
-
-msgid "Share"
-msgstr "Share"
-
-msgid "Print"
-msgstr "Print"
-
-msgid "Favorites"
-msgstr "Favorites"
 
