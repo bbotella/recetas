@@ -10,7 +10,7 @@ import sys
 # Add the project root to the path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from database import get_db_connection, init_database
+from database import get_db_connection, init_database  # noqa: E402
 
 
 def generate_complete_translations():
@@ -53,7 +53,7 @@ def generate_complete_translations():
             # Guardar traducción
             cursor.execute(
                 """
-                INSERT INTO recipe_translations 
+                INSERT INTO recipe_translations
                 (recipe_id, language, title, description, ingredients, instructions, category)
                 VALUES (?, ?, ?, ?, ?, ?, ?)
                 """,
@@ -135,37 +135,90 @@ def translate_description(description, lang):
 
     if lang == "eu":
         if "Alcachofas Rellenas" in description:
-            return "Sumergitu euskal sukaldaritzaren miresmenezko munduan artxindurriekin, non haragiaren zukutasuna zapore eta usain ezin hobeen nahasketa batekin uztartzen den. Errezeta hau tradizio eta berrikuntza uztartzen ditu, sortzen duelarik ahoan urtu eta bihotz bakoitzean tokia izango duen plater bat."
+            return (
+                "Sumergitu euskal sukaldaritzaren miresmenezko munduan artxindurriekin, non haragiaren "
+                "zukutasuna zapore eta usain ezin hobeen nahasketa batekin uztartzen den. Errezeta hau "
+                "tradizio eta berrikuntza uztartzen ditu, sortzen duelarik ahoan urtu eta bihotz "
+                "bakoitzean tokia izango duen plater bat."
+            )
         elif "Pollo Marengo" in description:
-            return "Deskubritu Marengo oilaskoaren magia kulinarioa, non zapore klasikoak eta teknika modernoak elkar topo egiten duten plater ezin hobea sortzeko. Tradizio eta berrikuntza uztartzen ditu, sortzen duelarik ahoan urtu eta bihotz bakoitzean tokia izango duen plater bat."
+            return (
+                "Deskubritu Marengo oilaskoaren magia kulinarioa, non zapore klasikoak eta teknika "
+                "modernoak elkar topo egiten duten plater ezin hobea sortzeko. Tradizio eta "
+                "berrikuntza uztartzen ditu, sortzen duelarik ahoan urtu eta bihotz bakoitzean "
+                "tokia izango duen plater bat."
+            )
         elif "Tarta de Queso" in description:
-            return "Gazta tarta hau gure familiako altxorrik preziatuena da, belaunaldiz belaunaldi transmititako sekretu eta maitasunez egina. Gazta gozo eta testura ezin hobearen konbinazioa da, ahoan urtu eta bihotz bakoitzean tokia izango duen postrea sortzen duena."
+            return (
+                "Gazta tarta hau gure familiako altxorrik preziatuena da, belaunaldiz belaunaldi "
+                "transmititako sekretu eta maitasunez egina. Gazta gozo eta testura ezin hobearen "
+                "konbinazioa da, ahoan urtu eta bihotz bakoitzean tokia izango duen postrea sortzen "
+                "duena."
+            )
         elif "Helado de Fresa" in description:
-            return "Marrubi izozkia hau udako freskagarri ezin hobea da, egun beroetatik babesteko eta familia eta lagunekin partekatzen den gozamen bat. Marrubiaren zapore naturala eta testura ezin hobearen konbinazioa da."
+            return (
+                "Marrubi izozkia hau udako freskagarri ezin hobea da, egun beroetatik babesteko eta "
+                "familia eta lagunekin partekatzen den gozamen bat. Marrubiaren zapore naturala eta "
+                "testura ezin hobearen konbinazioa da."
+            )
         else:
             return f"Euskal sukaldaritzako errezeta berezia: {description}"
 
     elif lang == "ca":
         if "Alcachofas Rellenas" in description:
-            return "Submergeix-te en el fascinant món de les carxofes farcides, on la sucositat de la carn es fusiona amb una barreja incomparable de sabors i aromes. Aquesta recepta combina tradició i innovació, creant un plat que es desfà a la boca i que trobarà lloc en cada cor."
+            return (
+                "Submergeix-te en el fascinant món de les carxofes farcides, on la sucositat "
+                "de la carn es fusiona amb una barreja incomparable de sabors i aromes. "
+                "Aquesta recepta combina tradició i innovació, creant un plat que es desfà a "
+                "la boca i que trobarà lloc en cada cor."
+            )
         elif "Pollo Marengo" in description:
-            return "Descobreix la màgia culinària del pollastre Marengo, on els sabors clàssics i les tècniques modernes es troben per crear un plat excepcional. Combina tradició i innovació, creant un plat que es desfà a la boca i que trobarà lloc en cada cor."
+            return (
+                "Descobreix la màgia culinària del pollastre Marengo, on els sabors clàssics i "
+                "les tècniques modernes es troben per crear un plat excepcional. Combina tradició "
+                "i innovació, creant un plat que es desfà a la boca i que trobarà lloc en cada cor."
+            )
         elif "Tarta de Queso" in description:
-            return "Aquesta tarta de formatge és el tresor més preuat de la nostra família, feta amb secrets i amor transmesos de generació en generació. És una combinació de formatge dolç i textura perfecta, creant un postre que es desfà a la boca i que trobarà lloc en cada cor."
+            return (
+                "Aquesta tarta de formatge és el tresor més preuat de la nostra família, feta amb "
+                "secrets i amor transmesos de generació en generació. És una combinació de "
+                "formatge dolç i textura perfecta, creant un postre que es desfà a la boca i que "
+                "trobarà lloc en cada cor."
+            )
         elif "Helado de Fresa" in description:
-            return "Aquest gelat de maduixa és el refrescant perfecte per a l'estiu, per protegir-se dels dies càlids i un plaer compartit amb família i amics. És una combinació del sabor natural de la maduixa i una textura perfecta."
+            return (
+                "Aquest gelat de maduixa és el refrescant perfecte per a l'estiu, per protegir-se "
+                "dels dies càlids i un plaer compartit amb família i amics. És una combinació del "
+                "sabor natural de la maduixa i una textura perfecta."
+            )
         else:
             return f"Recepta especial valenciana: {description}"
 
     elif lang == "en":
         if "Alcachofas Rellenas" in description:
-            return "Immerse yourself in the fascinating world of stuffed artichokes, where the juiciness of the meat merges with an incomparable blend of flavors and aromas. This recipe combines tradition and innovation, creating a dish that melts in your mouth and will find a place in every heart."
+            return (
+                "Immerse yourself in the fascinating world of stuffed artichokes, where the juiciness of the meat "
+                "merges with an incomparable blend of flavors and aromas. This recipe combines tradition and "
+                "innovation, creating a dish that melts in your mouth and will find a place in every heart."
+            )
         elif "Pollo Marengo" in description:
-            return "Discover the culinary magic of Chicken Marengo, where classic flavors and modern techniques meet to create an exceptional dish. It combines tradition and innovation, creating a dish that melts in your mouth and will find a place in every heart."
+            return (
+                "Discover the culinary magic of Chicken Marengo, where classic flavors and modern techniques meet "
+                "to create an exceptional dish. It combines tradition and innovation, creating a dish that melts "
+                "in your mouth and will find a place in every heart."
+            )
         elif "Tarta de Queso" in description:
-            return "This cheese cake is our family's most treasured heirloom, made with secrets and love passed down from generation to generation. It's a combination of sweet cheese and perfect texture, creating a dessert that melts in your mouth and will find a place in every heart."
+            return (
+                "This cheese cake is our family's most treasured heirloom, made with secrets and love passed down "
+                "from generation to generation. It's a combination of sweet cheese and perfect texture, creating "
+                "a dessert that melts in your mouth and will find a place in every heart."
+            )
         elif "Helado de Fresa" in description:
-            return "This strawberry ice cream is the perfect summer refresher, to protect from hot days and a pleasure shared with family and friends. It's a combination of natural strawberry flavor and perfect texture."
+            return (
+                "This strawberry ice cream is the perfect summer refresher, to protect from hot days and a "
+                "pleasure shared with family and friends. It's a combination of natural strawberry flavor and "
+                "perfect texture."
+            )
         else:
             return f"Special traditional recipe: {description}"
 

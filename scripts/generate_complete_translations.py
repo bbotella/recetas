@@ -6,12 +6,11 @@ descripciones, ingredientes e instrucciones de las recetas.
 
 import os
 import sys
-from pathlib import Path
 
 # Add the project root to the path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from database import get_db_connection, init_database
+from database import get_db_connection, init_database  # noqa: E402
 
 
 def generate_real_translations():
@@ -491,7 +490,7 @@ def generate_real_translations():
             # Guardar traducción
             cursor.execute(
                 """
-                INSERT INTO recipe_translations 
+                INSERT INTO recipe_translations
                 (recipe_id, language, title, description, ingredients, instructions, category)
                 VALUES (?, ?, ?, ?, ?, ?, ?)
                 """,

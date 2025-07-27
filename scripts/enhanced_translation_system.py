@@ -10,7 +10,7 @@ import sys
 # Add the project root to the path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from database import get_db_connection, init_database
+from database import get_db_connection, init_database  # noqa: E402
 
 
 def generate_complete_translations():
@@ -59,7 +59,7 @@ def generate_complete_translations():
             # Guardar traducción
             cursor.execute(
                 """
-                INSERT INTO recipe_translations 
+                INSERT INTO recipe_translations
                 (recipe_id, language, title, description, ingredients, instructions, category)
                 VALUES (?, ?, ?, ?, ?, ?, ?)
                 """,
@@ -208,49 +208,126 @@ def translate_description_specific(title, description, lang):
 
     if lang == "eu":
         if "Alcachofas Rellenas" in title:
-            return "Sumergitu euskal sukaldaritzaren miresmenezko munduan artxindurriekin, non haragiaren zukutasuna zapore eta usain ezin hobeen nahasketa batekin uztartzen den. Errezeta hau tradizio eta berrikuntza uztartzen ditu, sortzen duelarik ahoan urtu eta bihotz bakoitzean tokia izango duen plater bat."
+            return (
+                "Sumergitu euskal sukaldaritzaren miresmenezko munduan artxindurriekin, non haragiaren "
+                "zukutasuna zapore eta usain ezin hobeen nahasketa batekin uztartzen den. Errezeta hau "
+                "tradizio eta berrikuntza uztartzen ditu, sortzen duelarik ahoan urtu eta bihotz "
+                "bakoitzean tokia izango duen plater bat."
+            )
         elif "Batido de Coco" in title:
-            return "Koko irabiagaia hau paradisu tropikalaren ihes bidea da, hau da, koko lerro eta testura gozo honen konbinazio ezin hobea. Udako egun beroetatik freskagarri ezin hobea eta familia eta lagunekin partekatzen den gozamen bat."
+            return (
+                "Koko irabiagaia hau paradisu tropikalaren ihes bidea da, hau da, koko lerro eta testura "
+                "gozo honen konbinazio ezin hobea. Udako egun beroetatik freskagarri ezin hobea eta "
+                "familia eta lagunekin partekatzen den gozamen bat."
+            )
         elif "Pollo Marengo" in title:
-            return "Deskubritu Marengo oilaskoaren magia kulinarioa, non zapore klasikoak eta teknika modernoak elkar topo egiten duten plater ezin hobea sortzeko. Tradizio eta berrikuntza uztartzen ditu, sortzen duelarik ahoan urtu eta bihotz bakoitzean tokia izango duen plater bat."
+            return (
+                "Deskubritu Marengo oilaskoaren magia kulinarioa, non zapore klasikoak eta teknika "
+                "modernoak elkar topo egiten duten plater ezin hobea sortzeko. Tradizio eta "
+                "berrikuntza uztartzen ditu, sortzen duelarik ahoan urtu eta bihotz bakoitzean "
+                "tokia izango duen plater bat."
+            )
         elif "Tarta de Queso" in title:
-            return "Gazta tarta hau gure familiako altxorrik preziatuena da, belaunaldiz belaunaldi transmititako sekretu eta maitasunez egina. Gazta gozo eta testura ezin hobearen konbinazioa da, ahoan urtu eta bihotz bakoitzean tokia izango duen postrea sortzen duena."
+            return (
+                "Gazta tarta hau gure familiako altxorrik preziatuena da, belaunaldiz belaunaldi "
+                "transmititako sekretu eta maitasunez egina. Gazta gozo eta testura ezin hobearen "
+                "konbinazioa da, ahoan urtu eta bihotz bakoitzean tokia izango duen postrea sortzen "
+                "duena."
+            )
         elif "Corona de Cordero" in title:
-            return "Bildots corona hau ospakizunetako plater nagusiaren harro da, non haragiaren zukutasuna eta zapore konplexua uztartzen den. Errezeta hau bereziki ospakizunetarako diseinatua dago, sortzen duelarik ahoan urtu eta bihotz bakoitzean tokia izango duen plater bat."
+            return (
+                "Bildots corona hau ospakizunetako plater nagusiaren harro da, non haragiaren zukutasuna "
+                "eta zapore konplexua uztartzen den. Errezeta hau bereziki ospakizunetarako diseinatua "
+                "dago, sortzen duelarik ahoan urtu eta bihotz bakoitzean tokia izango duen plater bat."
+            )
         elif "Crema de Chocolate" in title:
-            return "Txokolate krema hau gozokiaren paradisua da, non txokolatearen zapore sakona eta testura gozo honen konbinazioa ezin hobea den. Postrea edo osagaia gisa erabiltzen da, sortzen duelarik ahoan urtu eta bihotz bakoitzean tokia izango duen gozamen bat."
+            return (
+                "Txokolate krema hau gozokiaren paradisua da, non txokolatearen zapore sakona eta "
+                "testura gozo honen konbinazioa ezin hobea den. Postrea edo osagaia gisa erabiltzen da, "
+                "sortzen duelarik ahoan urtu eta bihotz bakoitzean tokia izango duen gozamen bat."
+            )
         else:
             return f"Euskal sukaldaritzako errezeta berezia: {description}"
 
     elif lang == "ca":
         if "Alcachofas Rellenas" in title:
-            return "Submergeix-te en el fascinant món de les carxofes farcides, on la sucositat de la carn es fusiona amb una barreja incomparable de sabors i aromes. Aquesta recepta combina tradició i innovació, creant un plat que es desfà a la boca i que trobarà lloc en cada cor."
+            return (
+                "Submergeix-te en el fascinant món de les carxofes farcides, on la sucositat "
+                "de la carn es fusiona amb una barreja incomparable de sabors i aromes. "
+                "Aquesta recepta combina tradició i innovació, creant un plat que es desfà a "
+                "la boca i que trobarà lloc en cada cor."
+            )
         elif "Batido de Coco" in title:
-            return "Aquest batut de coco és una escapada al paradís tropical, una combinació perfecta del sabor dolç del coco i una textura cremosa. És el refrescant perfecte per als dies càlids d'estiu i un plaer compartit amb família i amics."
+            return (
+                "Aquest batut de coco és una escapada al paradís tropical, una combinació perfecta "
+                "del sabor dolç del coco i una textura cremosa. És el refrescant perfecte per als "
+                "dies càlids d'estiu i un plaer compartit amb família i amics."
+            )
         elif "Pollo Marengo" in title:
-            return "Descobreix la màgia culinària del pollastre Marengo, on els sabors clàssics i les tècniques modernes es troben per crear un plat excepcional. Combina tradició i innovació, creant un plat que es desfà a la boca i que trobarà lloc en cada cor."
+            return (
+                "Descobreix la màgia culinària del pollastre Marengo, on els sabors clàssics i "
+                "les tècniques modernes es troben per crear un plat excepcional. Combina tradició "
+                "i innovació, creant un plat que es desfà a la boca i que trobarà lloc en cada cor."
+            )
         elif "Tarta de Queso" in title:
-            return "Aquesta tarta de formatge és el tresor més preuat de la nostra família, feta amb secrets i amor transmesos de generació en generació. És una combinació de formatge dolç i textura perfecta, creant un postre que es desfà a la boca i que trobarà lloc en cada cor."
+            return (
+                "Aquesta tarta de formatge és el tresor més preuat de la nostra família, feta amb "
+                "secrets i amor transmesos de generació en generació. És una combinació de "
+                "formatge dolç i textura perfecta, creant un postre que es desfà a la boca i que "
+                "trobarà lloc en cada cor."
+            )
         elif "Corona de Cordero" in title:
-            return "Aquesta corona de xai és l'orgull del plat principal de celebració, on la jugositat de la carn es combina amb sabors complexos. Aquesta recepta està especialment dissenyada per a celebracions, creant un plat que es desfà a la boca i que trobarà lloc en cada cor."
+            return (
+                "Aquesta corona de xai és l'orgull del plat principal de celebració, on la jugositat de la carn "
+                "es combina amb sabors complexos. Aquesta recepta està especialment dissenyada per a "
+                "celebracions, creant un plat que es desfà a la boca i que trobarà lloc en cada cor."
+            )
         elif "Crema de Chocolate" in title:
-            return "Aquesta crema de xocolata és el paradís dels dolços, on el sabor profund de la xocolata es combina amb una textura cremosa perfecta. S'utilitza com a postre o ingredient, creant un plaer que es desfà a la boca i que trobarà lloc en cada cor."
+            return (
+                "Aquesta crema de xocolata és el paradís dels dolços, on el sabor profund de la xocolata es "
+                "combina amb una textura cremosa perfecta. S'utilitza com a postre o ingredient, creant un "
+                "plaer que es desfà a la boca i que trobarà lloc en cada cor."
+            )
         else:
             return f"Recepta especial valenciana: {description}"
 
     elif lang == "en":
         if "Alcachofas Rellenas" in title:
-            return "Immerse yourself in the fascinating world of stuffed artichokes, where the juiciness of the meat merges with an incomparable blend of flavors and aromas. This recipe combines tradition and innovation, creating a dish that melts in your mouth and will find a place in every heart."
+            return (
+                "Immerse yourself in the fascinating world of stuffed artichokes, where the juiciness of the meat "
+                "merges with an incomparable blend of flavors and aromas. This recipe combines tradition and "
+                "innovation, creating a dish that melts in your mouth and will find a place in every heart."
+            )
         elif "Batido de Coco" in title:
-            return "This coconut smoothie is an escape to tropical paradise, a perfect combination of sweet coconut flavor and creamy texture. It's the perfect refresher for hot summer days and a pleasure shared with family and friends."
+            return (
+                "This coconut smoothie is an escape to tropical paradise, a perfect combination of sweet coconut "
+                "flavor and creamy texture. It's the perfect refresher for hot summer days and a pleasure "
+                "shared with family and friends."
+            )
         elif "Pollo Marengo" in title:
-            return "Discover the culinary magic of Chicken Marengo, where classic flavors and modern techniques meet to create an exceptional dish. It combines tradition and innovation, creating a dish that melts in your mouth and will find a place in every heart."
+            return (
+                "Discover the culinary magic of Chicken Marengo, where classic flavors and modern techniques meet "
+                "to create an exceptional dish. It combines tradition and innovation, creating a dish that melts "
+                "in your mouth and will find a place in every heart."
+            )
         elif "Tarta de Queso" in title:
-            return "This cheese cake is our family's most treasured heirloom, made with secrets and love passed down from generation to generation. It's a combination of sweet cheese and perfect texture, creating a dessert that melts in your mouth and will find a place in every heart."
+            return (
+                "This cheese cake is our family's most treasured heirloom, made with secrets and love passed down "
+                "from generation to generation. It's a combination of sweet cheese and perfect texture, creating "
+                "a dessert that melts in your mouth and will find a place in every heart."
+            )
         elif "Corona de Cordero" in title:
-            return "This crown of lamb is the pride of the celebratory main course, where the juiciness of the meat combines with complex flavors. This recipe is specially designed for celebrations, creating a dish that melts in your mouth and will find a place in every heart."
+            return (
+                "This crown of lamb is the pride of the celebratory main course, where the juiciness of the meat "
+                "combines with complex flavors. This recipe is specially designed for celebrations, creating a "
+                "dish that melts in your mouth and will find a place in every heart."
+            )
         elif "Crema de Chocolate" in title:
-            return "This chocolate cream is a sweet paradise, where the deep flavor of chocolate combines with a perfect creamy texture. It's used as a dessert or ingredient, creating a pleasure that melts in your mouth and will find a place in every heart."
+            return (
+                "This chocolate cream is a sweet paradise, where the deep flavor of chocolate combines with a "
+                "perfect creamy texture. It's used as a dessert or ingredient, creating a pleasure that melts "
+                "in your mouth and will find a place in every heart."
+            )
         else:
             return f"Special traditional recipe: {description}"
 

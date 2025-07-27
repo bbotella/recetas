@@ -10,7 +10,7 @@ import sys
 # Add the project root to the path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from database import get_db_connection, init_database
+from database import get_db_connection, init_database  # noqa: E402
 
 
 def expand_spanish_instructions():
@@ -69,7 +69,8 @@ def get_expanded_spanish_instructions(title, original_instructions):
 
 4. Enfriar las alcachofas y abrirlas por la mitad, quitar el corazón y rellenar con el picadillo.
 
-5. Preparar la salsa bechamel: derretir mantequilla, añadir harina y luego agregar leche gradualmente mientras se remueve constantemente.
+5. Preparar la salsa bechamel: derretir mantequilla, añadir harina y luego agregar leche gradualmente \
+mientras se remueve constantemente.
 
 6. Colocar las alcachofas en una fuente, cubrir con salsa bechamel y esparcir queso rallado por encima.
 

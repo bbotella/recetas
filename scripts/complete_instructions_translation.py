@@ -10,7 +10,7 @@ import sys
 # Add the project root to the path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from database import get_db_connection, init_database
+from database import get_db_connection, init_database  # noqa: E402
 
 
 def generate_complete_instructions_translations():
@@ -44,7 +44,7 @@ def generate_complete_instructions_translations():
             # Actualizar la traducción existente
             cursor.execute(
                 """
-                UPDATE recipe_translations 
+                UPDATE recipe_translations
                 SET instructions = ?
                 WHERE recipe_id = ? AND language = ?
                 """,
@@ -195,7 +195,8 @@ def get_catalan_instructions(title, instructions):
 
 4. Refredar les carxofes i obrir-les pel mig, treure el cor i farcir amb el picat.
 
-5. Preparar la salsa bechamel: fondre la mantega, afegir la farina i després anar afegint la llet a poc a poc, remenant constantment.
+5. Preparar la salsa bechamel: fondre la mantega, afegir la farina i després anar afegint la llet a poc a poc, \
+remenant constantment.
 
 6. Col·locar les carxofes en una plata, cobrir amb la salsa bechamel i escampar el formatge ratllat per sobre.
 
