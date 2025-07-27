@@ -25,8 +25,8 @@ RUN mkdir -p /app/data
 # Import recipes to database (only if recipes directory exists)
 RUN if [ -d "recipes" ]; then python scripts/import_recipes.py; fi
 
-# Setup translations for Docker (simplified approach)
-RUN python scripts/docker_simple_translation_setup.py
+# Setup translations for Docker (improved approach)
+RUN python scripts/docker_improved_translation_setup.py
 
 # Create non-root user for security
 RUN useradd -m -u 1000 flaskuser && chown -R flaskuser:flaskuser /app
