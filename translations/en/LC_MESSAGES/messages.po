@@ -1,5 +1,5 @@
 # English translations for Recipe App
-# Interface translations corrected
+# Generated with complete specific translations
 #
 msgid ""
 msgstr ""
@@ -7,47 +7,14 @@ msgstr ""
 "Report-Msgid-Bugs-To: admin@example.com\n"
 "POT-Creation-Date: 2024-01-01 12:00+0000\n"
 "PO-Revision-Date: 2024-01-01 12:00+0000\n"
-"Last-Translator: Interface Translation System\n"
+"Last-Translator: Complete Translation System\n"
 "Language: en\n"
 "Language-Team: English\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Interface Translation System\n"
-
-msgid "Home"
-msgstr "Home"
-
-msgid "Categories"
-msgstr "Categories"
-
-msgid "Search"
-msgstr "Search"
-
-msgid "Ingredients"
-msgstr "Ingredients"
-
-msgid "Instructions"
-msgstr "Instructions"
-
-msgid "View Recipe"
-msgstr "View Recipe"
-
-msgid "All categories"
-msgstr "All categories"
-
-msgid "Search results"
-msgstr "Search results"
-
-msgid "No recipes found"
-msgstr "No recipes found"
-
-msgid "Back to all recipes"
-msgstr "Back to all recipes"
-
-msgid "Language"
-msgstr "Language"
+"Generated-By: Complete Translation System\n"
 
 msgid "Aunt Carmen's Recipes"
 msgstr "Aunt Carmen's Recipes"
@@ -55,68 +22,38 @@ msgstr "Aunt Carmen's Recipes"
 msgid "Traditional family recipes"
 msgstr "Traditional family recipes"
 
+msgid "Home"
+msgstr "Home"
+
+msgid "Categories"
+msgstr "Categories"
+
+msgid "Language"
+msgstr "Language"
+
 msgid "Search recipes..."
 msgstr "Search recipes..."
+
+msgid "Search"
+msgstr "Search"
+
+msgid "All categories"
+msgstr "All categories"
 
 msgid "Recipes found"
 msgstr "Recipes found"
 
-msgid "No recipes found matching your search."
-msgstr "No recipes found matching your search."
+msgid "No recipes found"
+msgstr "No recipes found"
 
-msgid "View all recipes"
-msgstr "View all recipes"
+msgid "Back to home"
+msgstr "Back to home"
 
-msgid "Search tip"
-msgstr "Search tip"
+msgid "Ingredients"
+msgstr "Ingredients"
 
-msgid "You can search by recipe name, specific ingredients or dish type. Try \"chicken\", \"chocolate\" or \"cake\"!"
-msgstr "You can search by recipe name, specific ingredients or dish type. Try \"chicken\", \"chocolate\" or \"cake\"!"
-
-msgid "Description:"
-msgstr "Description:"
-
-msgid "More recipes from"
-msgstr "More recipes from"
-
-msgid "Recipe from Aunt Carmen"
-msgstr "Recipe from Aunt Carmen"
-
-msgid "Recipe Categories"
-msgstr "Recipe Categories"
-
-msgid "Explore our recipes organized by categories:"
-msgstr "Explore our recipes organized by categories:"
-
-msgid "View Recipes"
-msgstr "View Recipes"
-
-msgid "Recipes from"
-msgstr "Recipes from"
-
-msgid "No recipes found in this category."
-msgstr "No recipes found in this category."
-
-msgid "All Recipes"
-msgstr "All Recipes"
-
-msgid "Clear search"
-msgstr "Clear search"
-
-msgid "for"
-msgstr "for"
-
-msgid "in"
-msgstr "in"
-
-msgid "Preserving family culinary traditions"
-msgstr "Preserving family culinary traditions"
-
-msgid "Discover the traditional flavors of family cooking"
-msgstr "Discover the traditional flavors of family cooking"
-
-msgid "Search by name, ingredients or description..."
-msgstr "Search by name, ingredients or description..."
+msgid "Instructions"
+msgstr "Instructions"
 
 msgid "Preparation"
 msgstr "Preparation"
@@ -138,6 +75,9 @@ msgstr "Medium"
 
 msgid "Hard"
 msgstr "Hard"
+
+msgid "View recipe"
+msgstr "View recipe"
 
 msgid "Share"
 msgstr "Share"
