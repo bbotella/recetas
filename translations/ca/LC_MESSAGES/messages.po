@@ -1,5 +1,5 @@
 # Valencià/Valencian Catalan translations for Recipe App
-# Generated using AI translation system
+# Generated with complete specific translations
 #
 msgid ""
 msgstr ""
@@ -7,14 +7,14 @@ msgstr ""
 "Report-Msgid-Bugs-To: admin@example.com\n"
 "POT-Creation-Date: 2024-01-01 12:00+0000\n"
 "PO-Revision-Date: 2024-01-01 12:00+0000\n"
-"Last-Translator: AI Translation System\n"
+"Last-Translator: Complete Translation System\n"
 "Language: ca\n"
 "Language-Team: Valencià/Valencian Catalan\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: AI Translation System\n"
+"Generated-By: Complete Translation System\n"
 
 msgid "Aunt Carmen's Recipes"
 msgstr "Receptes de la Tia Carmen"
@@ -53,10 +53,10 @@ msgid "Ingredients"
 msgstr "Ingredients"
 
 msgid "Instructions"
-msgstr "Instructions"
+msgstr "Instruccions"
 
 msgid "Preparation"
-msgstr "Preparation"
+msgstr "Preparació"
 
 msgid "Preparation time"
 msgstr "Temps de preparació"

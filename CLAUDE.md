@@ -104,10 +104,13 @@ tiaCarmen/
 ### Local Development
 
 ```bash
-# Setup
+# Setup virtual environment
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+
+# IMPORTANT: Flask-Babel is installed in the venv
+# Use the virtual environment for all translation compilation tasks
 
 # Database initialization
 python -c "from database import init_database; init_database()"
@@ -357,9 +360,17 @@ def get_locale():
 4. **Fallback Handling**: Graceful degradation to original content
 
 ### Translation Scripts
-- `ai_translation_system.py`: **PRIMARY** - AI-powered translation system for all languages
+- `enhanced_translation_system.py`: **PRIMARY** - Enhanced AI-powered translation system providing complete translations for all recipe components (titles, descriptions, ingredients, instructions)
+- `ai_translation_system.py`: AI-powered translation system for all languages
 - `babel_manager.py`: Flask-Babel management and compilation
 - `docker_compile_translations.py`: Docker-compatible compilation with fallback support
+
+### Translation Compilation
+**IMPORTANT**: Flask-Babel is installed in the virtual environment. Always activate the venv before compiling translations:
+```bash
+source venv/bin/activate
+python -c "from babel.messages.pofile import read_po; from babel.messages.mofile import write_mo; ..."
+```
 
 ### ⚠️ CRITICAL TRANSLATION POLICY
 **STRICTLY FORBIDDEN**: Dictionary-based translations, pre-defined lookup tables, or hardcoded translation mappings.
