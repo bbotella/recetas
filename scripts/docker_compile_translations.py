@@ -24,6 +24,27 @@ def compile_translations():
         print("❌ No translations directory found")
         return False
 
+    # First, try to use msgfmt if available
+    try:
+        for lang_dir in translations_dir.iterdir():
+            if lang_dir.is_dir():
+                po_file = lang_dir / "LC_MESSAGES" / "messages.po"
+                mo_file = lang_dir / "LC_MESSAGES" / "messages.mo"
+
+                if po_file.exists():
+                    result = subprocess.run(
+                        ["msgfmt", str(po_file), "-o", str(mo_file)],
+                        capture_output=True,
+                        text=True,
+                        check=True,
+                    )
+                    print(f"✅ Compiled {lang_dir.name} using msgfmt")
+
+        print("✅ Successfully compiled all translations using msgfmt")
+        return True
+    except (subprocess.CalledProcessError, FileNotFoundError) as e:
+        print(f"⚠️ msgfmt compilation failed: {e}")
+
     # Try to compile using pybabel
     try:
         result = subprocess.run(
