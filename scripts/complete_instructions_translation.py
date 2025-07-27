@@ -15,30 +15,32 @@ from database import get_db_connection, init_database
 
 def generate_complete_instructions_translations():
     """Generar traducciones completas de instrucciones usando IA."""
-    
+
     print("🔄 Generando traducciones completas de instrucciones con IA...")
-    
+
     # Inicializar base de datos
     init_database()
-    
+
     conn = get_db_connection()
     cursor = conn.cursor()
-    
+
     # Obtener todas las recetas
     cursor.execute("SELECT id, title, instructions FROM recipes")
     recipes = cursor.fetchall()
-    
+
     languages = ["eu", "ca", "en", "zh"]
-    
+
     for lang in languages:
         print(f"\n📍 Procesando instrucciones en {lang}")
-        
+
         for recipe in recipes:
             recipe_id, title, instructions = recipe
-            
+
             # Generar traducción completa específica para cada receta
-            translated_instructions = translate_instructions_complete(title, instructions, lang)
-            
+            translated_instructions = translate_instructions_complete(
+                title, instructions, lang
+            )
+
             # Actualizar la traducción existente
             cursor.execute(
                 """
@@ -46,23 +48,23 @@ def generate_complete_instructions_translations():
                 SET instructions = ?
                 WHERE recipe_id = ? AND language = ?
                 """,
-                (translated_instructions, recipe_id, lang)
+                (translated_instructions, recipe_id, lang),
             )
-            
+
             if cursor.rowcount > 0:
                 print(f"   ✅ {title} -> {lang}")
             else:
                 print(f"   ❌ No se encontró traducción para {title} en {lang}")
-    
+
     conn.commit()
     conn.close()
-    
+
     print("\n✅ Traducciones completas de instrucciones generadas exitosamente!")
 
 
 def translate_instructions_complete(title, instructions, lang):
     """Traducir instrucciones completas usando IA específica para cada receta."""
-    
+
     # Traducciones específicas completas para cada receta
     if lang == "eu":
         return get_euskera_instructions(title, instructions)
@@ -72,13 +74,13 @@ def translate_instructions_complete(title, instructions, lang):
         return get_english_instructions(title, instructions)
     elif lang == "zh":
         return get_chinese_instructions(title, instructions)
-    
+
     return instructions
 
 
 def get_euskera_instructions(title, instructions):
     """Generar instrucciones completas en euskera."""
-    
+
     # Traducciones específicas para recetas conocidas
     if "Alcachofas Rellenas" in title:
         return """1. Artxindurriak garbitu eta korapiloaren parterik gogorren aldean ebaki.
@@ -96,7 +98,7 @@ def get_euskera_instructions(title, instructions):
 7. Labea 180°C-tan berotu eta 20 minutu inguru egosi, gainazala urrezkoa izan arte.
 
 8. Berotuta zerbitzatu."""
-    
+
     elif "Batido de Coco" in title:
         return """1. Koko barreiatua eta esne kondentsatua ontzi batean sartu.
 
@@ -107,7 +109,7 @@ def get_euskera_instructions(title, instructions):
 4. Edalontzi altuetan zerbitzatu, hotz-hotz.
 
 5. Nahi izanez gero, koko barreiatua eta kanela pixka bat gainean jarri apaingarri gisa."""
-    
+
     elif "Corona de Cordero" in title:
         return """1. Bildotsaren txuletonak garbitu eta koipea kendu.
 
@@ -124,7 +126,7 @@ def get_euskera_instructions(title, instructions):
 7. Azken 10 minutuetan tenperatura 180°C-ra jaitsi.
 
 8. Egindakoan, 5 minutu egin dezala atseden ebaki aurretik."""
-    
+
     elif "Pollo Marengo" in title:
         return """1. Oilaskoa zatitan ebaki eta gatza eta kondairuak jarri.
 
@@ -141,7 +143,7 @@ def get_euskera_instructions(title, instructions):
 7. Perrexila pikatua eta limoi zukua azkenean gehitu.
 
 8. Arrozarekin edo patata egostekin zerbitzatu."""
-    
+
     elif "Tarta de Queso" in title:
         return """1. Labea 160°C-tan berotu.
 
@@ -158,7 +160,7 @@ def get_euskera_instructions(title, instructions):
 7. Itzali eta labetik ez atera hoztu arte.
 
 8. Ordu bat hozkailuan egon dezala zerbitzatu aurretik."""
-    
+
     elif "Crema de Chocolate" in title:
         return """1. Esnea berotzen jarri su txikian.
 
@@ -175,7 +177,7 @@ def get_euskera_instructions(title, instructions):
 7. Hozkailuan gutxienez 2 ordu gorde.
 
 8. Nahi izanez gero, nata irabiatu eta azukrea jarri gainean."""
-    
+
     else:
         # Traducción genérica para recetas no específicas
         return euskera_generic_translation(instructions)
@@ -183,7 +185,7 @@ def get_euskera_instructions(title, instructions):
 
 def get_catalan_instructions(title, instructions):
     """Generar instrucciones completas en catalán."""
-    
+
     if "Alcachofas Rellenas" in title:
         return """1. Netejar les carxofes i tallar la part més dura de les fulles.
 
@@ -200,7 +202,7 @@ def get_catalan_instructions(title, instructions):
 7. Escalfar el forn a 180°C i coure durant uns 20 minuts fins que la superfície estigui daurada.
 
 8. Servir calent."""
-    
+
     elif "Batido de Coco" in title:
         return """1. Posar el coco ratllat i la llet condensada en un recipient.
 
@@ -211,7 +213,7 @@ def get_catalan_instructions(title, instructions):
 4. Servir en vasos alts, ben fred.
 
 5. Si es vol, decorar amb coco ratllat i una mica de canyella per sobre."""
-    
+
     elif "Corona de Cordero" in title:
         return """1. Netejar les costelles de xai i treure el greix.
 
@@ -228,7 +230,7 @@ def get_catalan_instructions(title, instructions):
 7. Els últims 10 minuts baixar la temperatura a 180°C.
 
 8. Un cop cuit, deixar reposar 5 minuts abans de tallar."""
-    
+
     elif "Pollo Marengo" in title:
         return """1. Tallar el pollastre a trossos i adobar amb sal i espècies.
 
@@ -245,7 +247,7 @@ def get_catalan_instructions(title, instructions):
 7. Al final afegir julivert picat i suc de llimó.
 
 8. Servir amb arròs o patates bullides."""
-    
+
     elif "Tarta de Queso" in title:
         return """1. Escalfar el forn a 160°C.
 
@@ -262,7 +264,7 @@ def get_catalan_instructions(title, instructions):
 7. Apagar i no treure del forn fins que es refredi.
 
 8. Deixar una hora a la nevera abans de servir."""
-    
+
     elif "Crema de Chocolate" in title:
         return """1. Posar la llet a escalfar a foc lent.
 
@@ -279,14 +281,14 @@ def get_catalan_instructions(title, instructions):
 7. Guardar a la nevera almenys 2 hores.
 
 8. Si es vol, decorar amb nata batuda i sucre per sobre."""
-    
+
     else:
         return catalan_generic_translation(instructions)
 
 
 def get_english_instructions(title, instructions):
     """Generar instrucciones completas en inglés."""
-    
+
     if "Alcachofas Rellenas" in title:
         return """1. Clean the artichokes and trim the toughest part of the leaves.
 
@@ -303,7 +305,7 @@ def get_english_instructions(title, instructions):
 7. Preheat the oven to 180°C and bake for about 20 minutes until the surface is golden.
 
 8. Serve hot."""
-    
+
     elif "Batido de Coco" in title:
         return """1. Put grated coconut and condensed milk in a container.
 
@@ -314,7 +316,7 @@ def get_english_instructions(title, instructions):
 4. Serve in tall glasses, very cold.
 
 5. If desired, garnish with grated coconut and a little cinnamon on top."""
-    
+
     elif "Corona de Cordero" in title:
         return """1. Clean the lamb chops and remove the fat.
 
@@ -331,7 +333,7 @@ def get_english_instructions(title, instructions):
 7. For the last 10 minutes lower the temperature to 180°C.
 
 8. Once cooked, let rest for 5 minutes before slicing."""
-    
+
     elif "Pollo Marengo" in title:
         return """1. Cut the chicken into pieces and season with salt and spices.
 
@@ -348,7 +350,7 @@ def get_english_instructions(title, instructions):
 7. At the end add chopped parsley and lemon juice.
 
 8. Serve with rice or boiled potatoes."""
-    
+
     elif "Tarta de Queso" in title:
         return """1. Preheat the oven to 160°C.
 
@@ -365,7 +367,7 @@ def get_english_instructions(title, instructions):
 7. Turn off and don't remove from oven until cooled.
 
 8. Leave in the refrigerator for one hour before serving."""
-    
+
     elif "Crema de Chocolate" in title:
         return """1. Heat the milk over low heat.
 
@@ -382,14 +384,14 @@ def get_english_instructions(title, instructions):
 7. Store in refrigerator for at least 2 hours.
 
 8. If desired, garnish with whipped cream and sugar on top."""
-    
+
     else:
         return english_generic_translation(instructions)
 
 
 def get_chinese_instructions(title, instructions):
     """Generar instrucciones completas en chino."""
-    
+
     if "Alcachofas Rellenas" in title:
         return """1. 清洗朝鲜蓟并修剪最硬的叶子部分。
 
@@ -406,7 +408,7 @@ def get_chinese_instructions(title, instructions):
 7. 预热烤箱至180°C，烘烤约20分钟直到表面呈金黄色。
 
 8. 趁热食用。"""
-    
+
     elif "Batido de Coco" in title:
         return """1. 将椰丝和炼乳放入容器中。
 
@@ -417,7 +419,7 @@ def get_chinese_instructions(title, instructions):
 4. 用高玻璃杯盛装，要非常冰。
 
 5. 如果需要，在上面装饰椰丝和少许肉桂。"""
-    
+
     elif "Corona de Cordero" in title:
         return """1. 清洗羊排并去除脂肪。
 
@@ -434,7 +436,7 @@ def get_chinese_instructions(title, instructions):
 7. 最后10分钟将温度降至180°C。
 
 8. 烹饪完成后，切片前静置5分钟。"""
-    
+
     elif "Pollo Marengo" in title:
         return """1. 将鸡肉切成块并用盐和香料调味。
 
@@ -451,7 +453,7 @@ def get_chinese_instructions(title, instructions):
 7. 最后加入切碎的欧芹和柠檬汁。
 
 8. 配米饭或煮土豆食用。"""
-    
+
     elif "Tarta de Queso" in title:
         return """1. 预热烤箱至160°C。
 
@@ -468,7 +470,7 @@ def get_chinese_instructions(title, instructions):
 7. 关火并等到冷却后再从烤箱中取出。
 
 8. 食用前在冰箱中放置一小时。"""
-    
+
     elif "Crema de Chocolate" in title:
         return """1. 用小火加热牛奶。
 
@@ -485,7 +487,7 @@ def get_chinese_instructions(title, instructions):
 7. 在冰箱中储存至少2小时。
 
 8. 如果需要，在上面装饰打发奶油和糖。"""
-    
+
     else:
         return chinese_generic_translation(instructions)
 
@@ -494,7 +496,7 @@ def euskera_generic_translation(instructions):
     """Traducción genérica para euskera."""
     # Traducir frases comunes del español al euskera
     translated = instructions
-    
+
     # Traducciones básicas
     translations = {
         "Se cuecen": "Egosi",
@@ -518,19 +520,19 @@ def euskera_generic_translation(instructions):
         "hasta que": "arte",
         "después": "ondoren",
         "mientras": "bitartean",
-        "finalmente": "azkenik"
+        "finalmente": "azkenik",
     }
-    
+
     for spanish, euskera in translations.items():
         translated = translated.replace(spanish, euskera)
-    
+
     return translated
 
 
 def catalan_generic_translation(instructions):
     """Traducción genérica para catalán."""
     translated = instructions
-    
+
     translations = {
         "Se cuecen": "Es couen",
         "Se fríe": "Es fregeix",
@@ -553,19 +555,19 @@ def catalan_generic_translation(instructions):
         "hasta que": "fins que",
         "después": "després",
         "mientras": "mentre",
-        "finalmente": "finalment"
+        "finalmente": "finalment",
     }
-    
+
     for spanish, catalan in translations.items():
         translated = translated.replace(spanish, catalan)
-    
+
     return translated
 
 
 def english_generic_translation(instructions):
     """Traducción genérica para inglés."""
     translated = instructions
-    
+
     translations = {
         "Se cuecen": "Cook",
         "Se fríe": "Fry",
@@ -588,19 +590,19 @@ def english_generic_translation(instructions):
         "hasta que": "until",
         "después": "after",
         "mientras": "while",
-        "finalmente": "finally"
+        "finalmente": "finally",
     }
-    
+
     for spanish, english in translations.items():
         translated = translated.replace(spanish, english)
-    
+
     return translated
 
 
 def chinese_generic_translation(instructions):
     """Traducción genérica para chino."""
     translated = instructions
-    
+
     translations = {
         "Se cuecen": "煮",
         "Se fríe": "炒",
@@ -623,12 +625,12 @@ def chinese_generic_translation(instructions):
         "hasta que": "直到",
         "después": "之后",
         "mientras": "同时",
-        "finalmente": "最后"
+        "finalmente": "最后",
     }
-    
+
     for spanish, chinese in translations.items():
         translated = translated.replace(spanish, chinese)
-    
+
     return translated
 
 

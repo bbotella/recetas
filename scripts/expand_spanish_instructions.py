@@ -15,46 +15,50 @@ from database import get_db_connection, init_database
 
 def expand_spanish_instructions():
     """Expandir las instrucciones originales en español para que coincidan con las traducciones."""
-    
+
     print("🔄 Expandiendo instrucciones en español para mayor detalle...")
-    
+
     # Inicializar base de datos
     init_database()
-    
+
     conn = get_db_connection()
     cursor = conn.cursor()
-    
+
     # Obtener todas las recetas
     cursor.execute("SELECT id, title, instructions FROM recipes")
     recipes = cursor.fetchall()
-    
+
     updated_count = 0
-    
+
     for recipe in recipes:
         recipe_id, title, original_instructions = recipe
-        
+
         # Generar instrucciones expandidas específicas para cada receta
-        expanded_instructions = get_expanded_spanish_instructions(title, original_instructions)
-        
+        expanded_instructions = get_expanded_spanish_instructions(
+            title, original_instructions
+        )
+
         if expanded_instructions != original_instructions:
             # Actualizar las instrucciones originales
             cursor.execute(
                 "UPDATE recipes SET instructions = ? WHERE id = ?",
-                (expanded_instructions, recipe_id)
+                (expanded_instructions, recipe_id),
             )
-            
+
             updated_count += 1
             print(f"   ✅ {title}")
-    
+
     conn.commit()
     conn.close()
-    
-    print(f"\n✅ {updated_count} recetas actualizadas con instrucciones expandidas en español!")
+
+    print(
+        f"\n✅ {updated_count} recetas actualizadas con instrucciones expandidas en español!"
+    )
 
 
 def get_expanded_spanish_instructions(title, original_instructions):
     """Generar instrucciones expandidas específicas para cada receta."""
-    
+
     # Instrucciones expandidas para recetas específicas
     if "Alcachofas Rellenas" in title:
         return """1. Limpiar las alcachofas y cortar la parte más dura de las hojas.
@@ -72,7 +76,7 @@ def get_expanded_spanish_instructions(title, original_instructions):
 7. Precalentar el horno a 180°C y hornear durante unos 20 minutos hasta que la superficie esté dorada.
 
 8. Servir caliente."""
-    
+
     elif "Batido de Coco" in title:
         return """1. Poner el coco rallado y la leche condensada en un recipiente.
 
@@ -83,7 +87,7 @@ def get_expanded_spanish_instructions(title, original_instructions):
 4. Servir en vasos altos, bien frío.
 
 5. Si se desea, decorar con coco rallado y un poco de canela por encima."""
-    
+
     elif "Corona de Cordero" in title:
         return """1. Limpiar las chuletas de cordero y quitar la grasa.
 
@@ -100,7 +104,7 @@ def get_expanded_spanish_instructions(title, original_instructions):
 7. Los últimos 10 minutos bajar la temperatura a 180°C.
 
 8. Una vez cocinado, dejar reposar 5 minutos antes de cortar."""
-    
+
     elif "Pollo Marengo" in title:
         return """1. Cortar el pollo en trozos y sazonar con sal y especias.
 
@@ -117,7 +121,7 @@ def get_expanded_spanish_instructions(title, original_instructions):
 7. Al final añadir perejil picado y zumo de limón.
 
 8. Servir con arroz o patatas hervidas."""
-    
+
     elif "Tarta de Queso" in title:
         return """1. Precalentar el horno a 160°C.
 
@@ -134,7 +138,7 @@ def get_expanded_spanish_instructions(title, original_instructions):
 7. Apagar y no sacar del horno hasta que se enfríe.
 
 8. Dejar una hora en la nevera antes de servir."""
-    
+
     elif "Crema de Chocolate" in title:
         return """1. Poner la leche a calentar a fuego lento.
 
@@ -151,7 +155,7 @@ def get_expanded_spanish_instructions(title, original_instructions):
 7. Guardar en la nevera al menos 2 horas.
 
 8. Si se desea, decorar con nata montada y azúcar por encima."""
-    
+
     elif "Crepes" in title:
         return """1. Mezclar la harina, los huevos y una pizca de sal en un bol.
 
@@ -168,7 +172,7 @@ def get_expanded_spanish_instructions(title, original_instructions):
 7. Cocinar el otro lado durante 1-2 minutos.
 
 8. Servir caliente con el relleno deseado."""
-    
+
     elif "Manzanas Asadas" in title:
         return """1. Precalentar el horno a 180°C.
 
@@ -185,7 +189,7 @@ def get_expanded_spanish_instructions(title, original_instructions):
 7. Hornear durante 25-30 minutos hasta que estén tiernas.
 
 8. Servir caliente, opcionalmente con helado de vainilla."""
-    
+
     elif "Flan de Coco" in title:
         return """1. Preparar el caramelo: calentar azúcar en una sartén hasta que se dore.
 
@@ -202,7 +206,7 @@ def get_expanded_spanish_instructions(title, original_instructions):
 7. Hornear al baño maría a 160°C durante 45 minutos.
 
 8. Enfriar completamente antes de desmoldar."""
-    
+
     elif "Helado de Fresa" in title:
         return """1. Lavar y quitar las hojas de las fresas.
 
@@ -219,7 +223,7 @@ def get_expanded_spanish_instructions(title, original_instructions):
 7. Mezclar con el puré de fresas y dejar enfriar.
 
 8. Congelar en una heladera o removiendo cada hora durante 4 horas."""
-    
+
     else:
         # Para recetas sin instrucciones específicas, expandir las existentes
         return expand_generic_instructions(original_instructions)
@@ -227,13 +231,13 @@ def get_expanded_spanish_instructions(title, original_instructions):
 
 def expand_generic_instructions(instructions):
     """Expandir instrucciones genéricas añadiendo más detalle."""
-    
+
     if not instructions or len(instructions.strip()) < 50:
         return instructions
-    
+
     # Expandir instrucciones básicas comunes
     expanded = instructions
-    
+
     # Expansiones comunes
     expansions = {
         "Se cuecen": "Se cuecen en agua salada durante el tiempo necesario hasta que estén tiernas",
@@ -244,12 +248,12 @@ def expand_generic_instructions(instructions):
         "al horno": "al horno precalentado a temperatura media",
         "hasta que": "hasta que esté en su punto óptimo",
         "se gratina": "se gratina en el horno hasta que la superficie esté dorada",
-        "se bate": "se bate enérgicamente hasta obtener la consistencia deseada"
+        "se bate": "se bate enérgicamente hasta obtener la consistencia deseada",
     }
-    
+
     for basic, detailed in expansions.items():
         expanded = expanded.replace(basic, detailed)
-    
+
     return expanded
 
 
