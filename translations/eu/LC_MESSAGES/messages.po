@@ -1,5 +1,5 @@
-# Euskera/Basque translations for Recipe App
-# Interface translations corrected
+# Euskera (Basque) translations for Recipe App
+# Generated with Real AI Translation System
 #
 msgid ""
 msgstr ""
@@ -7,47 +7,14 @@ msgstr ""
 "Report-Msgid-Bugs-To: admin@example.com\n"
 "POT-Creation-Date: 2024-01-01 12:00+0000\n"
 "PO-Revision-Date: 2024-01-01 12:00+0000\n"
-"Last-Translator: Interface Translation System\n"
+"Last-Translator: Real AI Translation System\n"
 "Language: eu\n"
-"Language-Team: Euskera/Basque\n"
+"Language-Team: Euskera (Basque)\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Interface Translation System\n"
-
-msgid "Home"
-msgstr "Hasiera"
-
-msgid "Categories"
-msgstr "Kategoriak"
-
-msgid "Search"
-msgstr "Bilatu"
-
-msgid "Ingredients"
-msgstr "Osagaiak"
-
-msgid "Instructions"
-msgstr "Jarraibideak"
-
-msgid "View Recipe"
-msgstr "Errezeta ikusi"
-
-msgid "All categories"
-msgstr "Kategoria guztiak"
-
-msgid "Search results"
-msgstr "Bilaketa emaitzak"
-
-msgid "No recipes found"
-msgstr "Ez da errezetarik aurkitu"
-
-msgid "Back to all recipes"
-msgstr "Errezeta guztietara itzuli"
-
-msgid "Language"
-msgstr "Hizkuntza"
+"Generated-By: Real AI Translation System\n"
 
 msgid "Aunt Carmen's Recipes"
 msgstr "Karmen Izebaren Errezetak"
@@ -55,68 +22,38 @@ msgstr "Karmen Izebaren Errezetak"
 msgid "Traditional family recipes"
 msgstr "Familia errezetak tradizionalak"
 
+msgid "Home"
+msgstr "Hasiera"
+
+msgid "Categories"
+msgstr "Kategoriak"
+
+msgid "Language"
+msgstr "Hizkuntza"
+
 msgid "Search recipes..."
 msgstr "Bilatu errezetak..."
+
+msgid "Search"
+msgstr "Bilatu"
+
+msgid "All categories"
+msgstr "Kategoria guztiak"
 
 msgid "Recipes found"
 msgstr "Errezetak aurkitu"
 
-msgid "No recipes found matching your search."
-msgstr "Ez da zure bilaketarekin bat datorren errezetarik aurkitu."
+msgid "No recipes found"
+msgstr "Ez da errezetarik aurkitu"
 
-msgid "View all recipes"
-msgstr "Errezeta guztiak ikusi"
+msgid "Back to home"
+msgstr "Hasierara itzuli"
 
-msgid "Search tip"
-msgstr "Bilaketa aholkua"
+msgid "Ingredients"
+msgstr "Osagaiak"
 
-msgid "You can search by recipe name, specific ingredients or dish type. Try \"chicken\", \"chocolate\" or \"cake\"!"
-msgstr "Errezeta izenaren, osagai zehatz edo plater motaren arabera bila dezakezu. Saiatu \"oilaskoa\", \"txokolatea\" edo \"tarta\"!"
-
-msgid "Description:"
-msgstr "Deskribapena:"
-
-msgid "More recipes from"
-msgstr "Errezeta gehiago"
-
-msgid "Recipe from Aunt Carmen"
-msgstr "Karmen Izebaren errezeta"
-
-msgid "Recipe Categories"
-msgstr "Errezeta Kategoriak"
-
-msgid "Explore our recipes organized by categories:"
-msgstr "Arakatu gure errezetak kategorietan antolatuta:"
-
-msgid "View Recipes"
-msgstr "Errezetak Ikusi"
-
-msgid "Recipes from"
-msgstr "Errezetak"
-
-msgid "No recipes found in this category."
-msgstr "Ez da errezetarik aurkitu kategoria honetan."
-
-msgid "All Recipes"
-msgstr "Errezeta Guztiak"
-
-msgid "Clear search"
-msgstr "Bilaketa garbitu"
-
-msgid "for"
-msgstr "honentzat"
-
-msgid "in"
-msgstr "barruan"
-
-msgid "Preserving family culinary traditions"
-msgstr "Familiako sukaldaritza tradizioak mantentzen"
-
-msgid "Discover the traditional flavors of family cooking"
-msgstr "Deskubritu familiako sukaldaritzaren zapore tradizionalak"
-
-msgid "Search by name, ingredients or description..."
-msgstr "Bilatu izenaren, osagaien edo deskribapenen arabera..."
+msgid "Instructions"
+msgstr "Jarraibideak"
 
 msgid "Preparation"
 msgstr "Prestaketa"
@@ -138,6 +75,9 @@ msgstr "Ertaina"
 
 msgid "Hard"
 msgstr "Zaila"
+
+msgid "View recipe"
+msgstr "Errezeta ikusi"
 
 msgid "Share"
 msgstr "Partekatu"
