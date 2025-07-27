@@ -25,13 +25,8 @@ RUN mkdir -p /app/data
 # Import recipes to database (only if recipes directory exists)
 RUN if [ -d "recipes" ]; then python scripts/import_recipes.py; fi
 
-# Generate all translations using AI translation system
-RUN if [ -f "scripts/ai_translation_system.py" ]; then python scripts/ai_translation_system.py; fi
-
-# Generate interface translations and compile Flask-Babel translations
-RUN python scripts/fix_interface_translations.py && \
-    python scripts/docker_compile_translations.py && \
-    python scripts/verify_docker_translations.py
+# Force update all translations to ensure Docker matches local
+RUN python scripts/docker_force_translation_update.py
 
 # Create non-root user for security
 RUN useradd -m -u 1000 flaskuser && chown -R flaskuser:flaskuser /app
