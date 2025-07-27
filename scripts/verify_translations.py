@@ -91,12 +91,12 @@ def verify_ai_translation_system():
         "scripts/ai_translation_system.py",
         "translation_coordinator.py",
     ]
-    
+
     found_scripts = []
     for script in ai_scripts:
         if Path(script).exists():
             found_scripts.append(script)
-    
+
     if found_scripts:
         print(f"✅ Found AI translation scripts: {', '.join(found_scripts)}")
         return True
