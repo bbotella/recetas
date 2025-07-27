@@ -3,8 +3,6 @@
 Script to update Flask-Babel .po files with real translations from JSON files.
 """
 
-import json
-import os
 from pathlib import Path
 
 # Interface translations that we need in .po files
@@ -26,7 +24,9 @@ INTERFACE_TRANSLATIONS = {
         "No recipes found matching your search.": "No se encontraron recetas que coincidan con tu búsqueda.",
         "View all recipes": "Ver todas las recetas",
         "Search tip": "Consejo de búsqueda",
-        "You can search by recipe name, specific ingredients or dish type.": "Puedes buscar por nombre de receta, ingredientes específicos o tipo de plato.",
+        "You can search by recipe name, specific ingredients or dish type.": (
+            "Puedes buscar por nombre de receta, ingredientes específicos o tipo de plato."
+        ),
         "Ingredients": "Ingredientes",
         "Instructions": "Instrucciones",
         "Preparation": "Preparación",
@@ -44,8 +44,12 @@ INTERFACE_TRANSLATIONS = {
         "Medium": "Medio",
         "Hard": "Difícil",
         "Traditional family recipes": "Recetas familiares tradicionales",
-        "Discover the traditional flavors of family cooking": "Descubre los sabores tradicionales de la cocina familiar",
-        "Preserving family culinary traditions": "Preservando las tradiciones culinarias familiares",
+        "Discover the traditional flavors of family cooking": (
+            "Descubre los sabores tradicionales de la cocina familiar"
+        ),
+        "Preserving family culinary traditions": (
+            "Preservando las tradiciones culinarias familiares"
+        ),
     },
     "en": {
         "Home": "Home",
@@ -64,7 +68,9 @@ INTERFACE_TRANSLATIONS = {
         "No recipes found matching your search.": "No recipes found matching your search.",
         "View all recipes": "View all recipes",
         "Search tip": "Search tip",
-        "You can search by recipe name, specific ingredients or dish type.": "You can search by recipe name, specific ingredients or dish type.",
+        "You can search by recipe name, specific ingredients or dish type.": (
+            "You can search by recipe name, specific ingredients or dish type."
+        ),
         "Ingredients": "Ingredients",
         "Instructions": "Instructions",
         "Preparation": "Preparation",
@@ -82,8 +88,12 @@ INTERFACE_TRANSLATIONS = {
         "Medium": "Medium",
         "Hard": "Hard",
         "Traditional family recipes": "Traditional family recipes",
-        "Discover the traditional flavors of family cooking": "Discover the traditional flavors of family cooking",
-        "Preserving family culinary traditions": "Preserving family culinary traditions",
+        "Discover the traditional flavors of family cooking": (
+            "Discover the traditional flavors of family cooking"
+        ),
+        "Preserving family culinary traditions": (
+            "Preserving family culinary traditions"
+        ),
     },
     "zh": {
         "Home": "首页",
@@ -140,7 +150,9 @@ INTERFACE_TRANSLATIONS = {
         "No recipes found matching your search.": "No s'han trobat receptes que coincideixin amb la vostra cerca.",
         "View all recipes": "Veure totes les receptes",
         "Search tip": "Consell de cerca",
-        "You can search by recipe name, specific ingredients or dish type.": "Pots cercar per nom de recepta, ingredients específics o tipus de plat.",
+        "You can search by recipe name, specific ingredients or dish type.": (
+            "Pots cercar per nom de recepta, ingredients específics o tipus de plat."
+        ),
         "Ingredients": "Ingredients",
         "Instructions": "Instruccions",
         "Preparation": "Preparació",
@@ -158,8 +170,12 @@ INTERFACE_TRANSLATIONS = {
         "Medium": "Mitjà",
         "Hard": "Difícil",
         "Traditional family recipes": "Receptes tradicionals familiars",
-        "Discover the traditional flavors of family cooking": "Descobreix els sabors tradicionals de la cuina familiar",
-        "Preserving family culinary traditions": "Preservant les tradicions culinàries familiars",
+        "Discover the traditional flavors of family cooking": (
+            "Descobreix els sabors tradicionals de la cuina familiar"
+        ),
+        "Preserving family culinary traditions": (
+            "Preservant les tradicions culinàries familiars"
+        ),
     },
     "eu": {
         "Home": "Hasiera",
@@ -178,7 +194,9 @@ INTERFACE_TRANSLATIONS = {
         "No recipes found matching your search.": "Ez da zure bilaketarekin bat datorren errezeta aurkitu.",
         "View all recipes": "Errezeta guztiak ikusi",
         "Search tip": "Bilaketa aholkua",
-        "You can search by recipe name, specific ingredients or dish type.": "Errezeta izenez, osagai zehatzez edo plater motaz bilatu dezakezu.",
+        "You can search by recipe name, specific ingredients or dish type.": (
+            "Errezeta izenez, osagai zehatzez edo plater motaz bilatu dezakezu."
+        ),
         "Ingredients": "Osagaiak",
         "Instructions": "Jarraibideak",
         "Preparation": "Prestaketa",
@@ -196,8 +214,12 @@ INTERFACE_TRANSLATIONS = {
         "Medium": "Ertaina",
         "Hard": "Zaila",
         "Traditional family recipes": "Familia-errezetak tradizionalak",
-        "Discover the traditional flavors of family cooking": "Aurkitu familia-sukaldaritzaren zapore tradizionalak",
-        "Preserving family culinary traditions": "Familiaren kultura-tradizio kulinarioak mantenduz",
+        "Discover the traditional flavors of family cooking": (
+            "Aurkitu familia-sukaldaritzaren zapore tradizionalak"
+        ),
+        "Preserving family culinary traditions": (
+            "Familiaren kultura-tradizio kulinarioak mantenduz"
+        ),
     },
 }
 
@@ -205,10 +227,10 @@ INTERFACE_TRANSLATIONS = {
 def update_po_file(language_code, translations):
     """Update a .po file with proper translations"""
     po_path = Path(f"translations/{language_code}/LC_MESSAGES/messages.po")
-    
+
     if not po_path.parent.exists():
         po_path.parent.mkdir(parents=True, exist_ok=True)
-    
+
     # Create proper .po file content
     po_content = f"""# {language_code} translations for Recetas de la Tía Carmen
 msgid ""
@@ -226,31 +248,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\\n"
 
 """
-    
+
     # Add all translations
     for msgid, msgstr in translations.items():
         # Escape quotes properly
         escaped_msgid = msgid.replace('"', '\\"')
         escaped_msgstr = msgstr.replace('"', '\\"')
-        
+
         po_content += f'msgid "{escaped_msgid}"\n'
         po_content += f'msgstr "{escaped_msgstr}"\n\n'
-    
+
     # Write the file
-    with open(po_path, 'w', encoding='utf-8') as f:
+    with open(po_path, "w", encoding="utf-8") as f:
         f.write(po_content)
-    
+
     print(f"✅ Updated {po_path} with {len(translations)} translations")
 
 
 def main():
     """Main function to update all .po files with real translations"""
     print("🔄 Updating Flask-Babel .po files with real translations...")
-    
+
     # Update each language
     for lang_code, translations in INTERFACE_TRANSLATIONS.items():
         update_po_file(lang_code, translations)
-    
+
     print("\n✅ All .po files updated successfully!")
     print("Next step: Compile .po files to .mo files")
 
