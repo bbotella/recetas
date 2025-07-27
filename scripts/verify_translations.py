@@ -84,7 +84,7 @@ def verify_flask_babel_files():
 
 def verify_ai_translation_system():
     """Verify that the AI translation system is properly configured."""
-    ai_script = Path("scripts/ai_translation_system.py")
+    ai_script = Path("scripts/contextual_ai_translation_system.py")
 
     if not ai_script.exists():
         print("❌ AI translation system script not found")

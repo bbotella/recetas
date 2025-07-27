@@ -1,5 +1,5 @@
 # Chinese (Simplified) translations for Recipe App
-# Generated with Real AI Translation System
+# Generated with Contextual AI Translation System
 #
 msgid ""
 msgstr ""
@@ -7,14 +7,14 @@ msgstr ""
 "Report-Msgid-Bugs-To: admin@example.com\n"
 "POT-Creation-Date: 2024-01-01 12:00+0000\n"
 "PO-Revision-Date: 2024-01-01 12:00+0000\n"
-"Last-Translator: Real AI Translation System\n"
+"Last-Translator: Contextual AI Translation System\n"
 "Language: zh\n"
 "Language-Team: Chinese (Simplified)\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Real AI Translation System\n"
+"Generated-By: Contextual AI Translation System\n"
 
 msgid "Aunt Carmen's Recipes"
 msgstr "卡门阿姨的食谱"
@@ -87,28 +87,4 @@ msgstr "打印"
 
 msgid "Favorites"
 msgstr "收藏"
-
-msgid "Desserts"
-msgstr "甜点"
-
-msgid "Drinks"
-msgstr "饮料"
-
-msgid "Chicken"
-msgstr "鸡肉"
-
-msgid "Fish"
-msgstr "鱼类"
-
-msgid "Meat"
-msgstr "肉类"
-
-msgid "Vegetables"
-msgstr "蔬菜"
-
-msgid "Appetizers"
-msgstr "开胃菜"
-
-msgid "Others"
-msgstr "其他"
 

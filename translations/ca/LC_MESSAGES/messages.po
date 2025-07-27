@@ -1,5 +1,5 @@
-# Valencià (Valencian Catalan) translations for Recipe App
-# Generated with Real AI Translation System
+# Català Valencià (Valencian Catalan) translations for Recipe App
+# Generated with Contextual AI Translation System
 #
 msgid ""
 msgstr ""
@@ -7,14 +7,14 @@ msgstr ""
 "Report-Msgid-Bugs-To: admin@example.com\n"
 "POT-Creation-Date: 2024-01-01 12:00+0000\n"
 "PO-Revision-Date: 2024-01-01 12:00+0000\n"
-"Last-Translator: Real AI Translation System\n"
+"Last-Translator: Contextual AI Translation System\n"
 "Language: ca\n"
-"Language-Team: Valencià (Valencian Catalan)\n"
+"Language-Team: Català Valencià (Valencian Catalan)\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Real AI Translation System\n"
+"Generated-By: Contextual AI Translation System\n"
 
 msgid "Aunt Carmen's Recipes"
 msgstr "Receptes de la Tia Carmen"
@@ -87,28 +87,4 @@ msgstr "Imprimir"
 
 msgid "Favorites"
 msgstr "Favorites"
-
-msgid "Desserts"
-msgstr "Postres"
-
-msgid "Drinks"
-msgstr "Begudes"
-
-msgid "Chicken"
-msgstr "Pollastre"
-
-msgid "Fish"
-msgstr "Peix"
-
-msgid "Meat"
-msgstr "Carn"
-
-msgid "Vegetables"
-msgstr "Verdures"
-
-msgid "Appetizers"
-msgstr "Aperitius"
-
-msgid "Others"
-msgstr "Altres"
 
