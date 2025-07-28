@@ -34,6 +34,9 @@ RUN python scripts/import_all_translations.py
 # Compile Flask-Babel translations
 RUN python scripts/docker_compile_translations.py
 
+# Copy the built database to the data directory for persistence
+RUN cp /app/recipes.db /app/data/recipes.db
+
 # Create non-root user for security
 RUN useradd -m -u 1000 flaskuser && chown -R flaskuser:flaskuser /app
 USER flaskuser
