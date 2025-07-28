@@ -31,6 +31,9 @@ RUN if [ -d "recipes" ]; then python scripts/import_recipes.py; fi
 # Import all translations from individual JSON files
 RUN python scripts/import_all_translations.py
 
+# Fix recipe ID mismatch in translations
+RUN python scripts/fix_translation_ids.py
+
 # Compile Flask-Babel translations
 RUN python scripts/docker_compile_translations.py
 
