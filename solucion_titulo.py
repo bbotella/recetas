@@ -20,7 +20,7 @@ def main():
         "🇬🇧 Inglés": "Aunt Carmen's Recipes",
         "🇨🇳 Chino": "卡门阿姨的食谱",
         "🇪🇸 Catalán": "Receptes de la Tia Carmen",
-        "🇪🇸 Euskera": "Carmen Izebaren Errezetek"
+        "🇪🇸 Euskera": "Carmen Izebaren Errezetek",
     }
 
     for lang, title in translations.items():

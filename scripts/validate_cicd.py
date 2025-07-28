@@ -60,8 +60,7 @@ def validate_github_actions():
         else:
             print(f"⚠️  Found {len(workflow_files)} workflow files - verify structure")
     else:
-        print(f"
-        ⚠️  Found {len(workflow_files)} workflow files - consider consolidation")
+        print(f"Found {len(workflow_files)} workflow files - consider consolidation")
 
     return ci_cd_exists
 

@@ -83,10 +83,7 @@ def verify_updates():
     print(f"Enhanced Chinese translations: {long_zh_descriptions}")
 
     if long_descriptions > 0 and long_en_descriptions > 0 and long_zh_descriptions > 0:
-        print(
-            "\n🎉 SUCCESS! All descriptions have been enhanced with gastronomic and
-        emotional tone!"
-        )
+        print("\n🎉 SUCCESS! All descriptions have been enhanced!")
     else:
         print("\n⚠️  Some descriptions may need further enhancement.")
 

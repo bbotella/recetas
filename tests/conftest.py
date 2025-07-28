@@ -5,6 +5,7 @@ import pytest
 from flask import Flask
 from flask_babel import Babel
 from database import init_database, get_db_connection
+
 """
 Pytest configuration and fixtures for the Tía Carmen's Recipes application.
 """

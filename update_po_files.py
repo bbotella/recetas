@@ -48,9 +48,7 @@ INTERFACE_TRANSLATIONS = {
         "Easy": "Fácil",
         "Medium": "Medio",
         "Hard": "Difícil",
-        "Traditional family recipes": (
-            "Recetas familiares tradicionales"
-        ),
+        "Traditional family recipes": ("Recetas familiares tradicionales"),
         "Discover the traditional flavors of family cooking": (
             "Descubre los sabores tradicionales de la cocina familiar"
         ),
@@ -109,9 +107,7 @@ INTERFACE_TRANSLATIONS = {
         "Categories": "分类",
         "Language": "语言",
         "Search Recipes": "搜索食谱",
-        "Search by name, ingredients or description...": (
-            "按名称、配料或描述搜索..."
-        ),
+        "Search by name, ingredients or description...": ("按名称、配料或描述搜索..."),
         "All categories": "所有分类",
         "Search": "搜索",
         "Search results": "搜索结果",
@@ -120,9 +116,7 @@ INTERFACE_TRANSLATIONS = {
         "All Recipes": "所有食谱",
         "Clear search": "清除搜索",
         "View Recipe": "查看食谱",
-        "No recipes found matching your search.": (
-            "没有找到符合您搜索的食谱。"
-        ),
+        "No recipes found matching your search.": ("没有找到符合您搜索的食谱。"),
         "View all recipes": "查看所有食谱",
         "Search tip": "搜索提示",
         "You can search by recipe name, specific ingredients or dish type.": (
@@ -144,15 +138,11 @@ INTERFACE_TRANSLATIONS = {
         "Easy": "简单",
         "Medium": "中等",
         "Hard": "困难",
-        "Traditional family recipes": (
-            "传统家庭食谱"
-        ),
+        "Traditional family recipes": ("传统家庭食谱"),
         "Discover the traditional flavors of family cooking": (
             "探索家庭烹饪的传统风味"
         ),
-        "Preserving family culinary traditions": (
-            "保护家庭烹饪传统"
-        ),
+        "Preserving family culinary traditions": ("保护家庭烹饪传统"),
     },
     "ca": {
         "Aunt Carmen's Recipes": "Receptes de la Tia Carmen",
@@ -195,9 +185,7 @@ INTERFACE_TRANSLATIONS = {
         "Easy": "Fàcil",
         "Medium": "Mitjà",
         "Hard": "Difícil",
-        "Traditional family recipes": (
-            "Receptes tradicionals familiars"
-        ),
+        "Traditional family recipes": ("Receptes tradicionals familiars"),
         "Discover the traditional flavors of family cooking": (
             "Descobreix els sabors tradicionals de la cuina familiar"
         ),
@@ -246,9 +234,7 @@ INTERFACE_TRANSLATIONS = {
         "Easy": "Erraza",
         "Medium": "Ertaina",
         "Hard": "Zaila",
-        "Traditional family recipes": (
-            "Familia-errezetak tradizionalak"
-        ),
+        "Traditional family recipes": ("Familia-errezetak tradizionalak"),
         "Discover the traditional flavors of family cooking": (
             "Aurkitu familia-sukaldaritzaren zapore tradizionalak"
         ),
@@ -297,9 +283,7 @@ msgstr ""
     with open(po_path, "w", encoding="utf-8") as f:
         f.write(po_content)
 
-    print(
-        f"✅ Updated {po_path} with {len(translations)} translations"
-    )
+    print(f"✅ Updated {po_path} with {len(translations)} translations")
 
 
 def main():

@@ -19,16 +19,16 @@ def check_translation_status():
         "translations_english.json",
         "translations_chinese.json",
         "translations_catalan.json",
-        "translations_euskera.json"
+        "translations_euskera.json",
     ]
 
     total_json_translations = 0
     for file in json_files:
         if os.path.exists(file):
-            with open(file, 'r', encoding='utf-8') as f:
+            with open(file, "r", encoding="utf-8") as f:
                 data = json.load(f)
             count = len(data)
-            lang = file.split('_')[1].split('.')[0]
+            lang = file.split("_")[1].split(".")[0]
             print(f"✅ {lang.capitalize()}: {count} translations")
             total_json_translations += count
         else:
@@ -102,7 +102,7 @@ def check_application_status():
         "database.py",
         "templates/base.html",
         "templates/index.html",
-        "templates/recipe.html"
+        "templates/recipe.html",
     ]
 
     for file in main_files:
@@ -121,11 +121,12 @@ def check_test_status():
     # Run basic tests
     try:
         import subprocess
+
         result = subprocess.run(
             ["python3", "scripts/run_tests.py"],
             capture_output=True,
             text=True,
-            cwd=os.getcwd()
+            cwd=os.getcwd(),
         )
 
         if result.returncode == 0:
