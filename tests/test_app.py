@@ -4,7 +4,7 @@ Unit tests for Flask routes and views in app.py.
 
 import pytest
 import json
-
+from flask import request
 
 
 class TestFlaskRoutes:

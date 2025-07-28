@@ -192,14 +192,16 @@ def get_all_recipes_with_translation(language="es"):
         recipes = conn.execute(
             """
             SELECT r.id, r.filename, r.created_at,
-                   CASE WHEN t.title IS NOT NULL THEN t.title 
+                   CASE WHEN t.title IS NOT NULL THEN t.title
                         ELSE r.title END as title,
-                   CASE WHEN t.description IS NOT NULL THEN t.description 
+                   CASE WHEN t.description IS NOT NULL THEN t.description
                         ELSE r.description END as description,
-                   CASE WHEN t.ingredients IS NOT NULL THEN t.ingredients 
+                   CASE WHEN t.ingredients IS NOT NULL THEN t.ingredients
                         ELSE r.ingredients END as ingredients,
-                   CASE WHEN t.instructions IS NOT NULL THEN t.instructions ELSE r.instructions END as instructions,
-                   CASE WHEN t.category IS NOT NULL THEN t.category ELSE r.category END as category
+                   CASE WHEN t.instructions IS NOT NULL THEN t.instructions
+                        ELSE r.instructions END as instructions,
+                   CASE WHEN t.category IS NOT NULL THEN t.category
+                        ELSE r.category END as category
             FROM recipes r
             LEFT JOIN recipe_translations t ON r.id = t.recipe_id AND t.language = ?
             ORDER BY CASE WHEN t.title IS NOT NULL THEN t.title ELSE r.title END
@@ -222,41 +224,54 @@ def search_recipes_with_translation(query, category=None, language="es"):
         if category:
             sql = """
                 SELECT r.id, r.filename, r.created_at,
-                       CASE WHEN t.title IS NOT NULL THEN t.title 
+                       CASE WHEN t.title IS NOT NULL THEN t.title
                         ELSE r.title END as title,
-                       CASE WHEN t.description IS NOT NULL THEN t.description 
+                       CASE WHEN t.description IS NOT NULL THEN t.description
                         ELSE r.description END as description,
-                       CASE WHEN t.ingredients IS NOT NULL THEN t.ingredients 
+                       CASE WHEN t.ingredients IS NOT NULL THEN t.ingredients
                         ELSE r.ingredients END as ingredients,
-                       CASE WHEN t.instructions IS NOT NULL THEN t.instructions ELSE r.instructions END as instructions,
-                       CASE WHEN t.category IS NOT NULL THEN t.category ELSE r.category END as category
+                       CASE WHEN t.instructions IS NOT NULL THEN t.instructions
+                        ELSE r.instructions END as instructions,
+                       CASE WHEN t.category IS NOT NULL THEN t.category
+                        ELSE r.category END as category
                 FROM recipes r
                 LEFT JOIN recipe_translations t ON r.id = t.recipe_id AND t.language = ?
-                WHERE CASE WHEN t.category IS NOT NULL THEN t.category ELSE r.category END = ? AND (
-                    CASE WHEN t.title IS NOT NULL THEN t.title ELSE r.title END LIKE ? OR
-                    CASE WHEN t.description IS NOT NULL THEN t.description ELSE r.description END LIKE ? OR
-                    CASE WHEN t.ingredients IS NOT NULL THEN t.ingredients ELSE r.ingredients END LIKE ?
+                WHERE CASE WHEN t.category IS NOT NULL THEN t.category
+                      ELSE r.category END = ? AND (
+                    CASE WHEN t.title IS NOT NULL THEN t.title
+                         ELSE r.title END LIKE ? OR
+                    CASE WHEN t.description IS NOT NULL THEN t.description
+                         ELSE r.description END LIKE ? OR
+                    CASE WHEN t.ingredients IS NOT NULL THEN t.ingredients
+                         ELSE r.ingredients END LIKE ?
                 )
-                ORDER BY CASE WHEN t.title IS NOT NULL THEN t.title ELSE r.title END
+                ORDER BY CASE WHEN t.title IS NOT NULL THEN t.title
+                         ELSE r.title END
             """
             params = [language, category, f"%{query}%", f"%{query}%", f"%{query}%"]
         else:
             sql = """
                 SELECT r.id, r.filename, r.created_at,
-                       CASE WHEN t.title IS NOT NULL THEN t.title 
+                       CASE WHEN t.title IS NOT NULL THEN t.title
                         ELSE r.title END as title,
-                       CASE WHEN t.description IS NOT NULL THEN t.description 
+                       CASE WHEN t.description IS NOT NULL THEN t.description
                         ELSE r.description END as description,
-                       CASE WHEN t.ingredients IS NOT NULL THEN t.ingredients 
+                       CASE WHEN t.ingredients IS NOT NULL THEN t.ingredients
                         ELSE r.ingredients END as ingredients,
-                       CASE WHEN t.instructions IS NOT NULL THEN t.instructions ELSE r.instructions END as instructions,
-                       CASE WHEN t.category IS NOT NULL THEN t.category ELSE r.category END as category
+                       CASE WHEN t.instructions IS NOT NULL THEN t.instructions
+                        ELSE r.instructions END as instructions,
+                       CASE WHEN t.category IS NOT NULL THEN t.category
+                        ELSE r.category END as category
                 FROM recipes r
                 LEFT JOIN recipe_translations t ON r.id = t.recipe_id AND t.language = ?
-                WHERE CASE WHEN t.title IS NOT NULL THEN t.title ELSE r.title END LIKE ? OR
-                      CASE WHEN t.description IS NOT NULL THEN t.description ELSE r.description END LIKE ? OR
-                      CASE WHEN t.ingredients IS NOT NULL THEN t.ingredients ELSE r.ingredients END LIKE ?
-                ORDER BY CASE WHEN t.title IS NOT NULL THEN t.title ELSE r.title END
+                WHERE CASE WHEN t.title IS NOT NULL THEN t.title
+                      ELSE r.title END LIKE ? OR
+                      CASE WHEN t.description IS NOT NULL THEN t.description
+                         ELSE r.description END LIKE ? OR
+                      CASE WHEN t.ingredients IS NOT NULL THEN t.ingredients
+                         ELSE r.ingredients END LIKE ?
+                ORDER BY CASE WHEN t.title IS NOT NULL THEN t.title
+                         ELSE r.title END
             """
             params = [language, f"%{query}%", f"%{query}%", f"%{query}%"]
 
@@ -291,7 +306,8 @@ def save_recipe_translation(
         conn.execute(
             """
             UPDATE recipe_translations
-            SET title = ?, description = ?, ingredients = ?, instructions = ?, category = ?
+            SET title = ?, description = ?, ingredients = ?,
+                instructions = ?, category = ?
             WHERE recipe_id = ? AND language = ?
         """,
             [
