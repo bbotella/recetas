@@ -13,6 +13,9 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+msgid "Aunt Carmen's Recipes"
+msgstr "卡门阿姨的食谱"
+
 msgid "Home"
 msgstr "首页"
 

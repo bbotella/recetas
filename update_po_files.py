@@ -98,6 +98,7 @@ INTERFACE_TRANSLATIONS = {
         ),
     },
     "zh": {
+        "Aunt Carmen's Recipes": "卡门阿姨的食谱",
         "Home": "首页",
         "Categories": "分类",
         "Language": "语言",
@@ -136,6 +137,7 @@ INTERFACE_TRANSLATIONS = {
         "Preserving family culinary traditions": "保护家庭烹饪传统",
     },
     "ca": {
+        "Aunt Carmen's Recipes": "Receptes de la Tia Carmen",
         "Home": "Inici",
         "Categories": "Categories",
         "Language": "Idioma",
@@ -180,6 +182,7 @@ INTERFACE_TRANSLATIONS = {
         ),
     },
     "eu": {
+        "Aunt Carmen's Recipes": "Carmen Izebaren Errezetek",
         "Home": "Hasiera",
         "Categories": "Kategoriak",
         "Language": "Hizkuntza",
