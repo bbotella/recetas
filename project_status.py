@@ -82,7 +82,10 @@ def check_babel_status():
         mo_exists = os.path.exists(mo_path)
 
         status = "✅" if po_exists and mo_exists else "⚠️"
-        print(f"{status} {lang.upper()}: .po {'✅' if po_exists else '❌'} .mo {'✅' if mo_exists else '❌'}")
+        print(
+            f"{status} {lang.upper()}: .po {'✅' if po_exists else '❌'} "
+            f".mo {'✅' if mo_exists else '❌'}"
+        )
 
     print("\n🎯 Flask-Babel Integration: COMPLETE")
 

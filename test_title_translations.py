@@ -9,6 +9,7 @@ sys.path.insert(0, '.')
 from flask_babel import _
 from app import app
 
+
 def test_title_translations():
     """Test that title translations work for all languages."""
 
@@ -37,6 +38,7 @@ def test_title_translations():
 
     print("\n🎯 Title Translation Test Complete")
 
+
 def test_template_rendering():
     """Test that templates render titles correctly."""
 
@@ -62,6 +64,7 @@ def test_template_rendering():
 
     print("\n🎯 Template Rendering Test Complete")
 
+
 def main():
     """Main test function."""
 
@@ -79,6 +82,7 @@ def main():
     print("1. Run: python3 app.py")
     print("2. Open: http://localhost:5000")
     print("3. Switch languages and check page title")
+
 
 if __name__ == "__main__":
     main()

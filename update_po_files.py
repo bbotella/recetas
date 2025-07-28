@@ -13,7 +13,9 @@ INTERFACE_TRANSLATIONS = {
         "Categories": "Categorías",
         "Language": "Idioma",
         "Search Recipes": "Buscar Recetas",
-        "Search by name, ingredients or description...": "Buscar por nombre, ingredientes o descripción...",
+        "Search by name, ingredients or description...": (
+            "Buscar por nombre, ingredientes o descripción..."
+        ),
         "All categories": "Todas las categorías",
         "Search": "Buscar",
         "Search results": "Resultados de búsqueda",
@@ -22,7 +24,9 @@ INTERFACE_TRANSLATIONS = {
         "All Recipes": "Todas las Recetas",
         "Clear search": "Limpiar búsqueda",
         "View Recipe": "Ver Receta",
-        "No recipes found matching your search.": "No se encontraron recetas que coincidan con tu búsqueda.",
+        "No recipes found matching your search.": (
+            "No se encontraron recetas que coincidan con tu búsqueda."
+        ),
         "View all recipes": "Ver todas las recetas",
         "Search tip": "Consejo de búsqueda",
         "You can search by recipe name, specific ingredients or dish type.": (
@@ -44,7 +48,9 @@ INTERFACE_TRANSLATIONS = {
         "Easy": "Fácil",
         "Medium": "Medio",
         "Hard": "Difícil",
-        "Traditional family recipes": "Recetas familiares tradicionales",
+        "Traditional family recipes": (
+            "Recetas familiares tradicionales"
+        ),
         "Discover the traditional flavors of family cooking": (
             "Descubre los sabores tradicionales de la cocina familiar"
         ),
@@ -103,7 +109,9 @@ INTERFACE_TRANSLATIONS = {
         "Categories": "分类",
         "Language": "语言",
         "Search Recipes": "搜索食谱",
-        "Search by name, ingredients or description...": "按名称、配料或描述搜索...",
+        "Search by name, ingredients or description...": (
+            "按名称、配料或描述搜索..."
+        ),
         "All categories": "所有分类",
         "Search": "搜索",
         "Search results": "搜索结果",
@@ -112,10 +120,14 @@ INTERFACE_TRANSLATIONS = {
         "All Recipes": "所有食谱",
         "Clear search": "清除搜索",
         "View Recipe": "查看食谱",
-        "No recipes found matching your search.": "没有找到符合您搜索的食谱。",
+        "No recipes found matching your search.": (
+            "没有找到符合您搜索的食谱。"
+        ),
         "View all recipes": "查看所有食谱",
         "Search tip": "搜索提示",
-        "You can search by recipe name, specific ingredients or dish type.": "您可以按食谱名称、特定配料或菜肴类型搜索。",
+        "You can search by recipe name, specific ingredients or dish type.": (
+            "您可以按食谱名称、特定配料或菜肴类型搜索。"
+        ),
         "Ingredients": "配料",
         "Instructions": "制作方法",
         "Preparation": "准备",
@@ -132,9 +144,15 @@ INTERFACE_TRANSLATIONS = {
         "Easy": "简单",
         "Medium": "中等",
         "Hard": "困难",
-        "Traditional family recipes": "传统家庭食谱",
-        "Discover the traditional flavors of family cooking": "探索家庭烹饪的传统风味",
-        "Preserving family culinary traditions": "保护家庭烹饪传统",
+        "Traditional family recipes": (
+            "传统家庭食谱"
+        ),
+        "Discover the traditional flavors of family cooking": (
+            "探索家庭烹饪的传统风味"
+        ),
+        "Preserving family culinary traditions": (
+            "保护家庭烹饪传统"
+        ),
     },
     "ca": {
         "Aunt Carmen's Recipes": "Receptes de la Tia Carmen",
@@ -142,7 +160,9 @@ INTERFACE_TRANSLATIONS = {
         "Categories": "Categories",
         "Language": "Idioma",
         "Search Recipes": "Cerca Receptes",
-        "Search by name, ingredients or description...": "Cerca per nom, ingredients o descripció...",
+        "Search by name, ingredients or description...": (
+            "Cerca per nom, ingredients o descripció..."
+        ),
         "All categories": "Totes les categories",
         "Search": "Cerca",
         "Search results": "Resultats de la cerca",
@@ -151,7 +171,9 @@ INTERFACE_TRANSLATIONS = {
         "All Recipes": "Totes les Receptes",
         "Clear search": "Neteja la cerca",
         "View Recipe": "Veure Recepta",
-        "No recipes found matching your search.": "No s'han trobat receptes que coincideixin amb la vostra cerca.",
+        "No recipes found matching your search.": (
+            "No s'han trobat receptes que coincideixin amb la vostra cerca."
+        ),
         "View all recipes": "Veure totes les receptes",
         "Search tip": "Consell de cerca",
         "You can search by recipe name, specific ingredients or dish type.": (
@@ -173,7 +195,9 @@ INTERFACE_TRANSLATIONS = {
         "Easy": "Fàcil",
         "Medium": "Mitjà",
         "Hard": "Difícil",
-        "Traditional family recipes": "Receptes tradicionals familiars",
+        "Traditional family recipes": (
+            "Receptes tradicionals familiars"
+        ),
         "Discover the traditional flavors of family cooking": (
             "Descobreix els sabors tradicionals de la cuina familiar"
         ),
@@ -187,7 +211,9 @@ INTERFACE_TRANSLATIONS = {
         "Categories": "Kategoriak",
         "Language": "Hizkuntza",
         "Search Recipes": "Bilatu Errezetek",
-        "Search by name, ingredients or description...": "Bilatu izenez, osagaiez edo deskribpenez...",
+        "Search by name, ingredients or description...": (
+            "Bilatu izenez, osagaiez edo deskribpenez..."
+        ),
         "All categories": "Kategoria guztiak",
         "Search": "Bilatu",
         "Search results": "Bilaketa emaitzak",
@@ -196,7 +222,9 @@ INTERFACE_TRANSLATIONS = {
         "All Recipes": "Errezeta Guztiak",
         "Clear search": "Bilaketa garbitu",
         "View Recipe": "Errezeta Ikusi",
-        "No recipes found matching your search.": "Ez da zure bilaketarekin bat datorren errezeta aurkitu.",
+        "No recipes found matching your search.": (
+            "Ez da zure bilaketarekin bat datorren errezeta aurkitu."
+        ),
         "View all recipes": "Errezeta guztiak ikusi",
         "Search tip": "Bilaketa aholkua",
         "You can search by recipe name, specific ingredients or dish type.": (
@@ -218,7 +246,9 @@ INTERFACE_TRANSLATIONS = {
         "Easy": "Erraza",
         "Medium": "Ertaina",
         "Hard": "Zaila",
-        "Traditional family recipes": "Familia-errezetak tradizionalak",
+        "Traditional family recipes": (
+            "Familia-errezetak tradizionalak"
+        ),
         "Discover the traditional flavors of family cooking": (
             "Aurkitu familia-sukaldaritzaren zapore tradizionalak"
         ),
@@ -267,7 +297,9 @@ msgstr ""
     with open(po_path, "w", encoding="utf-8") as f:
         f.write(po_content)
 
-    print(f"✅ Updated {po_path} with {len(translations)} translations")
+    print(
+        f"✅ Updated {po_path} with {len(translations)} translations"
+    )
 
 
 def main():

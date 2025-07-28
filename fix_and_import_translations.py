@@ -70,7 +70,8 @@ def fix_and_import_translations():
             cursor.execute("SELECT id FROM recipes WHERE id = ?", (db_id,))
             if not cursor.fetchone():
                 print(
-                    f"Warning: Recipe {db_id} not found in database (JSON ID: {json_id})"
+                    f"Warning: Recipe {db_id} not found in database "
+                    f"(JSON ID: {json_id})"
                 )
                 continue
 

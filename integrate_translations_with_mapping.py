@@ -56,7 +56,8 @@ def get_recipe_mapping():
             )
         else:
             print(
-                f"No good match for: {json_id} '{json_title}' (best score: {best_score})"
+                f"No good match for: {json_id} '{json_title}' "
+                f"(best score: {best_score})"
             )
 
     return mapping

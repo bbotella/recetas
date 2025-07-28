@@ -84,7 +84,8 @@ def verify_updates():
 
     if long_descriptions > 0 and long_en_descriptions > 0 and long_zh_descriptions > 0:
         print(
-            "\n🎉 SUCCESS! All descriptions have been enhanced with gastronomic and emotional tone!"
+            "\n🎉 SUCCESS! All descriptions have been enhanced with gastronomic and
+        emotional tone!"
         )
     else:
         print("\n⚠️  Some descriptions may need further enhancement.")
