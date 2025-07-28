@@ -25,6 +25,27 @@ msgstr "Categories"
 msgid "Language"
 msgstr "Language"
 
+msgid "cal"
+msgstr "cal"
+
+msgid "Nutritional Information"
+msgstr "Nutritional Information"
+
+msgid "Total Calories"
+msgstr "Total Calories"
+
+msgid "Servings"
+msgstr "Servings"
+
+msgid "Per Serving"
+msgstr "Per Serving"
+
+msgid "Estimation"
+msgstr "Estimation"
+
+msgid "Based on ingredients"
+msgstr "Based on ingredients"
+
 msgid "Search Recipes"
 msgstr "Search Recipes"
 

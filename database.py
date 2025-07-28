@@ -20,6 +20,23 @@ def init_database():
             instructions TEXT,
             category TEXT,
             filename TEXT UNIQUE,
+            estimated_calories INTEGER,
+            servings INTEGER DEFAULT 4,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    """
+    )
+
+    # Create ingredient calories table
+    cursor.execute(
+        """
+        CREATE TABLE IF NOT EXISTS ingredient_calories (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            ingredient_name TEXT NOT NULL UNIQUE,
+            calories_per_100g INTEGER NOT NULL,
+            protein_per_100g REAL DEFAULT 0,
+            carbs_per_100g REAL DEFAULT 0,
+            fat_per_100g REAL DEFAULT 0,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     """
@@ -55,6 +72,10 @@ def init_database():
     cursor.execute(
         "CREATE INDEX IF NOT EXISTS idx_translations_language "
         "ON recipe_translations(language)"
+    )
+    cursor.execute(
+        "CREATE INDEX IF NOT EXISTS idx_ingredient_name "
+        "ON ingredient_calories(ingredient_name)"
     )
 
     conn.commit()
