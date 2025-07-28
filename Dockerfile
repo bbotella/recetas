@@ -34,6 +34,15 @@ RUN python scripts/import_all_translations.py
 # Fix recipe ID mismatch in translations
 RUN python scripts/fix_translation_ids.py
 
+# Add calories schema to database
+RUN python scripts/migrate_calories_schema.py
+
+# Populate ingredient calories database
+RUN python scripts/populate_ingredient_calories.py
+
+# Calculate calories for all recipes
+RUN python scripts/calories_estimator.py
+
 # Compile Flask-Babel translations
 RUN python scripts/docker_compile_translations.py
 

@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   tia-carmen-recipes:
-    image: docker.io/bbotella/recetas-tia-carmen:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: tia-carmen-recipes
     ports:
       - "5014:5014"
