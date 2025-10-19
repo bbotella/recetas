@@ -15,8 +15,6 @@ services:
       - FLASK_APP=app.py
       - FLASK_PORT=5014
       # - DATABASE_PATH=/app/data/recipes.db
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5014/health"]
@@ -27,7 +25,7 @@ services:
     logging:
       driver: gelf
       options:
-        gelf-address: "udp://host.docker.internal:12201"
+        gelf-address: "udp://192.168.1.223:12201"
         tag: "tia-carmen-recipes"
         labels: "service,environment"
         env: "FLASK_ENV,FLASK_PORT"
@@ -42,14 +40,12 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - tia-carmen-recipes
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     restart: unless-stopped
     profiles:
       - production
     logging:
       driver: gelf
       options:
-        gelf-address: "udp://host.docker.internal:12201"
+        gelf-address: "udp://192.168.1.223:12201"
         tag: "tia-carmen-nginx"
         labels: "service"
