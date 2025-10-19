@@ -22,6 +22,13 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://host.docker.internal:12201"
+        tag: "tia-carmen-recipes"
+        labels: "service,environment"
+        env: "FLASK_ENV,FLASK_PORT"
 
   # Optional: Add nginx reverse proxy for production
   nginx:
@@ -36,3 +43,9 @@ services:
     restart: unless-stopped
     profiles:
       - production
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://host.docker.internal:12201"
+        tag: "tia-carmen-nginx"
+        labels: "service"
